@@ -1,7 +1,19 @@
-import './App.css';
+import { FunctionComponent } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
+import styles from './App.module.scss';
 
-function App() {
-  return <div className="App">Disney characters app</div>;
-}
+const App = () => (
+  <>
+    <Router>
+      <div className={styles.app}>
+        <Header />
+        <div className={styles.content}>
+          <div>Hello, world!</div>
+        </div>
+      </div>
+    </Router>
+  </>
+);
 
 export default App;

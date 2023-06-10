@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -30,7 +29,7 @@ const Header = (): JSX.Element => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              fontFamily: 'Montserrat',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -49,7 +48,7 @@ const Header = (): JSX.Element => {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: 'Montserrat',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -58,11 +57,16 @@ const Header = (): JSX.Element => {
           >
             Disney characters
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+            }}
+          >
             <Button
               key="home"
               onClick={() => navigateToPage('/')}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Montserrat' }}
             >
               Home
             </Button>
