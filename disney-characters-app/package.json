@@ -31,6 +31,13 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "stylelint": "^15.6.1",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "stylelint-config-utility": "^1.0.1",
+    "stylelint-order": "^6.0.3",
+    "stylelint-prettier": "^3.0.0",
     "typescript": "^4.8.4"
   },
   "scripts": {
