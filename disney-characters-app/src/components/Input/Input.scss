@@ -1,0 +1,48 @@
+@mixin inputFont {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.inputWrapper {
+  @include inputFont;
+
+  .inputLabel {
+    color: #051d2e;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .input {
+    height: 48px;
+    background: #f3f6f9;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #93a3b1;
+    @include inputFont;
+  }
+
+  input::placeholder {
+    color: #93a3b1;
+  }
+
+  .inputTextError {
+    border: 1px solid #efa2ab;
+    color: #c13344;
+  }
+
+  .inputTextSuccess {
+    border: 1px solid #efa2ab;
+    color: #2b826c;
+  }
+
+  .disabled {
+    pointer-events: none;
+
+    input {
+      opacity: 0.5;
+    }
+  }
+}
