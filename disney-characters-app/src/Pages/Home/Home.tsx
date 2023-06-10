@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import styles from './Home.module.scss';
-import Input from '../components/Input/Input';
+import Input from '../../components/Input/Input';
 
 const Home = () => {
   return (
