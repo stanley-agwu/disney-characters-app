@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './Input.scss';
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   name?: string;
   error?: string;
@@ -19,6 +19,7 @@ const Input: FunctionComponent<InputProps> = ({
   success,
   warning,
   disabled,
+  onChange,
 }) => (
   <div className={classNames('inputWrapper', { disabled })}>
     {label && (
@@ -33,6 +34,7 @@ const Input: FunctionComponent<InputProps> = ({
         'input-warning': warning,
       })}
       aria-label={name}
+      onChange={onChange}
     />
     {error && <div className="inputTextError">{error}</div>}
     {success && <div className="inputTextSuccess">{success}</div>}
