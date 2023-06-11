@@ -1,10 +1,11 @@
-import { FunctionComponent } from 'react';
+import { Fragment, FunctionComponent } from 'react';
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { useNavigate } from 'react-router-dom';
 import styles from './Table.module.scss';
 import { Character } from '../../types';
 
@@ -49,6 +50,13 @@ const Table: FunctionComponent<TableProps> = ({ characters }) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const navigate = useNavigate();
+
+  const getCharacterDetails = (row: any) => {
+    const state: Character = structuredClone(row.original);
+    navigate(`characters/${row.id}`, { state });
+  };
+
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.table}>
@@ -65,7 +73,7 @@ const Table: FunctionComponent<TableProps> = ({ characters }) => {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr className={styles.bodyRow} key={row.id}>
+            <tr className={styles.bodyRow} key={row.id} onClick={() => getCharacterDetails(row)}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
               ))}

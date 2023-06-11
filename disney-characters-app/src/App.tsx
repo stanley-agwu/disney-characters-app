@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import styles from './App.module.scss';
 import Home from './Pages/Home/Home';
 import Toast from './components/Toast/Toast';
+import Character from './Pages/Character/Character';
 
 const App = () => (
   <>
@@ -12,6 +13,7 @@ const App = () => (
         <div className={styles.content}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="characters/:id" element={<Character />} />
           </Routes>
         </div>
       </div>

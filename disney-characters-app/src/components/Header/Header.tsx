@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,8 +9,9 @@ import Typography from '@mui/material/Typography';
 
 const Header = (): JSX.Element => {
   const navigate = useNavigate();
+  const location = useLocation();
   const navigateToPage = (path: string) => {
-    if (path === '/') {
+    if (path === location.pathname) {
       return;
     }
     navigate(path);
