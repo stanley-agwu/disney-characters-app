@@ -15,12 +15,10 @@ const useDisneyCharactersData = (
       (async () => {
         try {
           setIsLoading(true);
-          const response: CharactersResponse | null = await asyncFunc(url);
-          if (response) {
-            setDisneyCharacterData(response.data);
-          }
+          const response: CharactersResponse = await asyncFunc(url);
+          setDisneyCharacterData(response.data);
         } catch (error) {
-          setErrorState(error as string);
+          setErrorState('An error occurred while trying to fetch disney character(s)');
         } finally {
           setIsLoading(false);
         }

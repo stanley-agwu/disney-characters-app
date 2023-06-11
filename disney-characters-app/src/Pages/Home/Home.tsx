@@ -1,4 +1,4 @@
-import { useState, useMemo, ChangeEvent } from 'react';
+import { useState, useMemo, ChangeEvent, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { debounce } from 'lodash';
 import styles from './Home.module.scss';
@@ -8,6 +8,7 @@ import { getAllDisneyCharacters } from '../../services/fetchDisneyCharacters';
 import { allCharactersUrl, getCharacterUrlFromName } from '../../utils/disneyCharactersUtils';
 import Table from '../../components/Table/Table';
 import PageLoader from '../../components/Loader/PageLoader';
+import { showError } from '../../components/Toast';
 
 const Home = () => {
   const [requestParam, SetRequestParam] = useState<string | undefined>();
@@ -46,6 +47,12 @@ const Home = () => {
     }
     return null;
   };
+
+  useEffect(() => {
+    if (errorState) {
+      showError('Error', errorState);
+    }
+  }, [errorState]);
 
   return (
     <>
