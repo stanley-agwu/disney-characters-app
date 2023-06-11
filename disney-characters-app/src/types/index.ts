@@ -16,4 +16,4 @@ export interface Character {
   __v: number;
 }
 
-export type DisneyCharacterData = Character | Character[] | undefined;
+export type DisneyCharacterData = Character[] | [];

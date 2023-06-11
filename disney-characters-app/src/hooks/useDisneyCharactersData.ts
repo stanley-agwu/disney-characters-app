@@ -6,7 +6,7 @@ const useDisneyCharactersData = (
   url?: string,
   dependency?: string
 ) => {
-  const [disneyCharacterData, setDisneyCharacterData] = useState<DisneyCharacterData>();
+  const [disneyCharacterData, setDisneyCharacterData] = useState<DisneyCharacterData>([]);
   const [errorState, setErrorState] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,7 +17,7 @@ const useDisneyCharactersData = (
           setIsLoading(true);
           const response = await asyncFunc(url);
           if (response) {
-            setDisneyCharacterData(response);
+            setDisneyCharacterData(response.data);
           }
         } catch (error) {
           setErrorState(error as string);

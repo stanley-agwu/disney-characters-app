@@ -6,6 +6,7 @@ import Input from '../../components/Input/Input';
 import useDisneyCharactersData from '../../hooks/useDisneyCharactersData';
 import { getAllDisneyCharacters } from '../../services/fetchDisneyCharacters';
 import { allCharactersUrl, getCharacterUrlFromName } from '../../utils/disneyCharactersUtils';
+import Table from '../../components/Table/Table';
 
 const Home = () => {
   const [requestParam, SetRequestParam] = useState<string | undefined>();
@@ -20,6 +21,8 @@ const Home = () => {
     [allCharactersResults]
   );
 
+  const tableData = disneyCharacterData || [];
+
   const handleFetchCharacters = () => {
     SetRequestParam(allCharactersUrl);
   };
@@ -32,16 +35,21 @@ const Home = () => {
   const debouncedCharacterSearch = debounce(handleOnCharacterSearch, 2000);
 
   return (
-    <div className={styles.home}>
-      <div className={styles.inputWrapper}>
-        <Input name="search" label="Search characters" onChange={debouncedCharacterSearch} />
+    <>
+      <div className={styles.home}>
+        <div className={styles.inputWrapper}>
+          <Input name="search" label="Search characters" onChange={debouncedCharacterSearch} />
+        </div>
+        <div className={styles.buttonWrapper}>
+          <Button variant="contained" size="large" onClick={handleFetchCharacters}>
+            characters
+          </Button>
+        </div>
       </div>
-      <div className={styles.buttonWrapper}>
-        <Button variant="contained" size="large" onClick={handleFetchCharacters}>
-          characters
-        </Button>
+      <div className={styles.tableWrapper}>
+        <Table characters={tableData} />
       </div>
-    </div>
+    </>
   );
 };
 
