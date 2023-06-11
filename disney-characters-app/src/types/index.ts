@@ -21,3 +21,12 @@ export type DisneyCharacterData = Character[] | [];
 export interface CharactersResponse {
   data: Character[];
 }
+
+export interface CharacterState {
+  characters: Character[] | [];
+  selectedCharacter: Character | undefined;
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  errorMessage: string;
+}
