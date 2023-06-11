@@ -7,6 +7,7 @@ import useDisneyCharactersData from '../../hooks/useDisneyCharactersData';
 import { getAllDisneyCharacters } from '../../services/fetchDisneyCharacters';
 import { allCharactersUrl, getCharacterUrlFromName } from '../../utils/disneyCharactersUtils';
 import Table from '../../components/Table/Table';
+import PageLoader from '../../components/Loader/PageLoader';
 
 const Home = () => {
   const [requestParam, SetRequestParam] = useState<string | undefined>();
@@ -34,6 +35,18 @@ const Home = () => {
 
   const debouncedCharacterSearch = debounce(handleOnCharacterSearch, 2000);
 
+  const isDisplayTable = Boolean(tableData?.length);
+
+  const displayCharactersResults = () => {
+    if (isLoading) {
+      return <PageLoader width={200} height={200} />;
+    }
+    if (isDisplayTable) {
+      return <Table characters={tableData} />;
+    }
+    return null;
+  };
+
   return (
     <>
       <div className={styles.home}>
@@ -46,9 +59,9 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      <div className={styles.tableWrapper}>
-        <Table characters={tableData} />
-      </div>
+      {(isLoading || isDisplayTable) && (
+        <div className={styles.tableWrapper}>{displayCharactersResults()}</div>
+      )}
     </>
   );
 };

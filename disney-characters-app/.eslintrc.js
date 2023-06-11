@@ -36,6 +36,7 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'no-underscore-dangle': 0,
     'no-param-reassign': 0,
+    '@typescript-eslint/no-unsafe-assignment': 0,
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-unused-expressions': 0,
     '@typescript-eslint/no-unsafe-member-access': 0,

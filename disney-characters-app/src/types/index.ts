@@ -17,3 +17,7 @@ export interface Character {
 }
 
 export type DisneyCharacterData = Character[] | [];
+
+export interface CharactersResponse {
+  data: Character[];
+}

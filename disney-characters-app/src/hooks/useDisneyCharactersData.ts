@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DisneyCharacterData } from '../types';
+import { CharactersResponse, DisneyCharacterData } from '../types';
 
 const useDisneyCharactersData = (
   asyncFunc: (url: string) => Promise<any>,
@@ -15,7 +15,7 @@ const useDisneyCharactersData = (
       (async () => {
         try {
           setIsLoading(true);
-          const response = await asyncFunc(url);
+          const response: CharactersResponse | null = await asyncFunc(url);
           if (response) {
             setDisneyCharacterData(response.data);
           }
