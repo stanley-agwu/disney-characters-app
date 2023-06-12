@@ -13,7 +13,7 @@ const App = () => (
         <div className={styles.content}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="characters/:id" element={<Character />} />
+            <Route path="character/:id" element={<Character />} />
           </Routes>
         </div>
       </div>

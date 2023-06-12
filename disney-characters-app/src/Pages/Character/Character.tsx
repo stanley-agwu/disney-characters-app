@@ -1,21 +1,31 @@
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Character } from '../../types';
 import styles from './Character.module.scss';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import PageLoader from '../../components/Loader/PageLoader';
 import { showError } from '../../components/Toast';
+import { getCharacter } from '../../store/slices/characterSlice';
+import { allCharactersUrl } from '../../utils/disneyCharactersUtils';
 
 const CharacterDetails: FC = (): JSX.Element => {
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+  const pathRegexMatch = /^\/character\/(\d+)$/;
+  const { pathname, search } = location;
   const { selectedCharacter, isLoading, isError, errorMessage } = useAppSelector(
     (state) => state.character
   );
 
   useEffect(() => {
+    if (pathRegexMatch.test(pathname) && !search) {
+      const id = pathname.split('/').reverse()[0];
+      const formattedUrl = `${allCharactersUrl}/${id}`;
+      dispatch(getCharacter(formattedUrl));
+    }
     if (isError) {
       showError('Error', errorMessage);
     }
-  }, [isError]);
+  }, [isError, pathname, search]);
 
   if (isLoading) {
     return <PageLoader width={200} height={200} />;
