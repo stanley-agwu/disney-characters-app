@@ -3,6 +3,8 @@ import defaultAppStore, { errorAppStore, loadingAppStore } from '../../test/stor
 import { fireEvent, render, screen } from '../../test/test-util';
 import Home from './Home';
 import { mockDispatch } from '../../test/utils/mockDispatch';
+import { rest, server } from '../../mocks/server';
+import { getAllCharactersUrl } from '../../mocks/handlers';
 
 describe('Home', () => {
   it('renders Home', async () => {
@@ -33,12 +35,24 @@ describe('Home', () => {
     expect(errorToastMessage).toBeInTheDocument();
   });
 
-  it.skip('on button click', async () => {
-    const dispatch = mockDispatch;
-    render(<Home />, { store: errorAppStore() });
+  it('displays api Error', async () => {
+    server.use(rest.get(getAllCharactersUrl, (_, res, ctx) => res(ctx.status(500))))
+    render(<Home />);
 
     const button = await screen.findByRole('button', { name: 'characters' });
     userEvent.click(button);
+
+    const errorToastMessage = await screen.findByText('An error occurred while fetching disney character');
+    expect(errorToastMessage).toBeInTheDocument();
+  });
+
+  it.skip('on button click', async () => {
+    const dispatch = mockDispatch;
+    render(<Home />);
+
+    const button = await screen.findByRole('button', { name: 'characters' });
+    userEvent.click(button);
+
     expect(dispatch).toHaveBeenCalled();
     expect(dispatch).toHaveBeenCalledTimes(1);
   });

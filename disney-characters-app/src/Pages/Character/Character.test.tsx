@@ -1,8 +1,6 @@
-import userEvent from '@testing-library/user-event';
 import defaultAppStore, { errorAppStore, loadingAppStore } from '../../test/store';
-import { fireEvent, render, screen } from '../../test/test-util';
+import { render, screen } from '../../test/test-util';
 import Character from './Character';
-import { mockDispatch } from '../../test/utils/mockDispatch';
 
 describe('Character', () => {
   it('renders Character details', async () => {
@@ -22,7 +20,7 @@ describe('Character', () => {
     expect(loaderLabel).toBeInTheDocument();
   });
 
-  it('displays error toast', async () => {
+  it('displays error from redux store', async () => {
     render(<Character />, { store: errorAppStore() });
 
     const errorToastMessage = await screen.findByText('An Error occured with a disney character');

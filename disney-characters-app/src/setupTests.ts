@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import 'jest-canvas-mock';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/jest-dom';
-import { server } from './mocks/server.js'
+import { server } from './mocks/server'
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen())
