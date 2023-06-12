@@ -1,9 +1,9 @@
 @mixin inputFont {
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
   font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   line-height: 1;
-  box-sizing: border-box;
 }
 
 .inputWrapper {
@@ -16,11 +16,11 @@
   }
 
   .input {
-    height: 48px;
     background: #f3f6f9;
-    padding: 16px;
-    border-radius: 8px;
     border: 1px solid #93a3b1;
+    border-radius: 8px;
+    height: 48px;
+    padding: 16px;
     @include inputFont;
   }
 

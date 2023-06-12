@@ -1,53 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@0,100;0,200;0,400;0,600;0,700;1,500&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@0,100;0,200;0,400;0,600;0,700;1,500&display=swap';
 
 .Toastify {
   &__toast-container {
     width: 400px !important;
   }
+
   &__toast {
-    padding: 8px 16px !important;
-    box-shadow: none;
     border-radius: 8px;
+    box-shadow: none;
+    padding: 8px 16px !important;
   }
+
   &__toast-body.toastbody {
+    font-family: Montserrat, sans-serif;
     padding: 8px;
-    font-family: 'Montserrat', sans-serif;
 
     .title {
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 8px;
     }
+
     .body {
       font-size: 14px;
     }
+
     .icon-wrapper {
-      min-width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
       align-items: center;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      height: 48px;
+      justify-content: center;
+      min-width: 48px;
+
       .image-icon {
-        width: 24px;
         height: 24px;
+        width: 24px;
       }
+
       .success {
         path {
           fill: #075d48;
         }
       }
+
       .error {
-        width: 32px;
-        height: 32px;
         color: #8e0b1a;
+        height: 32px;
         stroke: #8e0b1a;
+        width: 32px;
+
         path {
           fill: #fff;
           stroke: #8e0b1a;
         }
       }
+
       .information {
         path {
           fill: #445869;
@@ -55,49 +64,61 @@
       }
     }
   }
+
   &__close-button {
     align-self: center;
   }
+
   &__toast-icon {
-    width: 48px !important;
     height: 48px !important;
+    width: 48px !important;
   }
+
   &__toast-theme--colored.Toastify__toast {
     &--success {
       background: #cefdd0 !important;
       color: #075d48 !important;
+
       .Toastify__close-button {
         align-self: center;
         color: #075d48;
       }
     }
+
     &--error {
       background: #ffecee !important;
       color: #8e0b1a !important;
+
       .Toastify__close-button {
         align-self: center;
         color: #8e0b1a;
       }
     }
+
     &--info {
       background-color: #f3f6f9 !important;
       color: #32414d !important;
+
       .Toastify__close-button {
         align-self: center;
         color: #32414d;
       }
     }
   }
+
   &__progress-bar {
     height: 4px;
   }
+
   &__progress-bar-theme--colored.Toastify__progress-bar {
     &--success {
       background: #2b826c !important;
     }
+
     &--error {
       background: #a60c1e !important;
     }
+
     &--info {
       background: #445869 !important;
     }

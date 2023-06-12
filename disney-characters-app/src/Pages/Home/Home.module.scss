@@ -1,41 +1,47 @@
 .home {
   display: flex;
-  margin: 0 auto;
   gap: 24px;
-
+  margin: 0 auto;
   @media screen and (max-width: 600px) {
     flex-direction: column;
     width: 100%;
+
     .inputWrapper {
       align-self: center;
       width: 100%;
+
       input {
         width: 100%;
       }
     }
+
     .buttonWrapper {
       display: flex;
       justify-content: center;
       width: 100%;
+
       button {
         width: 100%;
       }
     }
   }
   @media screen and (min-width: 601px) {
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     max-width: 600px;
 
     .inputWrapper {
       width: 400px;
+
       input {
         width: 400px;
       }
     }
+
     .buttonWrapper {
       align-self: flex-end;
+
       button {
         padding: 10.875px 22px;
       }

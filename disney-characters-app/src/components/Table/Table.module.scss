@@ -38,12 +38,13 @@
 }
 
 .bodyRow {
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+
   &:hover {
     background: #ced9e3;
-    color: #051d2e;
     border-radius: 4px;
+    color: #051d2e;
   }
 
   td {
