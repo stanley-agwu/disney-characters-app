@@ -47,9 +47,9 @@ const CharacterDetails: FC = (): JSX.Element => {
           {selectedCharacter?.updatedAt}
         </div>
         <div className={styles.films}>
-          <div className={styles.titles}>Films: </div>
-          {selectedCharacter?.films?.map((film, idx) => (
-            <div key={idx}>{film}</div>
+          <div className={styles.titles}>TV Shows: </div>
+          {selectedCharacter?.tvShows?.map((show, idx) => (
+            <div key={idx}>{show}</div>
           ))}
         </div>
         <div className={styles.enemies}>

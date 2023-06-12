@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import {
   createColumnHelper,
   flexRender,
@@ -6,7 +6,6 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../store/hooks';
 import styles from './Table.module.scss';
 import { Character } from '../../types';
 
@@ -28,15 +27,15 @@ const columns = [
     cell: (info) => <i>{info.getValue()}</i>,
     header: () => <span>Date created</span>,
   }),
+  columnHelper.accessor((row) => row.updatedAt, {
+    id: 'updatedAt',
+    cell: (info) => <i>{info.getValue()}</i>,
+    header: () => <span>Date updated</span>,
+  }),
   columnHelper.accessor((row) => row.tvShows[0], {
     id: 'tvShows',
     cell: (info) => <i>{info.getValue()}</i>,
     header: () => <span>A TV Show Featured</span>,
-  }),
-  columnHelper.accessor((row) => row.enemies[0], {
-    id: 'enemies',
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>An Enemy</span>,
   }),
 ];
 
@@ -51,7 +50,6 @@ const Table: FunctionComponent<TableProps> = ({ characters }) => {
     getCoreRowModel: getCoreRowModel(),
   });
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const getCharacterDetails = (row: any) => {
     const url = `/character/${row.original._id}`;
