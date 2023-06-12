@@ -907,7 +907,30 @@ export const defaultAppState = {
   },
 };
 
-const mockStore = configureStore(getDefaultMiddleware().concat());
+export const loadingAppState = {
+  ...defaultAppState,
+  character: {
+    ...defaultAppState.character,
+    isLoading: true,
+  },
+};
+
+export const errorAppState = {
+  ...defaultAppState,
+  character: {
+    ...defaultAppState.character,
+    isError: true,
+    errorMessage: 'An Error occured with a disney character',
+  },
+};
+
+const mockStore = configureStore(getDefaultMiddleware());
 const store = (appState = {}): MockStore => mockStore({ ...defaultAppState, ...appState });
+
+export const loadingAppStore = (appState = {}): MockStore =>
+  mockStore({ ...loadingAppState, ...appState });
+
+export const errorAppStore = (appState = {}): MockStore =>
+  mockStore({ ...errorAppState, ...appState });
 
 export default store;

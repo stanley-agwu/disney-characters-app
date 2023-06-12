@@ -13,7 +13,7 @@ import { getCharacters } from '../../store/slices/characterSlice';
 const Home = () => {
   const dispatch = useAppDispatch();
 
-  const { characters, isLoading, isError, errorMessage } = useAppSelector(
+  const { characters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
     (state) => state.character
   );
 
@@ -31,13 +31,11 @@ const Home = () => {
 
   const debouncedCharacterSearch = debounce(handleOnCharacterSearch, 2000);
 
-  const isDisplayTable = Boolean(tableData?.length);
-
   const displayCharactersResults = () => {
     if (isLoading) {
       return <PageLoader width={200} height={200} />;
     }
-    if (isDisplayTable) {
+    if (isSuccess) {
       return <Table characters={tableData} />;
     }
     return null;
@@ -61,7 +59,7 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      {(isLoading || isDisplayTable) && (
+      {(isLoading || isSuccess) && (
         <div className={styles.tableWrapper}>{displayCharactersResults()}</div>
       )}
     </>
