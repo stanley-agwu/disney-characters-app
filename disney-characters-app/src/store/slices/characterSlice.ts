@@ -35,9 +35,11 @@ export const getCharacter = createAsyncThunk('character/getOne', async (url: str
   }
 });
 
+export const characterModuleName = 'character';
+
 export const characterSlice = createSlice({
   /* eslint-disable no-param-reassign */
-  name: 'character',
+  name: characterModuleName,
   initialState,
   reducers: {
     reset: () => initialState,

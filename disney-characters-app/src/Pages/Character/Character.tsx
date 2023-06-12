@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Character } from '../../types';
 import styles from './Character.module.scss';
+import { useAppSelector } from '../../store/hooks';
 
 const CharacterDetails: FC = (): JSX.Element => {
   const location = useLocation();

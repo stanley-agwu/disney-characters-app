@@ -10,13 +10,13 @@ import { allCharactersUrl, getCharacterUrlFromName } from '../../utils/disneyCha
 import Table from '../../components/Table/Table';
 import PageLoader from '../../components/Loader/PageLoader';
 import { showError } from '../../components/Toast';
-import { getCharacters, getCharactersState } from '../../store/slices/characterSlice';
+import { getCharacters } from '../../store/slices/characterSlice';
 
 const Home = () => {
   const dispatch = useAppDispatch();
 
   const { characters, isLoading, isError, errorMessage } = useAppSelector(
-    (state) => state.characters
+    (state) => state.character
   );
 
   const tableData = characters;
