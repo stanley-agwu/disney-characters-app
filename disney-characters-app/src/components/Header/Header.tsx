@@ -26,7 +26,7 @@ const Header = (): JSX.Element => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/character"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -44,7 +44,7 @@ const Header = (): JSX.Element => {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/character"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -66,7 +66,7 @@ const Header = (): JSX.Element => {
           >
             <Button
               key="home"
-              onClick={() => navigateToPage('/')}
+              onClick={() => navigateToPage('/character')}
               sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Montserrat' }}
             >
               Home

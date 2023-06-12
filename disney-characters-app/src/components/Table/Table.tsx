@@ -54,7 +54,7 @@ const Table: FunctionComponent<TableProps> = ({ characters }) => {
   const dispatch = useAppDispatch();
 
   const getCharacterDetails = (row: any) => {
-    const url = `character/${row.original._id}`;
+    const url = `/character/${row.original._id}`;
     navigate(url);
   };
 

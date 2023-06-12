@@ -1,6 +1,8 @@
 import { useState, useMemo, ChangeEvent, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { debounce } from 'lodash';
+import { useLocation, useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from './Home.module.scss';
 import Input from '../../components/Input/Input';
@@ -12,6 +14,8 @@ import { getCharacters } from '../../store/slices/characterSlice';
 
 const Home = () => {
   const dispatch = useAppDispatch();
+  const { pathname, search } = useLocation();
+  const navigate = useNavigate();
 
   const { characters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
     (state) => state.character
@@ -20,13 +24,12 @@ const Home = () => {
   const tableData = characters;
 
   const handleFetchCharacters = () => {
-    dispatch(getCharacters(allCharactersUrl));
+    navigate(allCharactersUrl);
   };
 
   const handleOnCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const url = getCharacterUrlFromName(value);
-    dispatch(getCharacters(url));
+    navigate(getCharacterUrlFromName(value));
   };
 
   const debouncedCharacterSearch = debounce(handleOnCharacterSearch, 2000);
@@ -41,11 +44,22 @@ const Home = () => {
     return null;
   };
 
+  const queryParams = queryString.parse(search);
+  const hasPageParams = Boolean(queryParams?.page && queryParams.pageSize);
+  const hasNameParam = Boolean(queryParams?.name);
+
   useEffect(() => {
+    if (pathname && hasPageParams) {
+      const { page, pageSize } = queryParams;
+      dispatch(getCharacters(`${allCharactersUrl}?page=${page}${pageSize}`));
+    }
+    if (pathname && hasNameParam) {
+      dispatch(getCharacters(`${allCharactersUrl}?name=${queryParams.name}`));
+    }
     if (isError) {
       showError('Error', errorMessage);
     }
-  }, [isError]);
+  }, [pathname, hasPageParams, hasNameParam, isError]);
 
   return (
     <>

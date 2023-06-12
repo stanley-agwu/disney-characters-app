@@ -5,8 +5,5 @@ export const getCharacterUrlFromName = (name: string) => {
   const params = new URLSearchParams();
   params.append('name', name);
   url.search = params.toString();
-  if (name) {
-    return url.href;
-  }
-  return allCharactersUrl;
+  return url.search;
 };
