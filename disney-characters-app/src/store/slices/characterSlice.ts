@@ -50,6 +50,7 @@ export const characterSlice = createSlice({
       .addCase(getCharacters.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.errorMessage = '';
         const characters: Character[] = payload.map((character) => ({
           ...character,
           createdAt: character.createdAt
@@ -73,6 +74,8 @@ export const characterSlice = createSlice({
       .addCase(getCharacter.fulfilled, (state, { payload }) => {
         // isLoading: false;
         // isSuccess: true;
+        state.errorMessage = '';
+        console.log({ payload });
         const character: Character = {
           ...payload,
           createdAt: payload?.createdAt

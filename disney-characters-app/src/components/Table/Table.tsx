@@ -6,8 +6,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../store/hooks';
 import styles from './Table.module.scss';
 import { Character } from '../../types';
+import { getCharacter } from '../../store/slices/characterSlice';
 
 const columnHelper = createColumnHelper<Character>();
 
@@ -49,12 +51,14 @@ const Table: FunctionComponent<TableProps> = ({ characters }) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const getCharacterDetails = (row: any) => {
+  const getCharacterDetails = async (row: any) => {
     const state: Character = structuredClone(row.original);
-    navigate(`characters/${row.id}`, { state });
+    const url = `characters/${row.id}`;
+    navigate(url, { state });
+    await dispatch(getCharacter(url));
   };
 
   return (

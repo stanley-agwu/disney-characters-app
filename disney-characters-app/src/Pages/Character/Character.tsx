@@ -7,6 +7,7 @@ const CharacterDetails: FC = (): JSX.Element => {
   const location = useLocation();
   const { name, imageUrl, createdAt, updatedAt, films, tvShows, enemies } =
     location?.state as Character;
+
   return (
     <div className={styles.character}>
       <div className={styles.characterName}>{name}</div>
