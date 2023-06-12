@@ -7,3 +7,11 @@ export const getCharacterUrlFromName = (name: string) => {
   url.search = params.toString();
   return url.search;
 };
+
+export const getQueryParams = (query: string) => {
+  const params = new URLSearchParams(query);
+  const name = params.get('name');
+  const page = params.get('page');
+  const pageSize = params.get('pageSize');
+  return { name, page, pageSize };
+};

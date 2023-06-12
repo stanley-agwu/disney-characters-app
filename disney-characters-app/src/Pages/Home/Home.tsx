@@ -1,12 +1,15 @@
-import { useState, useMemo, ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { debounce } from 'lodash';
-import { useLocation, useNavigate } from 'react-router-dom';
-import queryString from 'query-string';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from './Home.module.scss';
 import Input from '../../components/Input/Input';
-import { allCharactersUrl, getCharacterUrlFromName } from '../../utils/disneyCharactersUtils';
+import {
+  allCharactersUrl,
+  getCharacterUrlFromName,
+  getQueryParams,
+} from '../../utils/disneyCharactersUtils';
 import Table from '../../components/Table/Table';
 import PageLoader from '../../components/Loader/PageLoader';
 import { showError } from '../../components/Toast';
@@ -14,7 +17,7 @@ import { getCharacters } from '../../store/slices/characterSlice';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { pathname, search } = useLocation();
+  const { search } = useLocation();
   const navigate = useNavigate();
 
   const { characters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
@@ -22,9 +25,11 @@ const Home = () => {
   );
 
   const tableData = characters;
+  // Characters from API is paginated - Table Pagination will be updated
+  const FIRSTPAGE = '/character?page=1&pageSize=50';
 
   const handleFetchCharacters = () => {
-    navigate(allCharactersUrl);
+    navigate(FIRSTPAGE);
   };
 
   const handleOnCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,22 +49,22 @@ const Home = () => {
     return null;
   };
 
-  const queryParams = queryString.parse(search);
+  const queryParams = getQueryParams(search);
   const hasPageParams = Boolean(queryParams?.page && queryParams.pageSize);
   const hasNameParam = Boolean(queryParams?.name);
 
   useEffect(() => {
-    if (pathname && hasPageParams) {
+    if (search && hasPageParams) {
       const { page, pageSize } = queryParams;
-      dispatch(getCharacters(`${allCharactersUrl}?page=${page}${pageSize}`));
+      dispatch(getCharacters(`${allCharactersUrl}?page=${page}&pageSize=${pageSize}`));
     }
-    if (pathname && hasNameParam) {
+    if (search && hasNameParam) {
       dispatch(getCharacters(`${allCharactersUrl}?name=${queryParams.name}`));
     }
     if (isError) {
       showError('Error', errorMessage);
     }
-  }, [pathname, hasPageParams, hasNameParam, isError]);
+  }, [search, isError]);
 
   return (
     <>
