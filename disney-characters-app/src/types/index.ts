@@ -24,7 +24,7 @@ export interface CharactersResponse {
 
 export interface CharacterState {
   characters: Character[] | [];
-  selectedCharacter: Character | undefined;
+  selectedCharacter: Character | null;
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;

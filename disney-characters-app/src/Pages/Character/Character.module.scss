@@ -60,4 +60,30 @@
       width: 100%;
     }
   }
+
+  .enemies {
+    margin: 16px 0;
+
+    .enemy {
+      padding: 8px;
+    }
+  }
+
+  .created,
+  .updated {
+    margin: 16px 0;
+  }
+
+  .films {
+    margin: 16px 0;
+
+    .film {
+      padding: 8px;
+    }
+  }
+
+  .titles {
+    margin: 8px 0;
+    font-weight: 600;
+  }
 }

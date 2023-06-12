@@ -5,7 +5,7 @@ import { getAllDisneyCharacters, getDisneyCharacter } from '../../services/fetch
 
 const initialState: CharacterState = {
   characters: [],
-  selectedCharacter: undefined,
+  selectedCharacter: null,
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -28,8 +28,8 @@ export const getCharacters = createAsyncThunk(
 
 export const getCharacter = createAsyncThunk('character/getOne', async (url: string, thunkAPI) => {
   try {
-    const character: Character = await getDisneyCharacter(url);
-    return character;
+    const character = await getDisneyCharacter(url);
+    return character.data as Character;
   } catch (error) {
     return thunkAPI.rejectWithValue(ErrorMessage);
   }
@@ -74,10 +74,9 @@ export const characterSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getCharacter.fulfilled, (state, { payload }) => {
-        // isLoading: false;
-        // isSuccess: true;
+        state.isLoading = false;
+        state.isSuccess = true;
         state.errorMessage = '';
-        console.log({ payload });
         const character: Character = {
           ...payload,
           createdAt: payload?.createdAt

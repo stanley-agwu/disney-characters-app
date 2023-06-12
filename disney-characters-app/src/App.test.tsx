@@ -1,7 +1,11 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
+import defaultAppState from './test/store';
 
-test.skip('renders learn react link', () => {
-  const view = render(<App />);
-  expect(view).toBeTruthy();
+test('App', () => {
+  // render(<App />, { store: defaultAppState});
+  render(<App />);
+  const input = screen.findByLabelText('Search characters');
+  screen.debug();
+  expect(input).toBeInTheDocument();
 });

@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
 import styles from './Table.module.scss';
 import { Character } from '../../types';
+import { getCharacter } from '../../store/slices/characterSlice';
+import { allCharactersUrl } from '../../utils/disneyCharactersUtils';
 
 const columnHelper = createColumnHelper<Character>();
 
@@ -51,11 +53,13 @@ const Table: FunctionComponent<TableProps> = ({ characters }) => {
     getCoreRowModel: getCoreRowModel(),
   });
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const getCharacterDetails = (row: any) => {
-    const state: Character = structuredClone(row.original);
     const url = `characters/${row.id}`;
-    navigate(url, { state });
+    const fromattedUrl = `${allCharactersUrl}/${row.original._id}`;
+    navigate(url);
+    dispatch(getCharacter(fromattedUrl));
   };
 
   return (

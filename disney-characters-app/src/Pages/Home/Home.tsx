@@ -4,8 +4,6 @@ import { debounce } from 'lodash';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from './Home.module.scss';
 import Input from '../../components/Input/Input';
-import useDisneyCharactersData from '../../hooks/useDisneyCharactersData';
-import { getAllDisneyCharacters } from '../../services/fetchDisneyCharacters';
 import { allCharactersUrl, getCharacterUrlFromName } from '../../utils/disneyCharactersUtils';
 import Table from '../../components/Table/Table';
 import PageLoader from '../../components/Loader/PageLoader';
@@ -21,14 +19,14 @@ const Home = () => {
 
   const tableData = characters;
 
-  const handleFetchCharacters = async () => {
-    await dispatch(getCharacters(allCharactersUrl));
+  const handleFetchCharacters = () => {
+    dispatch(getCharacters(allCharactersUrl));
   };
 
-  const handleOnCharacterSearch = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleOnCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const url = getCharacterUrlFromName(value);
-    await dispatch(getCharacters(url));
+    dispatch(getCharacters(url));
   };
 
   const debouncedCharacterSearch = debounce(handleOnCharacterSearch, 2000);
