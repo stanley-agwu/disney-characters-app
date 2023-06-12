@@ -5,4 +5,4 @@ export const mockDispatch = () => {
   const mockUseDispatch = jest.spyOn(reduxCustomHooks, 'useAppDispatch');
   mockUseDispatch.mockReturnValue(mockDispatchFunction);
   return mockDispatchFunction as jest.Mock;
-}
+};

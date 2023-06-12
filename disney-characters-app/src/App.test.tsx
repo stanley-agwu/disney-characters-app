@@ -1,11 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from './test/test-util';
 import App from './App';
 import defaultAppStore from './test/store';
 
-test.skip('App', () => {
-  // render(<App />, { store: defaultAppStore() });
-  render(<App />);
-  const input = screen.findByLabelText('Search characters');
+test.skip('App', async () => {
+  render(<App />, { store: defaultAppStore() });
+  const input = await screen.findByLabelText('Search characters');
   screen.debug();
   expect(input).toBeInTheDocument();
 });

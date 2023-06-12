@@ -2,6 +2,12 @@ import moment from 'moment';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Character, CharacterState } from '../../types';
 import { getAllDisneyCharacters, getDisneyCharacter } from '../../services/fetchDisneyCharacters';
+import {
+  formatDateForArrayPayLoad,
+  formatDateForObjectPayLoad,
+  isNonEmptyArray,
+  isNonEmptyObject,
+} from '../common';
 
 const initialState: CharacterState = {
   characters: [],
@@ -53,15 +59,14 @@ export const characterSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.errorMessage = '';
-        const characters: Character[] = payload.map((character) => ({
-          ...character,
-          createdAt: character.createdAt
-            ? moment.utc(character.createdAt).format('DD/MM/YYYY HH:mm:ss')
-            : character.createdAt,
-          updatedAt: character.updatedAt
-            ? moment.utc(character.updatedAt).format('DD/MM/YYYY HH:mm:ss')
-            : character.updatedAt,
-        }));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        const anyPayload: any = payload;
+        // eslint-disable-next-line no-nested-ternary
+        const characters: Character[] = isNonEmptyArray(anyPayload)
+          ? formatDateForArrayPayLoad(anyPayload)
+          : isNonEmptyObject(anyPayload)
+          ? formatDateForObjectPayLoad(anyPayload)
+          : [];
         state.characters = characters;
       })
       .addCase(getCharacters.rejected, (state, action) => {

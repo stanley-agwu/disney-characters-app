@@ -15,7 +15,7 @@ const CharacterDetails: FC = (): JSX.Element => {
     if (isError) {
       showError('Error', errorMessage);
     }
-  }, [isLoading, isError]);
+  }, [isError]);
 
   if (isLoading) {
     return <PageLoader width={200} height={200} />;
@@ -28,14 +28,6 @@ const CharacterDetails: FC = (): JSX.Element => {
         <img src={selectedCharacter?.imageUrl} alt={selectedCharacter?.name} />
       </div>
       <div className={styles.characterDetails}>
-        <div className={styles.enemies}>
-          <div className={styles.titles}>Enemies: </div>
-          {selectedCharacter?.enemies?.map((enemy, idx) => (
-            <div key={idx} className={styles.enemy}>
-              {enemy}
-            </div>
-          ))}
-        </div>
         <div className={styles.created}>
           <div className={styles.titles}>Date created: </div>
           {selectedCharacter?.createdAt}
@@ -48,6 +40,14 @@ const CharacterDetails: FC = (): JSX.Element => {
           <div className={styles.titles}>Films: </div>
           {selectedCharacter?.films?.map((film, idx) => (
             <div key={idx}>{film}</div>
+          ))}
+        </div>
+        <div className={styles.enemies}>
+          <div className={styles.titles}>Enemies: </div>
+          {selectedCharacter?.enemies?.map((enemy, idx) => (
+            <div key={idx} className={styles.enemy}>
+              {enemy}
+            </div>
           ))}
         </div>
       </div>

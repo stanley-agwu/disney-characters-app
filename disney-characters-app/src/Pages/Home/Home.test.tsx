@@ -47,10 +47,9 @@ describe('Home', () => {
     render(<Home />, { store: errorAppStore() });
 
     const input: HTMLInputElement = await screen.findByLabelText('search');
-    screen.debug();
     expect(input).toBeInTheDocument();
 
-    fireEvent.change(input, {target: { value: 'Mickey mouse' }});
+    fireEvent.change(input, { target: { value: 'Mickey mouse' } });
     expect(input.value).toBe('Mickey mouse');
   });
 });
