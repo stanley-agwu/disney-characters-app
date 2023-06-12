@@ -1,6 +1,7 @@
 import { useState, useMemo, ChangeEvent, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { debounce } from 'lodash';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from './Home.module.scss';
 import Input from '../../components/Input/Input';
 import useDisneyCharactersData from '../../hooks/useDisneyCharactersData';
@@ -9,29 +10,25 @@ import { allCharactersUrl, getCharacterUrlFromName } from '../../utils/disneyCha
 import Table from '../../components/Table/Table';
 import PageLoader from '../../components/Loader/PageLoader';
 import { showError } from '../../components/Toast';
+import { getCharacters, getCharactersState } from '../../store/slices/characterSlice';
 
 const Home = () => {
-  const [requestParam, SetRequestParam] = useState<string | undefined>();
-  const allCharactersResults = useDisneyCharactersData(
-    getAllDisneyCharacters,
-    requestParam,
-    requestParam
+  const dispatch = useAppDispatch();
+
+  const { characters, isLoading, isError, errorMessage } = useAppSelector(
+    (state) => state.characters
   );
 
-  const { disneyCharacterData, errorState, isLoading } = useMemo(
-    () => allCharactersResults,
-    [allCharactersResults]
-  );
+  const tableData = characters;
 
-  const tableData = disneyCharacterData || [];
-
-  const handleFetchCharacters = () => {
-    SetRequestParam(allCharactersUrl);
+  const handleFetchCharacters = async () => {
+    await dispatch(getCharacters(allCharactersUrl));
   };
 
-  const handleOnCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleOnCharacterSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    SetRequestParam(getCharacterUrlFromName(value));
+    const url = getCharacterUrlFromName(value);
+    await dispatch(getCharacters(url));
   };
 
   const debouncedCharacterSearch = debounce(handleOnCharacterSearch, 2000);
@@ -49,10 +46,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (errorState) {
-      showError('Error', errorState);
+    if (isError) {
+      showError('Error', errorMessage);
     }
-  }, [errorState]);
+  }, [isError]);
 
   return (
     <>

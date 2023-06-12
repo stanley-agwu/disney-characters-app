@@ -1,5 +1,4 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-
 import getCharacters from './slices/characterSlice';
 import getCharacter from './slices/characterSlice';
 

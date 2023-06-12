@@ -12,14 +12,16 @@ const initialState: CharacterState = {
   errorMessage: '',
 };
 
+const ErrorMessage = 'An error occurred while fetching disney character';
+
 export const getCharacters = createAsyncThunk(
   'characters/getAll',
   async (url: string, thunkAPI) => {
     try {
-      const characters: Character[] = await getAllDisneyCharacters(url);
-      return characters;
+      const characters = await getAllDisneyCharacters(url);
+      return characters.data as Character[];
     } catch (error) {
-      return thunkAPI.rejectWithValue(error as string);
+      return thunkAPI.rejectWithValue(ErrorMessage);
     }
   }
 );
@@ -29,7 +31,7 @@ export const getCharacter = createAsyncThunk('character/getOne', async (url: str
     const character: Character = await getDisneyCharacter(url);
     return character;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error as string);
+    return thunkAPI.rejectWithValue(ErrorMessage);
   }
 });
 
@@ -94,3 +96,6 @@ export const characterSlice = createSlice({
 
 export const { reset } = characterSlice.actions;
 export default characterSlice.reducer;
+
+export const getCharactersState = (state: CharacterState) => state.characters;
+export const getCharacterState = (state: CharacterState) => state.selectedCharacter;
