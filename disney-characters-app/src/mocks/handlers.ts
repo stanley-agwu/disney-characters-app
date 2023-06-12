@@ -9,4 +9,4 @@ export const handlers = [
   rest.get(getAllCharactersUrl, (_, res, ctx) => res(ctx.json(getAllCharactersMock))),
 
   rest.get(getCharactersUrl, (_, res, ctx) => res(ctx.json(getCharacterMock))),
-]
+];

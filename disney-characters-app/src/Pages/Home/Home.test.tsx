@@ -36,13 +36,15 @@ describe('Home', () => {
   });
 
   it('displays api Error', async () => {
-    server.use(rest.get(getAllCharactersUrl, (_, res, ctx) => res(ctx.status(500))))
+    server.use(rest.get(getAllCharactersUrl, (_, res, ctx) => res(ctx.status(500))));
     render(<Home />);
 
     const button = await screen.findByRole('button', { name: 'characters' });
     userEvent.click(button);
 
-    const errorToastMessage = await screen.findByText('An error occurred while fetching disney character');
+    const errorToastMessage = await screen.findByText(
+      'An error occurred while fetching disney character'
+    );
     expect(errorToastMessage).toBeInTheDocument();
   });
 
