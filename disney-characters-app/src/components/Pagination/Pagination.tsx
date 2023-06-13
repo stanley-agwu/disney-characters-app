@@ -15,7 +15,7 @@ interface PaginationProps {
 const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Element => {
   const navigate = useNavigate();
 
-  const { previousPage, nextPage, totalPages, pageNumber, pageSize } = options;
+  const { totalPages, pageNumber, pageSize } = options;
   const isFirstPage = Boolean(Number(pageNumber) === 1);
   const isLastPage = Boolean(Number(pageNumber) === totalPages);
 

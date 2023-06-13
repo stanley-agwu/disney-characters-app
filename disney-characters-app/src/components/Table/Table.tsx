@@ -10,6 +10,7 @@ import {
 import { Character, FilterOptions } from '../../types';
 import styles from './Table.module.scss';
 import Pagination from '../Pagination/Pagination';
+import { isNonEmptyObject } from '../../store/common';
 
 const columnHelper = createColumnHelper<Character>();
 
@@ -84,9 +85,11 @@ const Table: FunctionComponent<TableProps> = ({ characters, filters, paginationR
           ))}
         </tbody>
       </table>
-      <div className={styles.paginationWrapper}>
-        <Pagination options={filters} paginationRef={paginationRef} />
-      </div>
+      {isNonEmptyObject(filters) && (
+        <div className={styles.paginationWrapper}>
+          <Pagination options={filters} paginationRef={paginationRef} />
+        </div>
+      )}
     </div>
   );
 };
