@@ -15,3 +15,6 @@ export const getQueryParams = (query: string) => {
   const pageSize = params.get('pageSize');
   return { name, page, pageSize };
 };
+
+export const getAllCharactersPath = (pageNumber: any, pageSize: any) =>
+  `/character?page=${pageNumber}&pageSize=${pageSize}`;

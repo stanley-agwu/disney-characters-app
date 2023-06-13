@@ -46,6 +46,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-member-access': 0,
     '@typescript-eslint/no-misused-promises': 1,
     '@typescript-eslint/no-floating-promises': 1,
+    'import/no-extraneous-dependencies': 0,
     'import/order': [
       2,
       {

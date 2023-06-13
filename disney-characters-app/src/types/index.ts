@@ -25,8 +25,30 @@ export interface CharactersResponse {
 export interface CharacterState {
   characters: Character[] | [];
   selectedCharacter: Character | null;
+  filters: FilterOptions;
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
   errorMessage: string;
+}
+
+export interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  isDisabled: boolean;
+}
+
+export interface FilterOptions {
+  count?: string | number;
+  previousPage?: string;
+  nextPage?: string;
+  totalPages?: string | number;
+  pageNumber?: string | number;
+  pageSize?: string | number;
+  name?: string;
+}
+
+export interface RequestOptions {
+  url: string;
+  filters: FilterOptions;
 }

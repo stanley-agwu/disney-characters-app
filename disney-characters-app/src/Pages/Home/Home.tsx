@@ -1,5 +1,5 @@
-import { ChangeEvent, useEffect } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { ChangeEvent, useEffect, useRef, Fragment } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Button } from '@mui/material';
 
@@ -20,13 +20,13 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
+  const paginationRef = useRef<HTMLDivElement>(null);
 
-  const { characters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
+  const { characters, filters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
     (state) => state.character
   );
 
   const tableData = characters;
-  // Characters from API is paginated - Table Pagination will be updated
   const FIRSTPAGE = '/character?page=1&pageSize=50';
 
   const handleFetchCharacters = () => {
@@ -45,7 +45,7 @@ const Home = () => {
       return <PageLoader width={200} height={200} />;
     }
     if (isSuccess) {
-      return <Table characters={tableData} />;
+      return <Table characters={tableData} filters={filters} paginationRef={paginationRef} />;
     }
     return null;
   };
@@ -56,11 +56,21 @@ const Home = () => {
 
   useEffect(() => {
     if (search && hasPageParams) {
-      const { page, pageSize } = queryParams;
-      dispatch(getCharacters(`${allCharactersUrl}?page=${page}&pageSize=${pageSize}`));
+      const { page, pageSize } = queryParams as { page: string; pageSize: string };
+      dispatch(
+        getCharacters({
+          url: `${allCharactersUrl}?page=${page}&pageSize=${pageSize}`,
+          filters: { pageNumber: page, pageSize },
+        })
+      );
     }
     if (search && hasNameParam) {
-      dispatch(getCharacters(`${allCharactersUrl}?name=${queryParams.name}`));
+      dispatch(
+        getCharacters({
+          url: `${allCharactersUrl}?name=${queryParams.name}`,
+          filters: { name: queryParams.name as string },
+        })
+      );
     }
     if (isError) {
       showError('Error', errorMessage);
@@ -68,7 +78,7 @@ const Home = () => {
   }, [search, isError]);
 
   return (
-    <>
+    <Fragment>
       <div className={styles.home}>
         <div className={styles.inputWrapper}>
           <Input name="search" label="Search characters" onChange={debouncedCharacterSearch} />
@@ -82,7 +92,7 @@ const Home = () => {
       {(isLoading || isSuccess) && (
         <div className={styles.tableWrapper}>{displayCharactersResults()}</div>
       )}
-    </>
+    </Fragment>
   );
 };
 

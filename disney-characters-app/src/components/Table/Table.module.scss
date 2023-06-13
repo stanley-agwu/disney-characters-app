@@ -1,6 +1,7 @@
 .tableWrapper {
   background: #f3f6f9;
   border-radius: 8px;
+  border: 1px solid #e3e9ef;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -8,7 +9,7 @@
 
 .table {
   border: 1px solid #e3e9ef;
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
   font-size: 16px;
   padding: 24px;
   width: 100%;
@@ -58,4 +59,9 @@
   i {
     font-style: normal;
   }
+}
+
+.paginationWrapper {
+  margin: 0;
+  padding: 0;
 }

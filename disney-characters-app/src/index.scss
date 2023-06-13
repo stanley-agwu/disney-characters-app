@@ -1,12 +1,14 @@
+@import './styles/variables';
+
 :root {
-  color: #051d2e;
-  font-family: Montserrat, sans-serif;
-  font-size: 16px;
+  color: $fontColor;
+  font-family: $fontFamily;
+  font-size: $baseFontSize;
   font-weight: 500;
 }
 
 html {
-  background: #fff;
+  background: $whiteBG;
   margin: 0;
   padding: 0;
 }

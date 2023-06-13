@@ -2,7 +2,7 @@ import moment from 'moment';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { getAllDisneyCharacters, getDisneyCharacter } from '../../services/fetchDisneyCharacters';
-import { Character, CharacterState } from '../../types';
+import { Character, CharacterState, RequestOptions } from '../../types';
 import {
   formatDateForArrayPayLoad,
   formatDateForObjectPayLoad,
@@ -13,6 +13,7 @@ import {
 const initialState: CharacterState = {
   characters: [],
   selectedCharacter: null,
+  filters: {},
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -23,10 +24,11 @@ const ErrorMessage = 'An error occurred while fetching disney character';
 
 export const getCharacters = createAsyncThunk(
   'characters/getAll',
-  async (url: string, thunkAPI) => {
+  async (requestConfig: RequestOptions, thunkAPI) => {
+    const { url, filters } = requestConfig;
     try {
       const characters = await getAllDisneyCharacters(url);
-      return characters.data as Character[];
+      return { characters: characters.data as Character[], dataInfo: characters.info, filters };
     } catch (error) {
       return thunkAPI.rejectWithValue(ErrorMessage);
     }
@@ -56,19 +58,18 @@ export const characterSlice = createSlice({
       .addCase(getCharacters.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getCharacters.fulfilled, (state, { payload }) => {
+      .addCase(getCharacters.fulfilled, (state, { payload: { characters, dataInfo, filters } }) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.errorMessage = '';
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        const anyPayload: any = payload;
         // eslint-disable-next-line no-nested-ternary
-        const characters: Character[] = isNonEmptyArray(anyPayload)
-          ? formatDateForArrayPayLoad(anyPayload)
-          : isNonEmptyObject(anyPayload)
-          ? formatDateForObjectPayLoad(anyPayload)
+        const formattedCharacters: Character[] = isNonEmptyArray(characters)
+          ? formatDateForArrayPayLoad(characters)
+          : isNonEmptyObject(characters)
+          ? formatDateForObjectPayLoad(characters as unknown as Character)
           : [];
-        state.characters = characters;
+        state.characters = formattedCharacters;
+        state.filters = { ...filters, ...dataInfo };
       })
       .addCase(getCharacters.rejected, (state, action) => {
         state.isSuccess = false;

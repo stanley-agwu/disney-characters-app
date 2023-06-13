@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   createColumnHelper,
@@ -7,8 +7,9 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { Character } from '../../types';
+import { Character, FilterOptions } from '../../types';
 import styles from './Table.module.scss';
+import Pagination from '../Pagination/Pagination';
 
 const columnHelper = createColumnHelper<Character>();
 
@@ -42,9 +43,11 @@ const columns = [
 
 export type TableProps = {
   characters: Character[];
+  filters: FilterOptions;
+  paginationRef: RefObject<HTMLDivElement>;
 };
 
-const Table: FunctionComponent<TableProps> = ({ characters }) => {
+const Table: FunctionComponent<TableProps> = ({ characters, filters, paginationRef }) => {
   const table = useReactTable({
     data: characters,
     columns,
@@ -81,6 +84,9 @@ const Table: FunctionComponent<TableProps> = ({ characters }) => {
           ))}
         </tbody>
       </table>
+      <div className={styles.paginationWrapper}>
+        <Pagination options={filters} paginationRef={paginationRef} />
+      </div>
     </div>
   );
 };
