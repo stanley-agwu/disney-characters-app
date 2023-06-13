@@ -10,7 +10,7 @@ const PaginationButton: FC<ButtonProps> = ({ onClick, isDisabled, children }): J
     disabled={isDisabled}
     variant="contained"
     size="small"
-    className={`${styles.button} ${isDisabled ? styles.disabled : ''}`}
+    className={styles.button}
   >
     {children}
   </Button>
