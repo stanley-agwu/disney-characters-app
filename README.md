@@ -4,6 +4,8 @@ This is a simple app that shows data fetching from an API, data display and pres
 
 ## Getting started
 
+### `npm start`
+
 Start app like every react app, running the following command:
 
 ```sh
@@ -12,7 +14,6 @@ npm run start
 
 This runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
 
 ### `npm test`
 
