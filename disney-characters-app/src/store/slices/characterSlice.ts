@@ -1,7 +1,8 @@
 import moment from 'moment';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Character, CharacterState } from '../../types';
+
 import { getAllDisneyCharacters, getDisneyCharacter } from '../../services/fetchDisneyCharacters';
+import { Character, CharacterState } from '../../types';
 import {
   formatDateForArrayPayLoad,
   formatDateForObjectPayLoad,

@@ -1,4 +1,5 @@
 import moment from 'moment';
+
 import { Character } from '../types';
 
 export const isNonEmptyArray = (value: any): boolean =>

@@ -1,13 +1,14 @@
 import { FunctionComponent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useNavigate } from 'react-router-dom';
-import styles from './Table.module.scss';
+
 import { Character } from '../../types';
+import styles from './Table.module.scss';
 
 const columnHelper = createColumnHelper<Character>();
 

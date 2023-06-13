@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+
 import Header from './components/Header/Header';
-import styles from './App.module.scss';
-import Home from './Pages/Home/Home';
 import Toast from './components/Toast/Toast';
 import Character from './Pages/Character/Character';
+import Home from './Pages/Home/Home';
+import styles from './App.module.scss';
 
 const App = () => (
   <>

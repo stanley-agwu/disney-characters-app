@@ -1,5 +1,6 @@
-import { combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import type { PreloadedState } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
+
 import characterSliceReducer, { characterModuleName } from './slices/characterSlice';
 
 const rootReducer = combineReducers({

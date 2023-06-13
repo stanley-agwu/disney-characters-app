@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2021: true,
+    es6: true,
     node: true,
     jest: true,
   },
@@ -20,7 +20,8 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: ['tsconfig.json'],
+    sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint', 'import', 'prettier'],
   rules: {
@@ -48,7 +49,7 @@ module.exports = {
     'import/order': [
       2,
       {
-        'newlines-between': 'never',
+        'newlines-between': 'always',
         groups: [
           ['builtin', 'external'],
           ['internal', 'parent', 'sibling', 'index'],
@@ -77,4 +78,5 @@ module.exports = {
       },
     },
   },
+  ignorePatterns: ['build/*', 'coverage/*', 'public/*'],
 };

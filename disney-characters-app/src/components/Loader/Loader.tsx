@@ -1,4 +1,5 @@
 import Lottie from 'lottie-react';
+
 import animationData from './AnimationData/animationData.json';
 
 export interface LoaderProps {

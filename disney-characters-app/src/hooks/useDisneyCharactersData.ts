@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { CharactersResponse, DisneyCharacterData } from '../types';
 
 const useDisneyCharactersData = (

@@ -1,10 +1,11 @@
 import userEvent from '@testing-library/user-event';
+
+import { getAllCharactersUrl } from '../../mocks/handlers';
+import { rest, server } from '../../mocks/server';
 import defaultAppStore, { errorAppStore, loadingAppStore } from '../../test/store';
 import { fireEvent, render, screen } from '../../test/test-util';
-import Home from './Home';
 import { mockDispatch } from '../../test/utils/mockDispatch';
-import { rest, server } from '../../mocks/server';
-import { getAllCharactersUrl } from '../../mocks/handlers';
+import Home from './Home';
 
 describe('Home', () => {
   it('renders Home', async () => {

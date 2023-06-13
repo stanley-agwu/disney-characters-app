@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+
 import getAllCharactersMock from './results/getAllCharactersMock';
 import getCharacterMock from './results/getCharacterMock';
 

@@ -1,19 +1,20 @@
 import { ChangeEvent, useEffect } from 'react';
-import { Button } from '@mui/material';
-import { debounce } from 'lodash';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import styles from './Home.module.scss';
+import { debounce } from 'lodash';
+import { Button } from '@mui/material';
+
 import Input from '../../components/Input/Input';
+import PageLoader from '../../components/Loader/PageLoader';
+import Table from '../../components/Table/Table';
+import { showError } from '../../components/Toast';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getCharacters } from '../../store/slices/characterSlice';
 import {
   allCharactersUrl,
   getCharacterUrlFromName,
   getQueryParams,
 } from '../../utils/disneyCharactersUtils';
-import Table from '../../components/Table/Table';
-import PageLoader from '../../components/Loader/PageLoader';
-import { showError } from '../../components/Toast';
-import { getCharacters } from '../../store/slices/characterSlice';
+import styles from './Home.module.scss';
 
 const Home = () => {
   const dispatch = useAppDispatch();

@@ -1,11 +1,12 @@
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import styles from './Character.module.scss';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+
 import PageLoader from '../../components/Loader/PageLoader';
 import { showError } from '../../components/Toast';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getCharacter } from '../../store/slices/characterSlice';
 import { allCharactersUrl } from '../../utils/disneyCharactersUtils';
+import styles from './Character.module.scss';
 
 const CharacterDetails: FC = (): JSX.Element => {
   const location = useLocation();

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { toast, ToastOptions } from 'react-toastify';
+
 import { ReactComponent as ErrorIcon } from '../assets/error-icon.svg';
 import { ReactComponent as InformationIcon } from '../assets/information-icon.svg';
 import { ReactComponent as SuccessIcon } from '../assets/success-icon.svg';
