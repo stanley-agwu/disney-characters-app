@@ -68,7 +68,6 @@
 .paginationRange {
   display: flex;
   align-items: center;
-  min-width: 240px;
   max-width: 100%;
   margin-right: 16px;
   font-size: $baseFontSize;
@@ -76,7 +75,7 @@
 }
 
 .paginationNumber {
-  min-width: 200px;
+  min-width: 160px;
 }
 
 .paginationSpan {
@@ -115,6 +114,11 @@
   font-size: $baseFontSize;
   font-weight: 800;
   color: $fontColor;
+  a {
+    font-size: $baseFontSize;
+    font-weight: 800;
+    color: $fontColor;
+  }
 }
 .disabledClass {
   color: #fff !important;

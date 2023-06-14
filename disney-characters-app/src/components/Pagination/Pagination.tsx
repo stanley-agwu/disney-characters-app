@@ -1,4 +1,4 @@
-import { FC, RefObject, useState } from 'react';
+import { FC, RefObject } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ import PaginationButton from './PaginationButton';
 import styles from './Pagination.module.scss';
 import { FilterOptions } from '../../types';
 import { getAllCharactersPath } from '../../utils/disneyCharactersUtils';
+import useScreenSize from '../../hooks/useScreenSize';
 
 interface PaginationProps {
   options: FilterOptions;
@@ -14,6 +15,7 @@ interface PaginationProps {
 
 const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Element => {
   const navigate = useNavigate();
+  const { paginationMarginButton } = useScreenSize();
 
   const { totalPages, pageNumber, pageSize } = options;
   const isFirstPage = Boolean(Number(pageNumber) === 1);
@@ -34,6 +36,7 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
   const selectPageSizeHandler = ({ value }: { value: string }) => {
     navigate(getAllCharactersPath(1, value));
   };
+
   return (
     <div ref={paginationRef} className={styles.paginationContainer}>
       <div className={styles.paginationRangeContainer}>
@@ -73,8 +76,8 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
             pageLinkClassName={styles.paginationLinkClass}
             breakClassName={styles.breakClass}
             disabledClassName={styles.disabledClass}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={1}
+            marginPagesDisplayed={paginationMarginButton}
+            pageRangeDisplayed={paginationMarginButton}
             renderOnZeroPageCount={null}
           />
           <PaginationButton onClick={lastPageChangeHandler} isDisabled={isLastPage}>
