@@ -1,8 +1,19 @@
 import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 
+const screenResolution = () => {
+  const screenWidth = window.innerWidth;
+  if (screenWidth >= 1524) {
+    return 2;
+  }
+  if (screenWidth < 1524 && screenWidth >= 768) {
+    return 1;
+  }
+  return 0;
+};
+
 const useScreenSize = () => {
-  const [paginationMarginButton, setPaginationMarginButton] = useState(0);
+  const [paginationMarginButton, setPaginationMarginButton] = useState(() => screenResolution());
 
   const handleScreenSize = () => {
     const screenWidth = window.innerWidth;
@@ -15,7 +26,7 @@ const useScreenSize = () => {
     return setPaginationMarginButton(0);
   };
 
-  const debouncedHandleScreenSize = debounce(handleScreenSize, 2000);
+  const debouncedHandleScreenSize = debounce(handleScreenSize, 200);
 
   useEffect(() => {
     debouncedHandleScreenSize();

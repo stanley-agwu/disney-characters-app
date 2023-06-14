@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, Fragment } from 'react';
+import { ChangeEvent, useEffect, useRef, Fragment, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Button } from '@mui/material';
@@ -8,7 +8,7 @@ import PageLoader from '../../components/Loader/PageLoader';
 import Table from '../../components/Table/Table';
 import { showError } from '../../components/Toast';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getCharacters } from '../../store/slices/characterSlice';
+import { getCharacters, reset } from '../../store/slices/characterSlice';
 import {
   allCharactersUrl,
   getCharacterUrlFromName,
@@ -17,6 +17,7 @@ import {
 import styles from './Home.module.scss';
 
 const Home = () => {
+  const [searchQuery, setSearchQuery] = useState<string | undefined>();
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ const Home = () => {
 
   const handleOnCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
+    setSearchQuery(value);
     navigate(getCharacterUrlFromName(value));
   };
 
@@ -44,7 +46,7 @@ const Home = () => {
     if (isLoading) {
       return <PageLoader width={200} height={200} />;
     }
-    if (isSuccess) {
+    if (isSuccess && filters.count) {
       return <Table characters={tableData} filters={filters} paginationRef={paginationRef} />;
     }
     return null;
@@ -55,7 +57,16 @@ const Home = () => {
   const hasNameParam = Boolean(queryParams?.name);
 
   useEffect(() => {
-    if (search && hasPageParams) {
+    if (search && hasNameParam) {
+      const { page, pageSize, name } = queryParams;
+      dispatch(
+        getCharacters({
+          url: `${allCharactersUrl}?name=${name}&page=${page || 1}&pageSize=${pageSize || 50}`,
+          filters: { pageNumber: page || 1, pageSize: pageSize || 50, name: name as string },
+        })
+      );
+    }
+    if (search && hasPageParams && !hasNameParam) {
       const { page, pageSize } = queryParams as { page: string; pageSize: string };
       dispatch(
         getCharacters({
@@ -64,24 +75,28 @@ const Home = () => {
         })
       );
     }
-    if (search && hasNameParam) {
-      dispatch(
-        getCharacters({
-          url: `${allCharactersUrl}?name=${queryParams.name}`,
-          filters: { name: queryParams.name as string },
-        })
-      );
-    }
+  }, [search, hasNameParam, hasPageParams]);
+
+  useEffect(() => {
     if (isError) {
       showError('Error', errorMessage);
+      setSearchQuery(undefined);
     }
-  }, [search, isError]);
+    if (!isSuccess) {
+      dispatch(reset());
+    }
+  }, [isError, isSuccess]);
 
   return (
     <Fragment>
       <div className={styles.home}>
         <div className={styles.inputWrapper}>
-          <Input name="search" label="Search characters" onChange={debouncedCharacterSearch} />
+          <Input
+            name="search"
+            label="Search characters"
+            value={searchQuery}
+            onChange={debouncedCharacterSearch}
+          />
         </div>
         <div className={styles.buttonWrapper}>
           <Button variant="contained" size="large" onClick={handleFetchCharacters}>

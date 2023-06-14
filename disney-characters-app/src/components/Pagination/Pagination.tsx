@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import PaginationButton from './PaginationButton';
 import styles from './Pagination.module.scss';
 import { FilterOptions } from '../../types';
-import { getAllCharactersPath } from '../../utils/disneyCharactersUtils';
+import { displayZeroIndex, getAllCharactersPath } from '../../utils/disneyCharactersUtils';
 import useScreenSize from '../../hooks/useScreenSize';
 
 interface PaginationProps {
@@ -17,24 +17,24 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
   const navigate = useNavigate();
   const { paginationMarginButton } = useScreenSize();
 
-  const { totalPages, pageNumber, pageSize } = options;
+  const { totalPages, pageNumber, pageSize, name } = options;
   const isFirstPage = Boolean(Number(pageNumber) === 1);
   const isLastPage = Boolean(Number(pageNumber) === totalPages);
 
   const firstPageChangeHandler = () => {
-    navigate(getAllCharactersPath(1, pageSize));
+    navigate(getAllCharactersPath(1, pageSize, name));
   };
   const lastPageChangeHandler = () => {
-    navigate(getAllCharactersPath(totalPages, pageSize));
+    navigate(getAllCharactersPath(totalPages, pageSize, name));
   };
   const pageChangeHandler = ({ selected }: { selected: number }) => {
     if (selected < 0 || selected > Number(totalPages) + 1) {
       return;
     }
-    navigate(getAllCharactersPath(selected + 1, pageSize));
+    navigate(getAllCharactersPath(selected + 1, pageSize, name));
   };
   const selectPageSizeHandler = ({ value }: { value: string }) => {
-    navigate(getAllCharactersPath(1, value));
+    navigate(getAllCharactersPath(1, value, name));
   };
 
   return (
@@ -43,8 +43,10 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
         <div className={styles.paginationRange}>
           <span className={styles.paginationNumber}>
             Page
-            <span className={styles.paginationSpan}>{Number(pageNumber)}</span>
-            of <span className={styles.paginationSpan}>{totalPages || '-'}</span>
+            <span className={styles.paginationSpan}>
+              {displayZeroIndex(pageNumber, totalPages)}
+            </span>
+            of <span className={styles.paginationSpan}>{displayZeroIndex(totalPages)}</span>
           </span>
         </div>
         <select value={pageSize} onChange={({ target }) => selectPageSizeHandler(target)}>
@@ -69,7 +71,7 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
             nextLabel={<PaginationButton isDisabled={isLastPage}>{'>'}</PaginationButton>}
             onPageChange={(e) => pageChangeHandler(e)}
             breakLabel="..."
-            pageCount={Number(totalPages as number) || 1}
+            pageCount={displayZeroIndex(totalPages)}
             forcePage={Number(pageNumber as number) - 1 || 0}
             containerClassName={styles.pagination}
             activeLinkClassName={styles.activeLinkClass}
