@@ -1,5 +1,4 @@
-import type { PreloadedState } from '@reduxjs/toolkit';
-import { combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { PreloadedState, combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import characterSliceReducer, { characterModuleName } from './slices/characterSlice';
 
@@ -10,7 +9,7 @@ const rootReducer = combineReducers({
 export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
   configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
     preloadedState,
   });
 

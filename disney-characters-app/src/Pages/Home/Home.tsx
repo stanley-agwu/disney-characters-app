@@ -46,7 +46,7 @@ const Home = () => {
     if (isLoading) {
       return <PageLoader width={200} height={200} />;
     }
-    if (isSuccess && filters.count) {
+    if (isSuccess && filters?.count) {
       return <Table characters={tableData} filters={filters} paginationRef={paginationRef} />;
     }
     return null;
