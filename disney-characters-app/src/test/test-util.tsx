@@ -1,6 +1,6 @@
-import React, { PropsWithChildren, ReactElement } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
-import { MemoryRouterProps } from 'react-router';
+import { MemoryRouterProps, Router } from 'react-router';
 import { MemoryRouter } from 'react-router-dom';
 import type { PreloadedState } from '@reduxjs/toolkit';
 import type {
@@ -24,9 +24,14 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 
 const renderWithProviders = (
   ui: ReactElement,
-  { store = setupStore(), routerProps = {}, ...renderOptions }: ExtendedRenderOptions = {}
+  {
+    preloadedState = {},
+    store = setupStore(preloadedState),
+    routerProps = {},
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
 ) => {
-  function Wrapper({ children }: PropsWithChildren): JSX.Element {
+  const wrapper = ({ children }: PropsWithChildren<{}>): JSX.Element => {
     return (
       <>
         <Toast />
@@ -35,11 +40,10 @@ const renderWithProviders = (
         </MemoryRouter>
       </>
     );
-  }
+  };
   return {
     store,
-    ...render(ui, { wrapper: Wrapper, ...renderOptions }),
-    user: userEvent,
+    ...render(ui, { wrapper, ...renderOptions }),
   };
 };
 
@@ -61,7 +65,7 @@ const renderHookWithProviders = function <
     routerProps?: MemoryRouterProps;
   } = {}
 ): RenderHookResult<Result, Props> & { store?: AppStore } {
-  function Wrapper({ children }: PropsWithChildren): JSX.Element {
+  const wrapper = ({ children }: PropsWithChildren): JSX.Element => {
     return (
       <>
         <Toast />
@@ -70,12 +74,12 @@ const renderHookWithProviders = function <
         </MemoryRouter>
       </>
     );
-  }
+  };
 
   return {
     store,
     ...renderHook<Result, Props, Q, Container, BaseElement | DocumentFragment>(render, {
-      wrapper: Wrapper,
+      wrapper,
       ...renderOptions,
     }),
   };
@@ -85,3 +89,4 @@ export * from '@testing-library/react';
 export * from '@testing-library/user-event';
 export { renderWithProviders as render };
 export { renderHookWithProviders as renderHook };
+export { userEvent };
