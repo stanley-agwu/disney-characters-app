@@ -47,20 +47,24 @@ const CharacterDetails: FC = (): JSX.Element => {
           <div className={styles.titles}>Date updated: </div>
           {selectedCharacter?.updatedAt}
         </div>
-        <div className={styles.films}>
-          <div className={styles.titles}>TV Shows: </div>
-          {selectedCharacter?.tvShows?.map((show, idx) => (
-            <div key={idx}>{show}</div>
-          ))}
-        </div>
-        <div className={styles.enemies}>
-          <div className={styles.titles}>Enemies: </div>
-          {selectedCharacter?.enemies?.map((enemy, idx) => (
-            <div key={idx} className={styles.enemy}>
-              {enemy}
-            </div>
-          ))}
-        </div>
+        {!!selectedCharacter?.tvShows.length && (
+          <div className={styles.films}>
+            <div className={styles.titles}>TV Shows: </div>
+            {selectedCharacter.tvShows.map((show, idx) => (
+              <div key={idx}>{show}</div>
+            ))}
+          </div>
+        )}
+        {!!selectedCharacter?.enemies.length && (
+          <div className={styles.enemies}>
+            <div className={styles.titles}>Enemies: </div>
+            {selectedCharacter.enemies.map((enemy, idx) => (
+              <div key={idx} className={styles.enemy}>
+                {enemy}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
