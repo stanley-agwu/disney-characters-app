@@ -3,17 +3,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Button } from '@mui/material';
 
-import Input from '../../components/Input/Input';
-import PageLoader from '../../components/Loader/PageLoader';
-import Table from '../../components/Table/Table';
-import { showError } from '../../components/Toast';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getCharacters, reset } from '../../store/slices/characterSlice';
+import Input from 'components/Input/Input';
+import PageLoader from 'components/Loader/PageLoader';
+import Table from 'components/Table/Table';
+import { showError } from 'components/Toast';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getCharacters, reset } from 'store/slices/characterSlice';
 import {
   allCharactersUrl,
   getCharacterUrlFromName,
   getQueryParams,
-} from '../../utils/disneyCharactersUtils';
+} from 'utils/disneyCharactersUtils';
 import styles from './Home.module.scss';
 
 const Home = () => {

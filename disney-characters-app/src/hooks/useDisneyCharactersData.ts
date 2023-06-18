@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { CharactersResponse, DisneyCharacterData } from '../types';
+import { CharactersResponse, DisneyCharacterData } from 'types';
 
 const useDisneyCharactersData = (
   asyncFunc: (url: string) => Promise<any>,

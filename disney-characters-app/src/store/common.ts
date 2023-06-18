@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { Character } from '../types';
+import { Character } from 'types';
 
 export const isNonEmptyArray = (value: any): boolean =>
   typeof value === 'object' && Array.isArray(value) && !!value?.length;

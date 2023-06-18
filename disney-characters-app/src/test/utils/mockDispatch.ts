@@ -1,4 +1,4 @@
-import * as reduxCustomHooks from '../../store/hooks';
+import * as reduxCustomHooks from 'store/hooks';
 
 export const mockDispatch = () => {
   const mockDispatchFunction = jest.fn(() => Promise.resolve());

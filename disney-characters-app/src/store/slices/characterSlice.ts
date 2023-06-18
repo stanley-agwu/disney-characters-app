@@ -1,14 +1,14 @@
 import moment from 'moment';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getAllDisneyCharacters, getDisneyCharacter } from '../../services/fetchDisneyCharacters';
-import { Character, CharacterState, RequestOptions } from '../../types';
+import { getAllDisneyCharacters, getDisneyCharacter } from 'services/fetchDisneyCharacters';
+import { Character, CharacterState, RequestOptions } from 'types';
 import {
   formatDateForArrayPayLoad,
   formatDateForObjectPayLoad,
   isNonEmptyArray,
   isNonEmptyObject,
-} from '../common';
+} from 'store/common';
 
 const initialState: CharacterState = {
   characters: [],

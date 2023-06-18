@@ -1,9 +1,9 @@
 import userEvent from '@testing-library/user-event';
 
-import { getAllCharactersUrl } from '../../mocks/handlers';
-import { rest, server } from '../../mocks/server';
-import defaultAppStore, { characterSearchAppStore, noCharacterAppStore } from '../../test/store';
-import { fireEvent, render, screen } from '../../test/test-util';
+import { getAllCharactersUrl } from 'mocks/handlers';
+import { rest, server } from 'mocks/server';
+import defaultAppStore, { characterSearchAppStore, noCharacterAppStore } from 'test/store';
+import { fireEvent, render, screen } from 'test/test-util';
 import Home from './Home';
 
 describe('Home', () => {

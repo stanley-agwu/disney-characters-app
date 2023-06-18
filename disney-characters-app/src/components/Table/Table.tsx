@@ -7,10 +7,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { Character, FilterOptions } from '../../types';
+import { Character, FilterOptions } from 'types';
 import styles from './Table.module.scss';
-import Pagination from '../Pagination/Pagination';
-import { isNonEmptyObject } from '../../store/common';
+import Pagination from 'components/Pagination/Pagination';
+import { isNonEmptyObject } from 'store/common';
 
 const columnHelper = createColumnHelper<Character>();
 

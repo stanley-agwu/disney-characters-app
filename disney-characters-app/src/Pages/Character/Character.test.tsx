@@ -2,8 +2,8 @@ import defaultAppStore, {
   errorAppStore,
   loadingAppStore,
   mockSelectedCharacterAppStore,
-} from '../../test/store';
-import { render, screen } from '../../test/test-util';
+} from 'test/store';
+import { render, screen } from 'test/test-util';
 import Character from './Character';
 
 describe('Character', () => {

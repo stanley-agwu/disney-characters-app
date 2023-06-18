@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 import PaginationButton from './PaginationButton';
 import styles from './Pagination.module.scss';
-import { FilterOptions } from '../../types';
-import { displayZeroIndex, getAllCharactersPath } from '../../utils/disneyCharactersUtils';
-import useScreenSize from '../../hooks/useScreenSize';
+import { FilterOptions } from 'types';
+import { displayZeroIndex, getAllCharactersPath } from 'utils/disneyCharactersUtils';
+import useScreenSize from 'hooks/useScreenSize';
 
 interface PaginationProps {
   options: FilterOptions;
