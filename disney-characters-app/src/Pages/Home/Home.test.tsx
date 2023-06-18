@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 
 import { getAllCharactersUrl } from '../../mocks/handlers';
 import { rest, server } from '../../mocks/server';
-import defaultAppStore, { noCharacterAppStore } from '../../test/store';
+import defaultAppStore, { characterSearchAppStore, noCharacterAppStore } from '../../test/store';
 import { fireEvent, render, screen } from '../../test/test-util';
 import Home from './Home';
 
@@ -64,5 +64,14 @@ describe('Home', () => {
     const tableHeader = screen.queryByText('Date created');
 
     expect(tableHeader).not.toBeInTheDocument();
+  });
+
+  // Not Exact coverage, needs to be updated
+  it('displays character search', async () => {
+    render(<Home />, { store: characterSearchAppStore() });
+
+    const tableCell = screen.queryAllByText('Jim ', { exact: false });
+
+    expect(tableCell.length).toBeGreaterThan(1);
   });
 });

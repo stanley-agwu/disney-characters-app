@@ -1,4 +1,8 @@
-import defaultAppStore, { errorAppStore, loadingAppStore } from '../../test/store';
+import defaultAppStore, {
+  errorAppStore,
+  loadingAppStore,
+  mockSelectedCharacterAppStore,
+} from '../../test/store';
 import { render, screen } from '../../test/test-util';
 import Character from './Character';
 
@@ -6,8 +10,8 @@ describe('Character', () => {
   it('renders Character details', async () => {
     render(<Character />, { store: defaultAppStore() });
 
-    const img = await screen.findByRole('img', { name: 'Jiminy Cricket' });
-    const name = await screen.findByText('Jiminy Cricket');
+    const img = await screen.findByRole('img', { name: 'Achilles' });
+    const name = await screen.findByText('Achilles');
 
     expect(img).toBeInTheDocument();
     expect(name).toBeInTheDocument();
@@ -25,5 +29,15 @@ describe('Character', () => {
 
     const errorToastMessage = await screen.findByText('An Error occured with a disney character');
     expect(errorToastMessage).toBeInTheDocument();
+  });
+
+  it('dispatches an action for a character', async () => {
+    const initialEntries = ['/character/13'];
+    render(<Character />, {
+      store: mockSelectedCharacterAppStore(),
+      routerProps: { initialEntries },
+    });
+
+    expect(await screen.findByText('A.B.E.')).toBeInTheDocument();
   });
 });
