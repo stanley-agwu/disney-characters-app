@@ -1429,21 +1429,17 @@ export const errorAppState = {
 };
 
 const mockStore = configureStore(getDefaultMiddleware());
-const store = (appState = {}): MockStore => mockStore({ ...defaultAppState, ...appState });
+const storeSetup = (appState = {}): MockStore => mockStore({ ...appState });
+const store = () => storeSetup(defaultAppState);
 
-export const noCharacterAppStore = (appState = {}): MockStore =>
-  mockStore({ ...noCharactersAppState, ...appState });
+export const noCharacterAppStore = () => storeSetup(noCharactersAppState);
 
-export const loadingAppStore = (appState = {}): MockStore =>
-  mockStore({ ...loadingAppState, ...appState });
+export const loadingAppStore = () => storeSetup(loadingAppState);
 
-export const errorAppStore = (appState = {}): MockStore =>
-  mockStore({ ...errorAppState, ...appState });
+export const errorAppStore = () => storeSetup(errorAppState);
 
-export const mockSelectedCharacterAppStore = (appState = {}): MockStore =>
-  mockStore({ ...mockSelectedCharacterAppState, ...appState });
+export const mockSelectedCharacterAppStore = () => storeSetup(mockSelectedCharacterAppState);
 
-export const characterSearchAppStore = (appState = {}): MockStore =>
-  mockStore({ ...characterSearchAppState, ...appState });
+export const characterSearchAppStore = () => storeSetup(characterSearchAppState);
 
 export default store;
