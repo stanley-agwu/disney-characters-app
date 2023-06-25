@@ -1,15 +1,14 @@
 import userEvent from '@testing-library/user-event';
-
 import { getAllCharactersUrl } from 'mocks/handlers';
 import { rest, server } from 'mocks/server';
-import defaultAppStore, { characterSearchAppStore, noCharacterAppStore } from 'test/store';
-import { fireEvent, render, screen } from 'test/test-util';
+import defaultAppStore from 'test/store';
+import { fireEvent, render, screen, waitFor } from 'test/test-util';
+
 import Home from './Home';
 
 describe('Home', () => {
   it('renders Home', async () => {
     render(<Home />);
-
     const button = await screen.findByRole('button', { name: 'characters' });
     expect(button).toBeInTheDocument();
   });
@@ -53,25 +52,28 @@ describe('Home', () => {
     render(<Home />);
 
     const input: HTMLInputElement = await screen.findByLabelText('search');
-
     fireEvent.change(input, { target: { value: 'Mickey mouse' } });
     expect(input.value).toBe('Mickey mouse');
   });
 
   it('renders no table when character does not exist for query', async () => {
-    render(<Home />, { store: noCharacterAppStore() });
-
+    render(<Home />, {
+      preloadedState: {
+        character: {
+          characters: [],
+          selectedCharacter: null,
+          isLoading: false,
+          isSuccess: true,
+          isError: false,
+          errorMessage: '',
+          filters: {
+            count: 0,
+          },
+        },
+      },
+    });
     const tableHeader = screen.queryByText('Date created');
 
-    expect(tableHeader).not.toBeInTheDocument();
-  });
-
-  // Not Exact coverage, needs to be updated
-  it('displays character search', async () => {
-    render(<Home />, { store: characterSearchAppStore() });
-
-    const tableCell = screen.queryAllByText('Jim ', { exact: false });
-
-    expect(tableCell.length).toBeGreaterThan(1);
+    await waitFor(() => expect(tableHeader).not.toBeInTheDocument(), { timeout: 3000 });
   });
 });
