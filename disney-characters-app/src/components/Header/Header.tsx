@@ -26,7 +26,7 @@ const Header = (): JSX.Element => {
             variant="h6"
             noWrap
             component="a"
-            href="/character"
+            onClick={() => navigateToPage('/character')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -35,6 +35,7 @@ const Header = (): JSX.Element => {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
           >
             disney characters
@@ -44,7 +45,7 @@ const Header = (): JSX.Element => {
             variant="h5"
             noWrap
             component="a"
-            href="/character"
+            onClick={() => navigateToPage('/character')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -54,6 +55,7 @@ const Header = (): JSX.Element => {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
           >
             Disney characters
