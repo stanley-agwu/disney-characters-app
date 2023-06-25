@@ -20,7 +20,8 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['tsconfig.json'],
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint', 'import', 'prettier'],
@@ -45,7 +46,7 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': 0,
     '@typescript-eslint/no-unsafe-member-access': 0,
     '@typescript-eslint/no-misused-promises': 1,
-    '@typescript-eslint/no-floating-promises': 1,
+    '@typescript-eslint/no-floating-promises': 0,
     'import/no-extraneous-dependencies': 0,
     'import/order': [
       2,
