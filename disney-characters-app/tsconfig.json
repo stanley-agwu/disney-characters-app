@@ -17,7 +17,15 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "test-util": ["./test/test-util"]
+      "test-util": ["./test/test-util"],
+      "components": ["./components"],
+      "pages": ["./pages"],
+      "mock": ["./mock"],
+      "hooks": ["./hooks"],
+      "services": ["./services"],
+      "store": ["./store"],
+      "test": ["./test"],
+      "styles": ["./styles"]
     }
   },
   "include": ["src"],

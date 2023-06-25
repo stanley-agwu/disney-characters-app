@@ -5,6 +5,8 @@ module.exports = {
   moduleFileExtensions: ['js', 'ts', 'tsx'],
   transform: {},
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleDirectories: [
     'node_modules',
     'test',
@@ -17,6 +19,13 @@ module.exports = {
   "collectCoverageFrom": [
     "src/**/*.{js,jsx,ts,tsx}",
     "!<rootDir>/node_modules/",
+    "!<rootDir>/node_modules/",
+    "!<rootDir>/src/reportWebVitals.ts",
+    "!<rootDir>/src/**/useDisneyCharactersData.ts",
+    "!<rootDir>/src/index.tsx"
+  ],
+  "coverageReporters": [
+    "text"
   ],
   "coveragePathIgnorePatterns": [
       "node_modules",
