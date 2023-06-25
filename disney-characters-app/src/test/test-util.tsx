@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
-import { MemoryRouterProps, Router } from 'react-router';
+import { MemoryRouterProps } from 'react-router';
 import { MemoryRouter } from 'react-router-dom';
 import type { PreloadedState } from '@reduxjs/toolkit';
 import type {
@@ -11,7 +11,6 @@ import type {
 } from '@testing-library/react';
 import { queries, render, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import Toast from 'components/Toast/Toast';
 import type { AppStore, RootState } from 'store/store';
 import { setupStore } from 'store/store';
@@ -31,7 +30,7 @@ const renderWithProviders = (
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) => {
-  const wrapper = ({ children }: PropsWithChildren<{}>): JSX.Element => {
+  const wrapper = ({ children }: PropsWithChildren): JSX.Element => {
     return (
       <>
         <Toast />
@@ -47,7 +46,7 @@ const renderWithProviders = (
   };
 };
 
-const renderHookWithProviders = function <
+const renderHookWithProviders = function renderHookWithProviders<
   Result,
   Props,
   Q extends Queries = typeof queries,
