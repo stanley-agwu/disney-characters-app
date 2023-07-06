@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { ChangeEvent, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import './Input.scss';
@@ -10,6 +10,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   success?: string;
   warning?: string;
   disabled?: boolean;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: FunctionComponent<InputProps> = ({
