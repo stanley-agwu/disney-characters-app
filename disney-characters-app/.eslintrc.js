@@ -36,6 +36,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/extensions': 0,
     'react/react-in-jsx-scope': 0,
+    'import/no-unresolved': 0,
     'no-underscore-dangle': 0,
     'no-param-reassign': 0,
     '@typescript-eslint/no-unsafe-argument': 0,

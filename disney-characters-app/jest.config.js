@@ -7,40 +7,32 @@ module.exports = {
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  moduleDirectories: [
+  moduleDirectories: ['node_modules', 'test', 'src'],
+  collectCoverage: true,
+  coverageReporters: ['text'],
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!<rootDir>/node_modules/',
+    '!<rootDir>/node_modules/',
+    '!<rootDir>/src/reportWebVitals.ts',
+    '!<rootDir>/src/**/useDisneyCharactersData.ts',
+    '!<rootDir>/src/index.tsx',
+  ],
+  coverageReporters: ['text'],
+  coveragePathIgnorePatterns: [
     'node_modules',
-    'test',
-    'src',
+    'index.tsx',
+    '<rootDir>/src/index.tsx',
+    '<rootDir>/src/reportWebVitals.ts',
+    '<rootDir>/src/hooks/useDisneyCharactersData.ts',
   ],
-  "collectCoverage": true,
-  "coverageReporters": [
-    "text"
-  ],
-  "collectCoverageFrom": [
-    "src/**/*.{js,jsx,ts,tsx}",
-    "!<rootDir>/node_modules/",
-    "!<rootDir>/node_modules/",
-    "!<rootDir>/src/reportWebVitals.ts",
-    "!<rootDir>/src/**/useDisneyCharactersData.ts",
-    "!<rootDir>/src/index.tsx"
-  ],
-  "coverageReporters": [
-    "text"
-  ],
-  "coveragePathIgnorePatterns": [
-      "node_modules",
-      "index.tsx",
-      "<rootDir>/src/index.tsx",
-      "<rootDir>/src/reportWebVitals.ts",
-      "<rootDir>/src/hooks/useDisneyCharactersData.ts"
-  ],
-  "coverageDirectory": "<rootDir>/coverage/",
-  "coverageThreshold": {
-    "global": {
-      "branches": 80,
-      "functions": 80,
-      "lines": 80,
-      "statements": 80
-    }
+  coverageDirectory: '<rootDir>/coverage/',
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
   },
 };
