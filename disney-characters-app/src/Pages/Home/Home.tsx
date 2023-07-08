@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, Fragment, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, Fragment, useState, FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Button } from '@mui/material';
@@ -17,7 +17,7 @@ import {
 import styles from './Home.module.scss';
 
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState<string | undefined>();
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
@@ -34,22 +34,34 @@ const Home = () => {
     navigate(FIRSTPAGE);
   };
 
-  const handleOnCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearchQuery(value);
-    navigate(getCharacterUrlFromName(value));
+  const handleClearCharacters = (event: FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setSearchQuery('');
+    dispatch(reset());
+    navigate('/character');
   };
 
-  const debouncedCharacterSearch = debounce(handleOnCharacterSearch, 2000);
+  const debouncedCharacterSearch = debounce(
+    (value: string) => navigate(getCharacterUrlFromName(value)),
+    500
+  );
+
+  const debounceCallback = useCallback(
+    (searchTerm: string) => debouncedCharacterSearch(searchTerm),
+    []
+  );
+
+  const handleCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setSearchQuery(value);
+    debounceCallback(value);
+  };
 
   const displayCharactersResults = () => {
     if (isLoading) {
       return <PageLoader width={200} height={200} />;
     }
-    if (isSuccess && filters?.count) {
-      return <Table characters={tableData} filters={filters} paginationRef={paginationRef} />;
-    }
-    return null;
+    return <Table characters={tableData} filters={filters} paginationRef={paginationRef} />;
   };
 
   const queryParams = getQueryParams(search);
@@ -80,7 +92,7 @@ const Home = () => {
   useEffect(() => {
     if (isError) {
       showError('Error', errorMessage);
-      setSearchQuery(undefined);
+      setSearchQuery('');
     }
     if (!isSuccess) {
       dispatch(reset());
@@ -93,18 +105,30 @@ const Home = () => {
         <div className={styles.inputWrapper}>
           <Input
             name="search"
+            type="text"
             label="Search characters"
             value={searchQuery}
-            onChange={debouncedCharacterSearch}
+            onChange={handleCharacterSearch}
           />
         </div>
-        <div className={styles.buttonWrapper}>
-          <Button variant="contained" size="large" onClick={handleFetchCharacters}>
+        <div className={styles.buttonWrapperSearch}>
+          <Button variant="contained" type="button" size="large" onClick={handleFetchCharacters}>
             characters
           </Button>
         </div>
+        <div className={styles.buttonWrapperClear}>
+          <Button
+            variant="contained"
+            type="reset"
+            color="secondary"
+            size="large"
+            onClick={handleClearCharacters}
+          >
+            Clear table
+          </Button>
+        </div>
       </div>
-      {(isLoading || isSuccess) && (
+      {(isLoading || (isSuccess && filters?.count)) && (
         <div className={styles.tableWrapper}>{displayCharactersResults()}</div>
       )}
     </Fragment>
