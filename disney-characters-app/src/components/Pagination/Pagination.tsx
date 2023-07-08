@@ -2,11 +2,11 @@ import { FC, RefObject } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 
-import PaginationButton from './PaginationButton';
-import styles from './Pagination.module.scss';
 import { FilterOptions } from 'types';
 import { displayZeroIndex, getAllCharactersPath } from 'utils/disneyCharactersUtils';
 import useScreenSize from 'hooks/useScreenSize';
+import styles from './Pagination.module.scss';
+import PaginationButton from './PaginationButton';
 
 interface PaginationProps {
   options: FilterOptions;

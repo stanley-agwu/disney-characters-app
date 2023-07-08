@@ -1,4 +1,4 @@
-import { FunctionComponent, RefObject } from 'react';
+import { FunctionComponent, RefObject, Ref } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   createColumnHelper,
@@ -8,9 +8,9 @@ import {
 } from '@tanstack/react-table';
 
 import { Character, FilterOptions } from 'types';
-import styles from './Table.module.scss';
 import Pagination from 'components/Pagination/Pagination';
 import { isNonEmptyObject } from 'store/common';
+import styles from './Table.module.scss';
 
 const columnHelper = createColumnHelper<Character>();
 
@@ -56,7 +56,7 @@ const Table: FunctionComponent<TableProps> = ({ characters, filters, paginationR
   });
   const navigate = useNavigate();
 
-  const getCharacterDetails = (row: any) => {
+  const getCharacterDetails = (row: { original: Character }) => {
     const url = `/character/${row.original._id}`;
     navigate(url);
   };

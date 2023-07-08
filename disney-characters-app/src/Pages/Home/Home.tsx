@@ -21,7 +21,7 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
-  const paginationRef = useRef<HTMLDivElement>(null);
+  const paginationRef = useRef<HTMLDivElement | null>(null);
 
   const { characters, filters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
     (state) => state.character
