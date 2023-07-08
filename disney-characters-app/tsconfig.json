@@ -17,7 +17,6 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "test-util": ["./test/test-util"],
       "components": ["./components"],
       "pages": ["./pages"],
       "mock": ["./mock"],
@@ -28,7 +27,7 @@
       "styles": ["./styles"]
     }
   },
-  "include": ["src"],
+  "include": ["src/*"],
   "exclude": ["node_modules", "dist", "coverage", "build", "public"],
   "ts-node": {
     "transpileOnly": true,
