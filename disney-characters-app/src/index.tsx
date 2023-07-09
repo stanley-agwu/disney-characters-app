@@ -4,10 +4,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
+import Toast from './components/Toast/Toast';
 import reportWebVitals from './reportWebVitals';
 import { setupStore } from './store/store';
+
 import './index.scss';
-import Toast from './components/Toast/Toast';
 
 const store = setupStore();
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

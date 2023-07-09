@@ -1,4 +1,5 @@
-import { render, screen } from 'test/test-util';
+import { render, screen } from 'tests/test-util';
+
 import Pagination from './Pagination';
 
 describe('Pagination', () => {

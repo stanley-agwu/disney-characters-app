@@ -1,5 +1,6 @@
-import { FunctionComponent, RefObject, Ref } from 'react';
+import { FunctionComponent, Ref, RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import {
   createColumnHelper,
   flexRender,
@@ -7,9 +8,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { Character, FilterOptions } from 'types';
 import Pagination from 'components/Pagination/Pagination';
+import { Character, FilterOptions } from 'types';
 import { isNonEmptyObject } from 'store/common';
+
 import styles from './Table.module.scss';
 
 const columnHelper = createColumnHelper<Character>();

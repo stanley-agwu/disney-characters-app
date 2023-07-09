@@ -1,4 +1,4 @@
-import { render, screen } from 'test/test-util';
+import { render, screen } from 'tests/test-util';
 
 import Input from './Input';
 

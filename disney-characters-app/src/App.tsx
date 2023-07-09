@@ -1,8 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Header from './components/Header/Header';
-import Character from './Pages/Character/Character';
-import Home from './Pages/Home/Home';
+import Header from 'components/Header/Header';
+
+import Character from './pages/Character/Character';
+import Home from './pages/Home/Home';
+
 import styles from './App.module.scss';
 
 const App = () => (

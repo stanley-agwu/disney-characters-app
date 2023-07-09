@@ -1,6 +1,6 @@
 import App from './App';
-import defaultAppStore, { characterSearchAppStore } from './test/store';
-import { fireEvent, render, screen, userEvent, waitFor } from './test/test-util';
+import defaultAppStore, { characterSearchAppStore } from './tests/store';
+import { fireEvent, render, screen, userEvent, waitFor } from './tests/test-util';
 
 describe('App', () => {
   it('renders App', async () => {

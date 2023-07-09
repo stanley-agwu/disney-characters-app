@@ -3,14 +3,16 @@ import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 
 import { FilterOptions } from 'types';
-import { displayZeroIndex, getAllCharactersPath } from 'utils/disneyCharactersUtils';
 import useScreenSize from 'hooks/useScreenSize';
-import styles from './Pagination.module.scss';
+import { displayZeroIndex, getAllCharactersPath } from 'utils/disneyCharactersUtils';
+
 import PaginationButton from './PaginationButton';
+
+import styles from './Pagination.module.scss';
 
 interface PaginationProps {
   options: FilterOptions;
-  paginationRef: RefObject<HTMLDivElement>;
+  paginationRef: RefObject<HTMLDivElement> | null;
 }
 
 const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Element => {

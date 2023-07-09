@@ -1,4 +1,5 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';

@@ -1,4 +1,4 @@
-import { PreloadedState, combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
 
 import characterSliceReducer, { characterModuleName } from './slices/characterSlice';
 

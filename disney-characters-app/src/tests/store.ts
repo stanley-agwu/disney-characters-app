@@ -1,4 +1,5 @@
 import configureStore, { MockStore } from 'redux-mock-store';
+
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 export const defaultAppState = {

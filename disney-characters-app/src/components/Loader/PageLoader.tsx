@@ -1,4 +1,5 @@
 import Loader, { LoaderProps } from './Loader';
+
 import styles from './PageLoader.module.scss';
 
 interface PageLoaderProps extends LoaderProps {

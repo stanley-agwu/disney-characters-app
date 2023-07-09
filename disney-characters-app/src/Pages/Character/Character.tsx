@@ -6,6 +6,7 @@ import { showError } from 'components/Toast';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getCharacter } from 'store/slices/characterSlice';
 import { allCharactersUrl } from 'utils/disneyCharactersUtils';
+
 import styles from './Character.module.scss';
 
 const CharacterDetails: FC = (): JSX.Element => {

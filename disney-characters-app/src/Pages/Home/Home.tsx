@@ -1,6 +1,7 @@
-import { ChangeEvent, useCallback, useEffect, useRef, Fragment, useState, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
+
 import { Button } from '@mui/material';
 
 import Input from 'components/Input/Input';
@@ -14,6 +15,7 @@ import {
   getCharacterUrlFromName,
   getQueryParams,
 } from 'utils/disneyCharactersUtils';
+
 import styles from './Home.module.scss';
 
 const Home = () => {
