@@ -18,7 +18,7 @@ export const getQueryParams = (query: string) => {
   return { name, page, pageSize };
 };
 
-type PageType = string | number;
+type PageType = string | number | undefined;
 
 export const getAllCharactersPath = (pageNumber: PageType, pageSize: PageType, name: PageType) =>
   name
