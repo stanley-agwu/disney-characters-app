@@ -18,12 +18,14 @@ export const getQueryParams = (query: string) => {
   return { name, page, pageSize };
 };
 
-export const getAllCharactersPath = (pageNumber: any, pageSize: any, name: any) =>
+type PageType = string | number;
+
+export const getAllCharactersPath = (pageNumber: PageType, pageSize: PageType, name: PageType) =>
   name
     ? `/character?name=${name}&page=${pageNumber}&pageSize=${pageSize}`
     : `/character?page=${pageNumber}&pageSize=${pageSize}`;
 
-export const displayZeroIndex = (pageNumber: any, count?: any): number => {
+export const displayZeroIndex = (pageNumber: PageType, count?: PageType): number => {
   if (Number(pageNumber) === 0) {
     return Number(pageNumber);
   }
