@@ -1,17 +1,17 @@
+@import '~styles/variables';
+
 .tableWrapper {
   background: #f3f6f9;
   border-radius: 8px;
   border: 1px solid #e3e9ef;
-  margin: 0;
-  padding: 0;
   width: 100%;
 }
 
 .table {
   border: 1px solid #e3e9ef;
   border-radius: 8px 8px 0 0;
-  font-size: 16px;
-  padding: 24px;
+  font-size: $baseFontSize;
+  padding: $space-3;
   width: 100%;
 }
 
@@ -20,8 +20,6 @@
   align-items: center;
   cursor: pointer;
   display: grid;
-  font-size: 15px;
-  font-style: normal;
   grid-column-gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   justify-items: start;
@@ -31,16 +29,17 @@
 .headerRow {
   th {
     color: #5e7487;
-    font-weight: normal;
+    font-weight: $baseFontWeight;
+    font-size: $fontSizeLarge;
     height: 48px;
-    padding: 8px;
+    padding: $space;
     text-align: center;
   }
 }
 
 .bodyRow {
-  font-style: normal;
-  font-weight: normal;
+  font-weight: $baseFontWeight;
+  font-size: $baseFontSize;
 
   &:hover {
     background: #ced9e3;
@@ -53,7 +52,7 @@
     display: flex;
     height: 48px;
     justify-content: center;
-    padding: 8px;
+    padding: $space;
   }
 
   i {

@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@0,100;0,200;0,400;0,600;0,700;1,500&display=swap';
+@import 'styles/variables';
 
 .Toastify {
   &__toast-container {
@@ -8,21 +8,21 @@
   &__toast {
     border-radius: 8px;
     box-shadow: none;
-    padding: 8px 16px !important;
+    padding: $space $space-2 !important;
   }
 
   &__toast-body.toastbody {
-    font-family: Montserrat, sans-serif;
-    padding: 8px;
+    font-family: $fontFamily;
+    padding: $space;
 
     .title {
-      font-size: 14px;
-      font-weight: 600;
+      font-weight: $fontWeightBold;
       margin-bottom: 8px;
     }
 
     .body {
-      font-size: 14px;
+      font-size: $fontSizeSmall;
+      font-weight: $baseFontWeight;
     }
 
     .icon-wrapper {

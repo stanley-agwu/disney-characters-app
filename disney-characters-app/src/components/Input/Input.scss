@@ -1,31 +1,28 @@
+@import 'styles/variables';
+
 @mixin inputFont {
-  box-sizing: border-box;
-  font-family: Montserrat, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1;
+  font-family: $fontFamily;
+  font-size: $baseFontSize;
+  font-weight: $baseFontWeight;
 }
 
 .inputWrapper {
   @include inputFont;
 
   .inputLabel {
-    color: #051d2e;
+    color: $fontColor;
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: $space * 0.5;
   }
 
   .input {
-    background: #f3f6f9;
-    border: 1px solid #93a3b1;
+    background: $greyBG;
+    border: 1px solid $borderColor;
+    color: $fontColor;
     border-radius: 8px;
     height: 48px;
-    padding: 16px;
+    padding: $space-2;
     @include inputFont;
-  }
-
-  input::placeholder {
-    color: #93a3b1;
   }
 
   .inputTextError {

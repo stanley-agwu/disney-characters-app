@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .character {
   display: grid;
   @media screen and (min-width: 600px) {
@@ -7,7 +9,7 @@
 
     .characterName {
       align-self: center;
-      font-size: 36px;
+      font-size: $fontSizeUltraLarge;
       grid-column: 6/-1;
       grid-row: 1/2;
     }
@@ -37,7 +39,7 @@
 
     .characterName {
       align-self: center;
-      font-size: 36px;
+      font-size: $fontSizeUltraLarge;
       grid-column: 1/-1;
       grid-row: 1/2;
     }
@@ -62,28 +64,28 @@
   }
 
   .enemies {
-    margin: 16px 0;
+    margin: $space-2 0;
 
     .enemy {
-      padding: 8px;
+      padding: $space;
     }
   }
 
   .created,
   .updated {
-    margin: 16px 0;
+    margin: $space-2 0;
   }
 
   .films {
-    margin: 16px 0;
+    margin: $space-2 0;
 
     .film {
-      padding: 8px;
+      padding: $space;
     }
   }
 
   .titles {
-    font-weight: 600;
-    margin: 8px 0;
+    font-weight: $fontWeightBold;
+    margin: $space 0;
   }
 }

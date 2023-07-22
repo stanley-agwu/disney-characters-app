@@ -1,10 +1,12 @@
+@import 'styles/variables';
+
 .app {
   height: 100%;
   width: 100%;
 }
 
 .content {
-  margin-top: 84px;
+  margin-top: $space * 10.5;
 }
 
 a {

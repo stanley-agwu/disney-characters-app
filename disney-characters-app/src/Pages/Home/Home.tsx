@@ -130,7 +130,7 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      {(isLoading || (isSuccess && filters?.count)) && (
+      {(isLoading || (isSuccess && !!filters?.count)) && (
         <div className={styles.tableWrapper}>{displayCharactersResults()}</div>
       )}
     </Fragment>
