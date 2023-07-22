@@ -1,4 +1,4 @@
-@import 'styles/variables';
+@import 'styles/main';
 
 @font-face {
   font-family: 'Montserrat';
@@ -49,5 +49,6 @@
   color: $fontColor;
   font-family: $fontFamily;
   font-size: $baseFontSize;
-  font-weight: $fontWeightBold;
+  font-weight: $baseFontWeight;
+  line-height: 1.7;
 }

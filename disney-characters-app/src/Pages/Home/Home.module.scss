@@ -1,8 +1,8 @@
-@import 'styles/variables';
+@import 'styles/main';
 
 .home {
   display: flex;
-  gap: 16px;
+  gap: $space-2;
   margin: 0 auto;
   @media screen and (max-width: 768px) {
     flex-direction: column;

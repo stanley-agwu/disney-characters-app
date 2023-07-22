@@ -1,15 +1,17 @@
-@import 'styles/variables';
+@import 'styles/main';
 
 .character {
   display: grid;
+  font-weight: $baseFontWeight;
   @media screen and (min-width: 600px) {
-    grid-gap: 32px;
+    grid-gap: $space-4;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 1fr 3fr 2fr;
 
     .characterName {
       align-self: center;
       font-size: $fontSizeUltraLarge;
+      font-weight: $fontWeightBold;
       grid-column: 6/-1;
       grid-row: 1/2;
     }
@@ -33,7 +35,7 @@
     }
   }
   @media screen and (max-width: 599px) {
-    grid-gap: 16px;
+    grid-gap: $space-2;
     grid-template-columns: 12fr;
     grid-template-rows: 1fr 2fr 3fr;
 
@@ -85,7 +87,8 @@
   }
 
   .titles {
-    font-weight: $fontWeightBold;
+    font-weight: $fontWeightSemiBold;
+    font-size: $fontSizeExtraLarge;
     margin: $space 0;
   }
 }
