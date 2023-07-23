@@ -3,6 +3,8 @@
 .character {
   display: grid;
   font-weight: $baseFontWeight;
+  min-width: 100%;
+  min-height: 100%;
   @media screen and (min-width: 600px) {
     grid-gap: $space-4;
     grid-template-columns: repeat(12, 1fr);
@@ -19,6 +21,8 @@
     .characterImage {
       grid-column: 1/6;
       grid-row: 1/4;
+      min-width: auto;
+      min-height: auto;
 
       img {
         border-radius: 8px;
@@ -49,6 +53,8 @@
     .characterImage {
       grid-column: 1/-1;
       grid-row: 2/4;
+      min-width: auto;
+      min-height: auto;
 
       img {
         border-radius: 8px;

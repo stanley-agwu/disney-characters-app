@@ -8,6 +8,13 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleDirectories: ['node_modules', 'test', 'src'],
+  moduleNameMapper: {
+    '^@modules(.*)$': '<rootDir>/src/modules$1',
+    '^@common(.*)$': '<rootDir>/src/modules/common$1',
+    '^@dashboard(.*)$': '<rootDir>/src/modules/dashboard$1',
+    '^@details(.*)$': '<rootDir>/src/modules/details$1',
+    '^@tests(.*)$': '<rootDir>/src/tests$1',
+  },
   collectCoverage: true,
   coverageReporters: ['text'],
   collectCoverageFrom: [
