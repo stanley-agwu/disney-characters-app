@@ -1,15 +1,14 @@
+import CharacterDetails from 'modules/details/components/CharacterDetails';
 import defaultAppStore, {
   errorAppStore,
   loadingAppStore,
   mockSelectedCharacterAppStore,
 } from 'tests/store';
-import { render, screen } from 'tests/test-util';
-
-import Character from './Character';
+import { render, screen } from 'tests/test-utils';
 
 describe('Character', () => {
   it('renders Character details', async () => {
-    render(<Character />, { store: defaultAppStore() });
+    render(<CharacterDetails />, { store: defaultAppStore() });
 
     const img = await screen.findByRole('img', { name: 'Achilles' });
     const name = await screen.findByText('Achilles');
@@ -19,14 +18,14 @@ describe('Character', () => {
   });
 
   it('displays loading spinner', async () => {
-    render(<Character />, { store: loadingAppStore() });
+    render(<CharacterDetails />, { store: loadingAppStore() });
 
     const loaderLabel = await screen.findByLabelText('animation');
     expect(loaderLabel).toBeInTheDocument();
   });
 
   it('displays error from redux store', async () => {
-    render(<Character />, { store: errorAppStore() });
+    render(<CharacterDetails />, { store: errorAppStore() });
 
     const errorToastMessage = await screen.findByText('An Error occured with a disney character');
     expect(errorToastMessage).toBeInTheDocument();
@@ -34,7 +33,7 @@ describe('Character', () => {
 
   it('dispatches an action for a character', async () => {
     const initialEntries = ['/character/13'];
-    render(<Character />, {
+    render(<CharacterDetails />, {
       store: mockSelectedCharacterAppStore(),
       routerProps: { initialEntries },
     });

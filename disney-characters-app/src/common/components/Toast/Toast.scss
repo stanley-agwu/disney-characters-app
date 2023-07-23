@@ -13,11 +13,11 @@
 
   &__toast-body.toastbody {
     font-family: $fontFamily;
-    padding: $space;
+    padding: 0 $space 0 0;
 
     .title {
       font-weight: $fontWeightBold;
-      margin-bottom: 8px;
+      margin-bottom: calc($space/2);
     }
 
     .body {
@@ -27,7 +27,7 @@
 
     .icon-wrapper {
       align-items: center;
-      background-color: #fff;
+      background-color: $whiteBG;
       border-radius: 50%;
       display: flex;
       height: 48px;
@@ -41,25 +41,25 @@
 
       .success {
         path {
-          fill: #075d48;
+          fill: $successColorDarker;
         }
       }
 
       .error {
-        color: #8e0b1a;
+        color: $errorColorDarker;
         height: 32px;
-        stroke: #8e0b1a;
+        stroke: $errorColorDarker;
         width: 32px;
 
         path {
-          fill: #fff;
-          stroke: #8e0b1a;
+          fill: $whiteBG;
+          stroke: $errorColorDarker;
         }
       }
 
       .information {
         path {
-          fill: #445869;
+          fill: $infoColorDark;
         }
       }
     }
@@ -76,32 +76,32 @@
 
   &__toast-theme--colored.Toastify__toast {
     &--success {
-      background: #cefdd0 !important;
-      color: #075d48 !important;
+      background: $successColorLight !important;
+      color: $successColorDarker !important;
 
       .Toastify__close-button {
         align-self: center;
-        color: #075d48;
+        color: $successColorDarker;
       }
     }
 
     &--error {
-      background: #ffecee !important;
-      color: #8e0b1a !important;
+      background: $errorColorLight !important;
+      color: $errorColorDarker !important;
 
       .Toastify__close-button {
         align-self: center;
-        color: #8e0b1a;
+        color: $errorColorDarker;
       }
     }
 
     &--info {
-      background-color: #f3f6f9 !important;
-      color: #32414d !important;
+      background-color: $greyBG !important;
+      color: $infoColorDarker !important;
 
       .Toastify__close-button {
         align-self: center;
-        color: #32414d;
+        color: $infoColorDarker;
       }
     }
   }
@@ -112,15 +112,15 @@
 
   &__progress-bar-theme--colored.Toastify__progress-bar {
     &--success {
-      background: #2b826c !important;
+      background: $successColorDark !important;
     }
 
     &--error {
-      background: #a60c1e !important;
+      background: $errorColorDark !important;
     }
 
     &--info {
-      background: #445869 !important;
+      background: $infoColorDark !important;
     }
   }
 }

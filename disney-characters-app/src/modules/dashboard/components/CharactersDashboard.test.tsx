@@ -1,21 +1,18 @@
-import userEvent from '@testing-library/user-event';
-
 import { getAllCharactersUrl } from 'mocks/handlers';
 import { rest, server } from 'mocks/server';
+import CharactersDashboard from 'modules/dashboard/components/CharactersDashboard';
 import defaultAppStore from 'tests/store';
-import { fireEvent, render, screen, waitFor } from 'tests/test-util';
+import { fireEvent, render, screen, userEvent, waitFor } from 'tests/test-utils';
 
-import Home from './Home';
-
-describe('Home', () => {
-  it('renders Home', async () => {
-    render(<Home />);
+describe('CharactersDashboard', () => {
+  it('renders CharactersDashboard', async () => {
+    render(<CharactersDashboard />);
     const button = await screen.findByRole('button', { name: 'characters' });
     expect(button).toBeInTheDocument();
   });
 
   it('displays table after button click', async () => {
-    render(<Home />, { store: defaultAppStore() });
+    render(<CharactersDashboard />, { store: defaultAppStore() });
 
     const button = await screen.findByRole('button', { name: 'characters' });
 
@@ -24,7 +21,7 @@ describe('Home', () => {
   });
 
   it('displays loading spinner', async () => {
-    render(<Home />);
+    render(<CharactersDashboard />);
 
     const button = await screen.findByRole('button', { name: 'characters' });
     const tableHeaderText = screen.queryByText('Date created');
@@ -38,7 +35,7 @@ describe('Home', () => {
 
   it('displays error toast', async () => {
     server.use(rest.get(getAllCharactersUrl, (_, res, ctx) => res(ctx.status(500))));
-    render(<Home />);
+    render(<CharactersDashboard />);
 
     const button = await screen.findByRole('button', { name: 'characters' });
     userEvent.click(button);
@@ -50,7 +47,7 @@ describe('Home', () => {
   });
 
   it('input rendered and changes value', async () => {
-    render(<Home />);
+    render(<CharactersDashboard />);
 
     const input: HTMLInputElement = await screen.findByLabelText('search');
     fireEvent.change(input, { target: { value: 'Mickey mouse' } });
@@ -58,7 +55,7 @@ describe('Home', () => {
   });
 
   it('renders no table when character does not exist for query', async () => {
-    render(<Home />, {
+    render(<CharactersDashboard />, {
       preloadedState: {
         character: {
           characters: [],

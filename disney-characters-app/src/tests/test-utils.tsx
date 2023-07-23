@@ -13,9 +13,9 @@ import type {
 import { queries, render, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Toast from 'components/Toast/Toast';
-import type { AppStore, RootState } from 'store/store';
-import { setupStore } from 'store/store';
+import type { AppStore, RootState } from 'common/api/store/store';
+import { setupStore } from 'common/api/store/store';
+import Toast from 'common/components/Toast/Toast';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>;

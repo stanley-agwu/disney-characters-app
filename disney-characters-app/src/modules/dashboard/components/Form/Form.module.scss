@@ -1,0 +1,65 @@
+@import 'styles/main';
+
+.form {
+  display: flex;
+  gap: $space-2;
+  margin: 0 auto;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+
+    .inputWrapper {
+      align-self: center;
+      width: 100%;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .buttonWrapperSearch,
+    .buttonWrapperClear {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+
+      button {
+        width: 100%;
+        font-family: $fontFamily;
+        font-weight: $baseFontWeight;
+      }
+    }
+  }
+  @media screen and (min-width: 769px) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 769px;
+
+    .inputWrapper {
+      width: 400px;
+
+      input {
+        width: 400px;
+      }
+    }
+
+    .buttonWrapperSearch,
+    .buttonWrapperClear {
+      align-self: flex-end;
+
+      button {
+        padding: 10.875px 22px;
+        font-family: $fontFamily;
+        font-weight: $baseFontWeight;
+      }
+    }
+  }
+
+  .buttonWrapperSearch,
+  .buttonWrapperClear {
+    button {
+      padding: 10.875px 22px;
+    }
+  }
+}

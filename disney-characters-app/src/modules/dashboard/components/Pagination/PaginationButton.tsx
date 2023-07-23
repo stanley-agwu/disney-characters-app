@@ -1,12 +1,14 @@
-import { FC } from 'react';
-
 import { Button } from '@mui/material';
-
-import { ButtonProps } from 'types';
 
 import styles from './Pagination.module.scss';
 
-const PaginationButton: FC<ButtonProps> = ({ onClick, isDisabled, children }): JSX.Element => (
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  isDisabled: boolean;
+}
+
+const PaginationButton = ({ onClick, isDisabled, children }: ButtonProps): JSX.Element => (
   <Button
     onClick={onClick}
     disabled={isDisabled}

@@ -17,14 +17,11 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "components": ["./components"],
-      "pages": ["./pages"],
-      "mock": ["./mock"],
-      "hooks": ["./hooks"],
-      "services": ["./services"],
-      "store": ["./store"],
-      "test": ["./test"],
-      "styles": ["./styles"]
+      "modules": ["./modules"],
+      "mocks": ["./mocks"],
+      "common": ["./common"],
+      "styles": ["./styles"],
+      "tests": ["./tests"]
     }
   },
   "include": ["src"],

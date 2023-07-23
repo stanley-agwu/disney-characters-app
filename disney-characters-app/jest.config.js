@@ -14,6 +14,7 @@ module.exports = {
     '^@dashboard(.*)$': '<rootDir>/src/modules/dashboard$1',
     '^@details(.*)$': '<rootDir>/src/modules/details$1',
     '^@tests(.*)$': '<rootDir>/src/tests$1',
+    '^@mocks(.*)$': '<rootDir>/src/mocks$1',
   },
   collectCoverage: true,
   coverageReporters: ['text'],

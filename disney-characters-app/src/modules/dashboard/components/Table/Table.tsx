@@ -1,4 +1,4 @@
-import { FunctionComponent, Ref, RefObject } from 'react';
+import { FunctionComponent, RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -8,9 +8,9 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import Pagination from 'components/Pagination/Pagination';
-import { Character, FilterOptions } from 'types';
-import { isNonEmptyObject } from 'store/common';
+import { isNonEmptyObject } from 'common/api/store/common';
+import { Character, FilterOptions } from 'common/types';
+import Pagination from 'modules/dashboard/components/Pagination/Pagination';
 
 import styles from './Table.module.scss';
 

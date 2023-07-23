@@ -1,7 +1,7 @@
-export const allCharactersUrl = 'https://api.disneyapi.dev/character';
+import { coreConfig } from 'common/core/config';
 
 export const getCharacterUrlFromName = (name: string) => {
-  const url = new URL(allCharactersUrl);
+  const url = new URL(coreConfig.endpoints.url);
   const params = new URLSearchParams();
   params.append('name', name);
   params.append('page', '1');

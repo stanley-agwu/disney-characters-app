@@ -59,6 +59,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-unused-expressions': 0,
     '@typescript-eslint/no-unsafe-member-access': 0,
+    '@typescript-eslint/no-unsafe-call': 0,
     '@typescript-eslint/no-misused-promises': 1,
     '@typescript-eslint/no-floating-promises': 0,
     'import/no-extraneous-dependencies': 0,
@@ -81,8 +82,8 @@ module.exports = {
       2,
       {
         groups: [
-          // react and react scoped imports first, then next, and other packages
-          ['^react', '^next', '^[a-zA-Z]'],
+          // react and react scoped imports first, and then other packages
+          ['^react', '^[a-zA-Z]'],
           // Packages starting with '@'
           ['^@'],
           // Packages starting with '~'
@@ -91,19 +92,10 @@ module.exports = {
           ['^\\u0000'],
           // Other local absolute imports
           [
-            '^components',
-            '^features',
-            '^constants',
-            '^types',
-            '^hooks',
-            '^pages',
+            '^common',
             '^mocks',
+            '^modules',
             '^tests',
-            '^services',
-            '^store',
-            '^assets',
-            '^utils',
-            '^app',
           ],
           // Relative imports
           ['^\\.'],

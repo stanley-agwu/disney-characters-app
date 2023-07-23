@@ -16,12 +16,6 @@ export interface Character {
   __v: number;
 }
 
-export type DisneyCharacterData = Character[] | [];
-
-export interface CharactersResponse {
-  data: Character[];
-}
-
 export interface CharacterState {
   characters: Character[] | [];
   selectedCharacter: Character | null;
@@ -30,12 +24,6 @@ export interface CharacterState {
   isSuccess: boolean;
   isError: boolean;
   errorMessage: string;
-}
-
-export interface ButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
-  isDisabled: boolean;
 }
 
 export interface FilterOptions {

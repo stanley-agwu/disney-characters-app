@@ -2,9 +2,12 @@ import { FC, RefObject } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 
-import { FilterOptions } from 'types';
-import useScreenSize from 'hooks/useScreenSize';
-import { displayZeroIndex, getAllCharactersPath } from 'utils/disneyCharactersUtils';
+import { FilterOptions } from 'common/types';
+import useScreenSize from 'modules/dashboard/hooks/useScreenSize';
+import {
+  displayZeroIndex,
+  getAllCharactersPath,
+} from 'modules/dashboard/utils/disneyCharactersUtils';
 
 import PaginationButton from './PaginationButton';
 

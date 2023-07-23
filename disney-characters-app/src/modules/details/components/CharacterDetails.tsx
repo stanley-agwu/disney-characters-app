@@ -1,15 +1,15 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import PageLoader from 'components/Loader/PageLoader';
-import { showError } from 'components/Toast';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getCharacter } from 'store/slices/characterSlice';
-import { allCharactersUrl } from 'utils/disneyCharactersUtils';
+import { useAppDispatch, useAppSelector } from 'common/api/store/hooks';
+import { getCharacter } from 'common/api/store/slices/characterSlice';
+import PageLoader from 'common/components/Loader/PageLoader';
+import { showError } from 'common/components/Toast';
+import { coreConfig } from 'common/core/config';
 
-import styles from './Character.module.scss';
+import styles from './CharacterDetails.module.scss';
 
-const CharacterDetails: FC = (): JSX.Element => {
+const CharacterDetails = (): JSX.Element => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const pathRegexMatch = /^\/character\/(\d+)$/;
@@ -21,7 +21,7 @@ const CharacterDetails: FC = (): JSX.Element => {
   useEffect(() => {
     if (pathRegexMatch.test(pathname) && !search) {
       const id = pathname.split('/').reverse()[0];
-      const formattedUrl = `${allCharactersUrl}/${id}`;
+      const formattedUrl = `${coreConfig.endpoints.url}/${id}`;
       dispatch(getCharacter(formattedUrl));
     }
     if (isError) {

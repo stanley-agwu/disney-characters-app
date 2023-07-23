@@ -6,9 +6,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import startBrowserMsw from 'mocks/browser.dev';
 
 import App from './App';
-import Toast from './components/Toast/Toast';
+import { setupStore } from './common/api/store/store';
+import Toast from './common/components/Toast/Toast';
 import reportWebVitals from './reportWebVitals';
-import { setupStore } from './store/store';
 
 import './index.scss';
 

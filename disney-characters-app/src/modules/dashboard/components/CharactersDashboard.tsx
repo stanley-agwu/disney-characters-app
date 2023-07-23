@@ -2,38 +2,33 @@ import { ChangeEvent, FormEvent, Fragment, useCallback, useEffect, useRef, useSt
 import { useLocation, useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 
-import { Button } from '@mui/material';
+import { useAppDispatch, useAppSelector } from 'common/api/store/hooks';
+import { reset } from 'common/api/store/slices/characterSlice';
+import { showError } from 'common/components/Toast';
+import { coreConfig } from 'common/core/config';
+import { formatString } from 'common/utils';
+import CharactersResultDisplay from 'modules/dashboard/components/CharactersResultDisplay/CharactersResultDisplay';
+import Form from 'modules/dashboard/components/Form/Form';
 
-import Input from 'components/Input/Input';
-import PageLoader from 'components/Loader/PageLoader';
-import Table from 'components/Table/Table';
-import { showError } from 'components/Toast';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getCharacters, reset } from 'store/slices/characterSlice';
-import {
-  allCharactersUrl,
-  getCharacterUrlFromName,
-  getQueryParams,
-} from 'utils/disneyCharactersUtils';
+import useCharactersDispatch from '../hooks/useCharactersDispatch';
+import { getCharacterUrlFromName } from '../utils/disneyCharactersUtils';
 
-import styles from './Home.module.scss';
+import styles from './CharactersDashboard.module.scss';
 
-const Home = () => {
+const CharactersDashboard = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
   const paginationRef = useRef<HTMLDivElement | null>(null);
+  useCharactersDispatch(search);
 
   const { characters, filters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
     (state) => state.character
   );
 
-  const tableData = characters;
-  const FIRSTPAGE = '/character?page=1&pageSize=50';
-
   const handleFetchCharacters = () => {
-    navigate(FIRSTPAGE);
+    navigate(formatString(coreConfig.routes.characters.firstPage, '1', '50'));
   };
 
   const handleClearCharacters = (event: FormEvent<HTMLButtonElement>) => {
@@ -59,38 +54,6 @@ const Home = () => {
     debounceCallback(value);
   };
 
-  const displayCharactersResults = () => {
-    if (isLoading) {
-      return <PageLoader width={200} height={200} />;
-    }
-    return <Table characters={tableData} filters={filters} paginationRef={paginationRef} />;
-  };
-
-  const queryParams = getQueryParams(search);
-  const hasPageParams = Boolean(queryParams?.page && queryParams.pageSize);
-  const hasNameParam = Boolean(queryParams?.name);
-
-  useEffect(() => {
-    if (search && hasNameParam) {
-      const { page, pageSize, name } = queryParams;
-      dispatch(
-        getCharacters({
-          url: `${allCharactersUrl}?name=${name}&page=${page || 1}&pageSize=${pageSize || 50}`,
-          filters: { pageNumber: page || 1, pageSize: pageSize || 50, name: name as string },
-        })
-      );
-    }
-    if (search && hasPageParams && !hasNameParam) {
-      const { page, pageSize } = queryParams as { page: string; pageSize: string };
-      dispatch(
-        getCharacters({
-          url: `${allCharactersUrl}?page=${page}&pageSize=${pageSize}`,
-          filters: { pageNumber: page, pageSize },
-        })
-      );
-    }
-  }, [search, hasNameParam, hasPageParams]);
-
   useEffect(() => {
     if (isError) {
       showError('Error', errorMessage);
@@ -103,38 +66,23 @@ const Home = () => {
 
   return (
     <Fragment>
-      <div className={styles.home}>
-        <div className={styles.inputWrapper}>
-          <Input
-            name="search"
-            type="text"
-            label="Search characters"
-            value={searchQuery}
-            onChange={handleCharacterSearch}
-          />
-        </div>
-        <div className={styles.buttonWrapperSearch}>
-          <Button variant="contained" type="button" size="large" onClick={handleFetchCharacters}>
-            characters
-          </Button>
-        </div>
-        <div className={styles.buttonWrapperClear}>
-          <Button
-            variant="contained"
-            type="reset"
-            color="secondary"
-            size="large"
-            onClick={handleClearCharacters}
-          >
-            Clear table
-          </Button>
-        </div>
+      <Form
+        searchQuery={searchQuery}
+        handleCharacterSearch={handleCharacterSearch}
+        handleFetchCharacters={handleFetchCharacters}
+        handleClearCharacters={handleClearCharacters}
+      />
+      <div className={styles.tableWrapper}>
+        <CharactersResultDisplay
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+          filters={filters}
+          characters={characters}
+          paginationRef={paginationRef}
+        />
       </div>
-      {(isLoading || (isSuccess && !!filters?.count)) && (
-        <div className={styles.tableWrapper}>{displayCharactersResults()}</div>
-      )}
     </Fragment>
   );
 };
 
-export default Home;
+export default CharactersDashboard;
