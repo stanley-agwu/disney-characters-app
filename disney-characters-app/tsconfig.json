@@ -24,7 +24,7 @@
       "tests": ["./tests"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "types/index.d.ts"],
   "exclude": ["node_modules", "dist", "coverage", "build", "public"],
   "ts-node": {
     "transpileOnly": true,

@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from 'common/api/store/hooks';
 import { reset } from 'common/api/store/slices/characterSlice';
 import { showError } from 'common/components/Toast';
 import { coreConfig } from 'common/core/config';
-import { formatString } from 'common/utils';
 import CharactersResultDisplay from 'modules/dashboard/components/CharactersResultDisplay/CharactersResultDisplay';
 import Form from 'modules/dashboard/components/Form/Form';
 
@@ -28,7 +27,7 @@ const CharactersDashboard = () => {
   );
 
   const handleFetchCharacters = () => {
-    navigate(formatString(coreConfig.routes.characters.firstPage, '1', '50'));
+    navigate(coreConfig.routes.characters.firstPage.format('1', '50'));
   };
 
   const handleClearCharacters = (event: FormEvent<HTMLButtonElement>) => {

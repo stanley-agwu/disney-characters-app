@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import 'common/utils/extensions';
+
 import startBrowserMsw from 'mocks/browser.dev';
 
 import App from './App';
