@@ -1,14 +1,14 @@
 @import '~styles/variables';
 
 .tableWrapper {
-  background: #f3f6f9;
+  background: $greyBG;
   border-radius: 8px;
-  border: 1px solid #e3e9ef;
+  border: 1px solid $colorTintGrey;
   width: 100%;
 }
 
 .table {
-  border: 1px solid #e3e9ef;
+  border: 1px solid $colorTintGrey;
   border-radius: 8px 8px 0 0;
   font-size: $baseFontSize;
   padding: $space-3;
@@ -28,7 +28,7 @@
 
 .headerRow {
   th {
-    color: #5e7487;
+    color: $selectBG;
     font-weight: $baseFontWeight;
     font-size: $fontSizeLarge;
     height: 48px;
@@ -42,9 +42,9 @@
   font-size: $baseFontSize;
 
   &:hover {
-    background: #ced9e3;
+    background: $colorDimGrey;
     border-radius: 4px;
-    color: #051d2e;
+    color: $fontColorDark;
   }
 
   td {

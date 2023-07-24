@@ -26,13 +26,13 @@
   }
 
   .inputTextError {
-    border: 1px solid #efa2ab;
-    color: #c13344;
+    border: 1px solid $colorRedLight;
+    color: $errorColorTintDark;
   }
 
   .inputTextSuccess {
-    border: 1px solid #efa2ab;
-    color: #2b826c;
+    border: 1px solid $colorRedLight;
+    color: $successColorDark;
   }
 
   .disabled {

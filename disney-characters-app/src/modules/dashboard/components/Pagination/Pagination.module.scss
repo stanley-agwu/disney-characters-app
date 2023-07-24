@@ -98,7 +98,7 @@
 .paginationLinkClass {
   @include flexCenter;
   padding: $space * 1.75;
-  background-color: #d1e6fa;
+  background-color: $colorGreyLight;
   margin: 0 $space;
   color: $fontColor;
   border-radius: 6px;
@@ -107,8 +107,8 @@
 }
 
 .activeLinkClass {
-  background-color: #2b826c;
-  color: #fff !important;
+  background-color: $successColorDark;
+  color: $whiteBG !important;
   font-weight: 600;
   padding: $space * 1.75 $space-2;
   border-radius: 8px;
@@ -126,7 +126,7 @@
   }
 }
 .disabledClass {
-  color: #fff !important;
+  color: $whiteBG !important;
   font-weight: 600;
   border-radius: $space;
   pointer-events: none;
