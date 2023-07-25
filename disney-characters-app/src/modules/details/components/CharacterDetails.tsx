@@ -21,8 +21,7 @@ const CharacterDetails = (): JSX.Element => {
   useEffect(() => {
     if (pathRegexMatch.test(pathname) && !search) {
       const id = pathname.split('/').reverse()[0];
-      const formattedUrl = `${coreConfig.endpoints.url}/${id}`;
-      dispatch(getCharacter(formattedUrl));
+      dispatch(getCharacter(coreConfig.endpoints.character.format(id)));
     }
     if (isError) {
       showError('Error', errorMessage);

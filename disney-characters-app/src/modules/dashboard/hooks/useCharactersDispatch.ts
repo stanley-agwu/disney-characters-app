@@ -6,29 +6,39 @@ import { coreConfig } from 'common/core/config';
 
 import { getQueryParams } from '../utils/disneyCharactersUtils';
 
+interface QueryParams {
+  name: string | null;
+  page: string | null;
+  pageSize: string | null;
+}
+
+interface NonNullQueryParams {
+  name: string;
+  page: string;
+  pageSize: string;
+}
+
 const useCharactersDispatch = (search: string) => {
   const dispatch = useAppDispatch();
-  const queryParams = getQueryParams(search);
+  const queryParams: QueryParams = getQueryParams(search);
   const hasPageParams = Boolean(queryParams?.page && queryParams.pageSize);
   const hasNameParam = Boolean(queryParams?.name);
 
   useEffect(() => {
     if (search && hasNameParam) {
-      const { page, pageSize, name } = queryParams;
+      const { name, page, pageSize } = queryParams as NonNullQueryParams;
       dispatch(
         getCharacters({
-          url: `${coreConfig.endpoints.url}?name=${name}&page=${page || 1}&pageSize=${
-            pageSize || 50
-          }`,
-          filters: { pageNumber: page || 1, pageSize: pageSize || 50, name: name as string },
+          url: coreConfig.endpoints.characters.name.format(name, page, pageSize),
+          filters: { pageNumber: page, pageSize, name },
         })
       );
     }
     if (search && hasPageParams && !hasNameParam) {
-      const { page, pageSize } = queryParams as { page: string; pageSize: string };
+      const { page, pageSize } = queryParams as Omit<NonNullQueryParams, 'name'>;
       dispatch(
         getCharacters({
-          url: `${coreConfig.endpoints.url}?page=${page}&pageSize=${pageSize}`,
+          url: coreConfig.endpoints.characters.page.format(page, pageSize),
           filters: { pageNumber: page, pageSize },
         })
       );

@@ -27,14 +27,14 @@ const CharactersDashboard = () => {
   );
 
   const handleFetchCharacters = () => {
-    navigate(coreConfig.routes.characters.firstPage.format('1', '50'));
+    navigate(coreConfig.routes.characters.page.format('1', '50'));
   };
 
   const handleClearCharacters = (event: FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setSearchQuery('');
     dispatch(reset());
-    navigate('/character');
+    navigate(coreConfig.routes.characters.url);
   };
 
   const debouncedCharacterSearch = debounce(
