@@ -1,9 +1,9 @@
 import { coreConfig } from 'common/core/config';
 
 export const getCharacterUrlFromName = (name: string) => {
-  const url = new URL(coreConfig.endpoints.url);
+  const url = new URL(coreConfig.endpoints.root);
   const params = new URLSearchParams();
-  params.append('name', name);
+  name && params.append('name', name);
   params.append('page', '1');
   params.append('page', '50');
   url.search = params.toString();
@@ -15,22 +15,26 @@ export const getQueryParams = (query: string) => {
   const name = params.get('name');
   const page = params.get('page');
   const pageSize = params.get('pageSize');
-  return { name, page, pageSize };
+  return { name, page, pageSize: pageSize || '50' };
 };
 
-type PageType = string | number | undefined;
-
-export const getAllCharactersPath = (pageNumber: PageType, pageSize: PageType, name: PageType) =>
+export const getAllCharactersPath = (
+  name: string | undefined,
+  pageNumber: string,
+  pageSize: string
+): string =>
   name
-    ? `/character?name=${name}&page=${pageNumber}&pageSize=${pageSize}`
-    : `/character?page=${pageNumber}&pageSize=${pageSize}`;
+    ? coreConfig.routes.characters.name.format(name, pageNumber, pageSize)
+    : coreConfig.routes.characters.page.format(pageNumber, pageSize);
 
-export const displayZeroIndex = (pageNumber: PageType, count?: PageType): number => {
-  if (Number(pageNumber) === 0) {
-    return Number(pageNumber);
+export const displayZeroIndex = (pageNumber: number | null, count: number | null): number => {
+  if (pageNumber === 0) {
+    return pageNumber;
   }
   if (!pageNumber) {
     return 1;
   }
-  return count === 0 ? 0 : Number(pageNumber);
+  return count === 0 ? 0 : pageNumber;
 };
+
+export const formatPageSize = (page: string | undefined) => (page ? String(page) : '50');

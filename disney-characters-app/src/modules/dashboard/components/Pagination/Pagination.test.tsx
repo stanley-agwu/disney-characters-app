@@ -5,10 +5,10 @@ import Pagination from './Pagination';
 describe('Pagination', () => {
   const defaultProps = {
     options: {
-      count: '20',
+      count: 20,
       previousPage: '1',
       nextPage: '3',
-      totalPages: '20',
+      totalPages: 20,
       pageNumber: '2',
       pageSize: '50',
     },

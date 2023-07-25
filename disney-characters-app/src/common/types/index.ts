@@ -27,12 +27,12 @@ export interface CharacterState {
 }
 
 export interface FilterOptions {
-  count?: string | number;
-  previousPage?: string;
-  nextPage?: string;
-  totalPages?: string | number;
-  pageNumber?: string | number;
-  pageSize?: string | number;
+  count?: number;
+  previousPage?: string | null;
+  nextPage?: string | null;
+  totalPages?: number;
+  pageNumber?: string;
+  pageSize?: string;
   name?: string;
 }
 
