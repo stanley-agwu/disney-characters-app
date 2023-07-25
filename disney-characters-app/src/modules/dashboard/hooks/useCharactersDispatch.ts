@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch } from 'common/api/store/hooks';
 import { getCharacters } from 'common/api/store/slices/characterSlice';
 import { coreConfig } from 'common/core/config';
-
-import { getQueryParams } from '../utils/disneyCharactersUtils';
+import { getQueryParams } from 'modules/dashboard/utils/disneyCharactersUtils';
 
 interface QueryParams {
   name: string | null;

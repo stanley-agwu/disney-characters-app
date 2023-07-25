@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import reportWebVitals from 'reportWebVitals';
 
 import 'common/utils/extensions';
 
+import { setupStore } from 'common/api/store/store';
+import Toast from 'common/components/Toast/Toast';
 import startBrowserMsw from 'mocks/browser.dev';
 
 import App from './App';
-import { setupStore } from './common/api/store/store';
-import Toast from './common/components/Toast/Toast';
-import reportWebVitals from './reportWebVitals';
 
 import './index.scss';
 

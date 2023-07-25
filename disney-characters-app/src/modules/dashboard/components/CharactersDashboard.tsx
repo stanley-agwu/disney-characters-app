@@ -8,9 +8,8 @@ import { showError } from 'common/components/Toast';
 import { coreConfig } from 'common/core/config';
 import CharactersResultDisplay from 'modules/dashboard/components/CharactersResultDisplay/CharactersResultDisplay';
 import Form from 'modules/dashboard/components/Form/Form';
-
-import useCharactersDispatch from '../hooks/useCharactersDispatch';
-import { getCharacterUrlFromName } from '../utils/disneyCharactersUtils';
+import useCharactersDispatch from 'modules/dashboard/hooks/useCharactersDispatch';
+import { getCharacterUrlFromName } from 'modules/dashboard/utils/disneyCharactersUtils';
 
 import styles from './CharactersDashboard.module.scss';
 
