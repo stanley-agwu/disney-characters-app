@@ -6,8 +6,10 @@ import { getCharacter } from 'common/api/store/slices/characterSlice';
 import PageLoader from 'common/components/Loader/PageLoader';
 import { showError } from 'common/components/Toast';
 import { coreConfig } from 'common/core/config';
+import { CharacterEnum } from 'modules/details/utils/CharacterEnum';
 
-import CharacterInfoItem from './CharacterInfoItem/CharacterInfoItem';
+import CharacterInfoMap from './CharacterInfoMap/CharacterInfoMap';
+import CharacterInfoItem from './CharacterInfoMap/components/CharacterInfoItem/CharacterInfoItem';
 
 import styles from './CharacterDetails.module.scss';
 
@@ -34,6 +36,16 @@ const CharacterDetails = (): JSX.Element => {
     return <PageLoader width={200} height={200} />;
   }
 
+  const detailsMap = [
+    { key: CharacterEnum.tvShows, title: 'TV shows' },
+    { key: CharacterEnum.films, title: 'Films' },
+    { key: CharacterEnum.shortFilms, title: 'Short films' },
+    { key: CharacterEnum.enemies, title: 'Enemies' },
+    { key: CharacterEnum.allies, title: 'Allies' },
+    { key: CharacterEnum.videoGames, title: 'Video Games' },
+    { key: CharacterEnum.parkAttractions, title: 'Park attractions' },
+  ];
+
   return (
     <div className={styles.character}>
       <div className={styles.characterName}>{selectedCharacter?.name}</div>
@@ -49,14 +61,10 @@ const CharacterDetails = (): JSX.Element => {
           <div className={styles.titles}>Date updated: </div>
           {selectedCharacter?.updatedAt}
         </div>
-        <CharacterInfoItem detailList={selectedCharacter?.tvShows} title="TV shows" />
-        <CharacterInfoItem detailList={selectedCharacter?.films} title="Films" />
-        <CharacterInfoItem detailList={selectedCharacter?.shortFilms} title="Short films" />
-        <CharacterInfoItem detailList={selectedCharacter?.enemies} title="Enemies" />
-        <CharacterInfoItem detailList={selectedCharacter?.allies} title="Allies" />
-        <CharacterInfoItem
-          detailList={selectedCharacter?.parkAttractions}
-          title="Park Attractions"
+        <CharacterInfoMap
+          detailsMap={detailsMap}
+          character={selectedCharacter}
+          Component={CharacterInfoItem}
         />
       </div>
     </div>
