@@ -35,19 +35,27 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
   const isLastPage = Boolean(Number(pageNumber) === totalPages);
 
   const firstPageChangeHandler = () => {
-    navigate(getAllCharactersPath(name, '1', formatPageSize(pageSize)));
+    navigate(getAllCharactersPath(name, '1', formatPageSize(pageSize)), {
+      state: { isPaginationQuery: true },
+    });
   };
   const lastPageChangeHandler = () => {
-    navigate(getAllCharactersPath(name, String(totalPages), formatPageSize(pageSize)));
+    navigate(getAllCharactersPath(name, String(totalPages), formatPageSize(pageSize)), {
+      state: { isPaginationQuery: true },
+    });
   };
   const pageChangeHandler = ({ selected }: { selected: number }) => {
     if (selected < 0 || selected > totalPages + 1) {
       return;
     }
-    navigate(getAllCharactersPath(name, String(selected + 1), formatPageSize(pageSize)));
+    navigate(getAllCharactersPath(name, String(selected + 1), formatPageSize(pageSize)), {
+      state: { isPaginationQuery: true },
+    });
   };
   const selectPageSizeHandler = ({ value }: { value: string }) => {
-    navigate(getAllCharactersPath(name, '1', value));
+    navigate(getAllCharactersPath(name, '1', value), {
+      state: { isPaginationQuery: true },
+    });
   };
 
   return (

@@ -34,6 +34,7 @@ export interface FilterOptions {
   pageNumber?: string;
   pageSize?: string;
   name?: string;
+  isPaginationQuery?: boolean;
 }
 
 export interface RequestOptions {

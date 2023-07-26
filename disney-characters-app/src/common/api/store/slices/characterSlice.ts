@@ -11,7 +11,9 @@ import { Character, CharacterState, RequestOptions } from 'common/types';
 const initialState: CharacterState = {
   characters: [],
   selectedCharacter: null,
-  filters: {},
+  filters: {
+    isPaginationQuery: false,
+  },
   isLoading: false,
   isSuccess: false,
   isError: false,

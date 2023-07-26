@@ -52,6 +52,8 @@ const CharactersDashboard = () => {
     debounceCallback(value);
   };
 
+  const scrollPaginationIntoView = () => paginationRef.current?.scrollIntoView();
+
   useEffect(() => {
     if (isError) {
       showError('Error', errorMessage);
@@ -60,7 +62,10 @@ const CharactersDashboard = () => {
     if (!isSuccess) {
       dispatch(reset());
     }
-  }, [isError, isSuccess]);
+    if (isSuccess && filters.isPaginationQuery) {
+      scrollPaginationIntoView();
+    }
+  }, [isError, isSuccess, filters]);
 
   return (
     <Fragment>

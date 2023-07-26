@@ -19,7 +19,7 @@ const CharacterInfoMap: FC<CharacterInfoMapProps> = ({
 }: CharacterInfoMapProps) => (
   <>
     {detailsMap.map((item) => {
-      const props = { detailList: character?.[item.key] || [], title: item.title };
+      const props = { detailList: character?.[item.key], title: item.title };
       return <Component key={item.key} {...props} />;
     })}
   </>
