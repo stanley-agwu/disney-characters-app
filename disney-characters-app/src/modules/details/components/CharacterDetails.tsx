@@ -55,6 +55,16 @@ const CharacterDetails = (): JSX.Element => {
             ))}
           </div>
         )}
+        {!!selectedCharacter?.films.length && (
+          <div className={styles.films}>
+            <div className={styles.titles}>Films: </div>
+            {selectedCharacter.films.map((film, idx) => (
+              <div key={idx} className={styles.film}>
+                {film}
+              </div>
+            ))}
+          </div>
+        )}
         {!!selectedCharacter?.enemies.length && (
           <div className={styles.enemies}>
             <div className={styles.titles}>Enemies: </div>

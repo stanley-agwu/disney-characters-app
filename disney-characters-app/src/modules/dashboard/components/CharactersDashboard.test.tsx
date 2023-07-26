@@ -1,29 +1,31 @@
 import { getAllCharactersUrl } from 'mocks/handlers';
 import { rest, server } from 'mocks/server';
 import CharactersDashboard from 'modules/dashboard/components/CharactersDashboard';
-import defaultAppStore from 'tests/store';
+import defaultAppStore, { loadingAppStore } from 'tests/store';
 import { fireEvent, render, screen, userEvent, waitFor } from 'tests/test-utils';
 
 describe('CharactersDashboard', () => {
   it('renders CharactersDashboard', async () => {
     render(<CharactersDashboard />);
-    const button = await screen.findByRole('button', { name: 'characters' });
+    const button = await screen.findByRole('button', { name: 'Characters' });
     expect(button).toBeInTheDocument();
   });
 
   it('displays table after button click', async () => {
     render(<CharactersDashboard />, { store: defaultAppStore() });
 
-    const button = await screen.findByRole('button', { name: 'characters' });
+    const button = await screen.findByRole('button', { name: 'Characters' });
 
     userEvent.click(button);
     expect(await screen.findByText('Date created')).toBeInTheDocument();
   });
 
   it('displays loading spinner', async () => {
-    render(<CharactersDashboard />);
+    render(<CharactersDashboard />, {
+      store: loadingAppStore(),
+    });
 
-    const button = await screen.findByRole('button', { name: 'characters' });
+    const button = await screen.findByRole('button', { name: 'Characters' });
     const tableHeaderText = screen.queryByText('Date created');
     expect(tableHeaderText).not.toBeInTheDocument();
 
@@ -37,7 +39,7 @@ describe('CharactersDashboard', () => {
     server.use(rest.get(getAllCharactersUrl, (_, res, ctx) => res(ctx.status(500))));
     render(<CharactersDashboard />);
 
-    const button = await screen.findByRole('button', { name: 'characters' });
+    const button = await screen.findByRole('button', { name: 'Characters' });
     userEvent.click(button);
 
     const errorToastMessage = await screen.findByText(

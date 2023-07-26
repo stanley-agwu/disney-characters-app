@@ -21,7 +21,7 @@ describe('App', () => {
   it('displays characters and navigates to character page', async () => {
     render(<App />, { store: defaultAppStore() });
 
-    const button = await screen.findByRole('button', { name: 'characters' });
+    const button = await screen.findByRole('button', { name: 'Characters' });
     const homeLink = await screen.findByRole('button', { name: 'Home' });
     const characterLink = await screen.findByText('Disney characters');
     const mobilecharacterLink = await screen.findByText('disney characters');
@@ -49,17 +49,15 @@ describe('App', () => {
 
     const input: HTMLInputElement = await screen.findByLabelText('search');
     await waitFor(() => fireEvent.change(input, { target: { value: 'Jim' } }));
-    // eslint-disable-next-line no-promise-executor-return
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     expect(input.value).toEqual('Jim');
     expect((await screen.findAllByText('Jim', { exact: false })).length).toBeGreaterThan(1);
-  }, 10000);
+  });
 
   it('displays table after button click', async () => {
     render(<App />, { store: defaultAppStore() });
 
-    const button = await screen.findByRole('button', { name: 'characters' });
+    const button = await screen.findByRole('button', { name: 'Characters' });
     userEvent.click(button);
     expect(await screen.findByText('Date created')).toBeInTheDocument();
     expect(await screen.findByText("90's Adventure Bear")).toBeInTheDocument();

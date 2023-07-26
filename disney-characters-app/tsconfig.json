@@ -17,15 +17,16 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "modules": ["./modules"],
-      "mocks": ["./mocks"],
-      "common": ["./common"],
-      "styles": ["./styles"],
-      "tests": ["./tests"]
+      "modules/*": ["modules/*"],
+      "mocks/*": ["mocks/*"],
+      "common/*": ["common/*"],
+      "styles/*": ["styles/*"],
+      "tests/*": ["tests/*"]
     }
   },
   "include": ["src", "types/index.d.ts"],
-  "exclude": ["node_modules", "dist", "coverage", "build", "public"],
+  "exclude": ["node_modules", "dist", "coverage", "build", "public", "jest"],
+  "types": ["types/index.d.ts"],
   "ts-node": {
     "transpileOnly": true,
     "files": true,

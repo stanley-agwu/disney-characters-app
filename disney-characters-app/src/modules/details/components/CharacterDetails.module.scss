@@ -3,6 +3,7 @@
 .character {
   display: grid;
   font-weight: $baseFontWeight;
+  font-size: $fontSizeLarge;
   min-width: 100%;
   min-height: 100%;
   @media screen and (min-width: 600px) {
@@ -82,13 +83,15 @@
   .created,
   .updated {
     margin: $space-2 0;
+    padding: $space 0;
   }
 
   .films {
     margin: $space-2 0;
+    padding: $space 0;
 
     .film {
-      padding: $space;
+      padding: calc($space/4) 0;
     }
   }
 

@@ -31,8 +31,14 @@ const Form = ({
         />
       </div>
       <div className={styles.buttonWrapperSearch}>
-        <Button variant="contained" type="button" size="large" onClick={handleFetchCharacters}>
-          characters
+        <Button
+          variant="contained"
+          type="button"
+          size="large"
+          onClick={handleFetchCharacters}
+          aria-label="Characters"
+        >
+          Characters
         </Button>
       </div>
       <div className={styles.buttonWrapperClear}>
@@ -42,6 +48,7 @@ const Form = ({
           color="secondary"
           size="large"
           onClick={handleClearCharacters}
+          airia-aria-label="Clear table"
         >
           Clear table
         </Button>
