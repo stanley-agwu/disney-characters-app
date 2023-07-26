@@ -1,0 +1,16 @@
+@import 'styles/main';
+
+.characterInfoItem {
+  margin: $space-2 0;
+  padding: $space 0;
+
+  .item {
+    padding: calc($space/4) 0;
+  }
+
+  .titles {
+    font-weight: $fontWeightSemiBold;
+    font-size: $fontSizeExtraLarge;
+    margin: $space 0;
+  }
+}

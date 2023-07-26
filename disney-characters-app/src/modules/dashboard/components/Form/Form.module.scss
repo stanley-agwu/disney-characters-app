@@ -4,6 +4,7 @@
   display: flex;
   gap: $space-2;
   margin: 0 auto;
+  padding: 0 $space-2 $space-2;
   @media screen and (max-width: 768px) {
     flex-direction: column;
     width: 100%;
@@ -37,10 +38,10 @@
     max-width: 769px;
 
     .inputWrapper {
-      width: 400px;
+      min-width: 380px;
 
       input {
-        width: 400px;
+        min-width: 380px;
       }
     }
 

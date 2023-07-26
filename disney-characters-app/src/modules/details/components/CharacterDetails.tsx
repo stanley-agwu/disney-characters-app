@@ -7,6 +7,8 @@ import PageLoader from 'common/components/Loader/PageLoader';
 import { showError } from 'common/components/Toast';
 import { coreConfig } from 'common/core/config';
 
+import CharacterInfoItem from './CharacterInfoItem/CharacterInfoItem';
+
 import styles from './CharacterDetails.module.scss';
 
 const CharacterDetails = (): JSX.Element => {
@@ -47,34 +49,15 @@ const CharacterDetails = (): JSX.Element => {
           <div className={styles.titles}>Date updated: </div>
           {selectedCharacter?.updatedAt}
         </div>
-        {!!selectedCharacter?.tvShows.length && (
-          <div className={styles.films}>
-            <div className={styles.titles}>TV Shows: </div>
-            {selectedCharacter.tvShows.map((show, idx) => (
-              <div key={idx}>{show}</div>
-            ))}
-          </div>
-        )}
-        {!!selectedCharacter?.films.length && (
-          <div className={styles.films}>
-            <div className={styles.titles}>Films: </div>
-            {selectedCharacter.films.map((film, idx) => (
-              <div key={idx} className={styles.film}>
-                {film}
-              </div>
-            ))}
-          </div>
-        )}
-        {!!selectedCharacter?.enemies.length && (
-          <div className={styles.enemies}>
-            <div className={styles.titles}>Enemies: </div>
-            {selectedCharacter.enemies.map((enemy, idx) => (
-              <div key={idx} className={styles.enemy}>
-                {enemy}
-              </div>
-            ))}
-          </div>
-        )}
+        <CharacterInfoItem detailList={selectedCharacter?.tvShows} title="TV shows" />
+        <CharacterInfoItem detailList={selectedCharacter?.films} title="Films" />
+        <CharacterInfoItem detailList={selectedCharacter?.shortFilms} title="Short films" />
+        <CharacterInfoItem detailList={selectedCharacter?.enemies} title="Enemies" />
+        <CharacterInfoItem detailList={selectedCharacter?.allies} title="Allies" />
+        <CharacterInfoItem
+          detailList={selectedCharacter?.parkAttractions}
+          title="Park Attractions"
+        />
       </div>
     </div>
   );
