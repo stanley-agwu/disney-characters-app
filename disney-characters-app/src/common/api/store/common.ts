@@ -12,25 +12,45 @@ export const isNonEmptyObject = (value: any): boolean =>
   value !== null &&
   Boolean(Object.keys(value).length);
 
-export const formatDateForArrayPayLoad = (payload: Character[]): Character[] =>
+const formatDateForArrayPayLoad = (payload: Character[]): Character[] =>
   payload.map((character) => ({
     ...character,
     createdAt: character.createdAt
-      ? moment.utc(character.createdAt).format('DD/MM/YYYY HH:mm:ss')
+      ? moment.utc(character.createdAt).format('DD/MM/YYYY')
       : character.createdAt,
     updatedAt: character.updatedAt
-      ? moment.utc(character.updatedAt).format('DD/MM/YYYY HH:mm:ss')
+      ? moment.utc(character.updatedAt).format('DD/MM/YYYY')
       : character.updatedAt,
   }));
 
-export const formatDateForObjectPayLoad = (payload: Character): Character[] => [
+const formatDateForObjectPayLoad = (payload: Character): Character[] => [
   {
     ...payload,
     createdAt: payload.createdAt
-      ? moment.utc(payload.createdAt).format('DD/MM/YYYY HH:mm:ss')
+      ? moment.utc(payload.createdAt).format('DD/MM/YYYY')
       : payload.createdAt,
     updatedAt: payload.updatedAt
-      ? moment.utc(payload.updatedAt).format('DD/MM/YYYY HH:mm:ss')
+      ? moment.utc(payload.updatedAt).format('DD/MM/YYYY')
       : payload.updatedAt,
   },
 ];
+
+export const formatDateCharactersPayLoad = (characters: Character[] | Character) => {
+  if (isNonEmptyArray(characters)) {
+    return formatDateForArrayPayLoad(characters as Character[]);
+  }
+  if (isNonEmptyObject(characters)) {
+    return formatDateForObjectPayLoad(characters as Character);
+  }
+  return [];
+};
+
+export const formatDateSelectedCharacterPayLoad = (payload: Character): Character => ({
+  ...payload,
+  createdAt: payload.createdAt
+    ? moment.utc(payload.createdAt).format('DD/MM/YYYY')
+    : payload.createdAt,
+  updatedAt: payload.updatedAt
+    ? moment.utc(payload.updatedAt).format('DD/MM/YYYY HH:mm:ss')
+    : payload.updatedAt,
+});

@@ -1,14 +1,10 @@
-import moment from 'moment';
-
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { getDisneyCharacter } from 'common/api/services/fetchDisneyCharacterDetails';
 import { getAllDisneyCharacters } from 'common/api/services/fetchDisneyCharacters';
 import {
-  formatDateForArrayPayLoad,
-  formatDateForObjectPayLoad,
-  isNonEmptyArray,
-  isNonEmptyObject,
+  formatDateCharactersPayLoad,
+  formatDateSelectedCharacterPayLoad,
 } from 'common/api/store/common';
 import { Character, CharacterState, RequestOptions } from 'common/types';
 
@@ -64,13 +60,7 @@ export const characterSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.errorMessage = '';
-        // eslint-disable-next-line no-nested-ternary
-        const formattedCharacters: Character[] = isNonEmptyArray(characters)
-          ? formatDateForArrayPayLoad(characters)
-          : isNonEmptyObject(characters)
-          ? formatDateForObjectPayLoad(characters as unknown as Character)
-          : [];
-        state.characters = formattedCharacters;
+        state.characters = formatDateCharactersPayLoad(characters);
         state.filters = { ...filters, ...dataInfo };
       })
       .addCase(getCharacters.rejected, (state, action) => {
@@ -86,16 +76,7 @@ export const characterSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.errorMessage = '';
-        const character: Character = {
-          ...payload,
-          createdAt: payload?.createdAt
-            ? moment.utc(payload.createdAt).format('DD/MM/YYYY HH:mm:ss')
-            : payload?.createdAt,
-          updatedAt: payload?.updatedAt
-            ? moment.utc(payload.updatedAt).format('DD/MM/YYYY HH:mm:ss')
-            : payload?.updatedAt,
-        };
-        state.selectedCharacter = character;
+        state.selectedCharacter = formatDateSelectedCharacterPayLoad(payload);
       })
       .addCase(getCharacter.rejected, (state, action) => {
         state.isSuccess = false;
