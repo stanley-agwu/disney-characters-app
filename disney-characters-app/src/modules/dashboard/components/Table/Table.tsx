@@ -10,6 +10,7 @@ import {
 
 import { isNonEmptyObject } from 'common/api/store/common';
 import { Character, FilterOptions } from 'common/types';
+import Avatar from 'modules/dashboard/components/Avatar/Avatar';
 import Pagination from 'modules/dashboard/components/Pagination/Pagination';
 
 import styles from './Table.module.scss';
@@ -21,6 +22,15 @@ const columns = [
     id: '_id',
     cell: (info) => <i>{info.getValue()}</i>,
     header: () => <span>ID</span>,
+  }),
+  columnHelper.accessor((row) => row.imageUrl, {
+    id: 'image',
+    cell: (info) => (
+      <i>
+        <Avatar name={info.row.original.name} image={info.row.original.imageUrl} />
+      </i>
+    ),
+    header: () => <span>Avatar</span>,
   }),
   columnHelper.accessor((row) => row.name, {
     id: 'name',
