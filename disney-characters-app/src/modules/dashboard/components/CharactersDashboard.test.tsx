@@ -1,7 +1,9 @@
+import { scrollPaginationToViewMock } from 'setupTests';
+
 import { getAllCharactersUrl } from 'mocks/handlers';
 import { rest, server } from 'mocks/server';
 import CharactersDashboard from 'modules/dashboard/components/CharactersDashboard';
-import defaultAppStore, { loadingAppStore } from 'tests/store';
+import store, { loadingAppStore } from 'tests/store';
 import { fireEvent, render, screen, userEvent, waitFor } from 'tests/test-utils';
 
 describe('CharactersDashboard', () => {
@@ -12,7 +14,7 @@ describe('CharactersDashboard', () => {
   });
 
   it('displays table after button click', async () => {
-    render(<CharactersDashboard />, { store: defaultAppStore() });
+    render(<CharactersDashboard />, { store: store() });
 
     const button = await screen.findByRole('button', { name: 'Characters' });
 
@@ -58,22 +60,26 @@ describe('CharactersDashboard', () => {
 
   it('renders no table when character does not exist for query', async () => {
     render(<CharactersDashboard />, {
-      preloadedState: {
+      store: store({
         character: {
           characters: [],
-          selectedCharacter: null,
-          isLoading: false,
-          isSuccess: true,
-          isError: false,
-          errorMessage: '',
-          filters: {
-            count: 0,
-          },
         },
-      },
+      }),
     });
     const tableHeader = screen.queryByText('Date created');
 
     await waitFor(() => expect(tableHeader).not.toBeInTheDocument(), { timeout: 3000 });
+  });
+
+  it('scrolls pagination to view during paginating', async () => {
+    render(<CharactersDashboard />, {
+      store: store(),
+    });
+
+    const nextButton = await screen.findByRole('button', { name: '>' });
+    await waitFor(() => userEvent.click(nextButton), { timeout: 3000 });
+
+    expect(nextButton).toHaveFocus();
+    expect(scrollPaginationToViewMock).toHaveBeenCalledTimes(1);
   });
 });

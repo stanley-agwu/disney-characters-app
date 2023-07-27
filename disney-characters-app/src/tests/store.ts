@@ -926,6 +926,7 @@ export const defaultAppState = {
       totalPages: 149,
       previousPage: null,
       nextPage: 'http://api.disneyapi.dev/character?page=2&pageSize=50',
+      isPaginationQuery: true,
     },
     isLoading: false,
     isSuccess: true,
@@ -1429,18 +1430,30 @@ export const errorAppState = {
   },
 };
 
+const paginationAppState = {
+  ...defaultAppState,
+  character: {
+    ...defaultAppState.character,
+    isSuccess: true,
+    filters: {
+      isPaginationQuery: true,
+    },
+  },
+};
+
 const mockStore = configureStore(getDefaultMiddleware());
-const storeSetup = (appState = {}): MockStore => mockStore({ ...appState });
-const store = () => storeSetup(defaultAppState);
+const store = (appState = {}): MockStore => mockStore({ ...defaultAppState, ...appState });
 
-export const noCharacterAppStore = () => storeSetup(noCharactersAppState);
+export const loadingAppStore = (appState = {}): MockStore =>
+  mockStore({ ...loadingAppState, ...appState });
 
-export const loadingAppStore = () => storeSetup(loadingAppState);
+export const errorAppStore = (appState = {}): MockStore =>
+  mockStore({ ...errorAppState, ...appState });
 
-export const errorAppStore = () => storeSetup(errorAppState);
+export const mockSelectedCharacterAppStore = (appState = {}): MockStore =>
+  mockStore({ ...mockSelectedCharacterAppState, ...appState });
 
-export const mockSelectedCharacterAppStore = () => storeSetup(mockSelectedCharacterAppState);
-
-export const characterSearchAppStore = () => storeSetup(characterSearchAppState);
+export const characterSearchAppStore = (appState = {}): MockStore =>
+  mockStore({ ...characterSearchAppState, ...appState });
 
 export default store;
