@@ -14,12 +14,13 @@ describe('CharactersDashboard', () => {
   });
 
   it('displays table after button click', async () => {
-    render(<CharactersDashboard />, { store: store() });
+    render(<CharactersDashboard />);
 
     const button = await screen.findByRole('button', { name: 'Characters' });
 
     userEvent.click(button);
     expect(await screen.findByText('Date created')).toBeInTheDocument();
+    expect(await screen.findByText("'Olu Mel")).toBeInTheDocument();
   });
 
   it('displays loading spinner', async () => {
@@ -54,8 +55,12 @@ describe('CharactersDashboard', () => {
     render(<CharactersDashboard />);
 
     const input: HTMLInputElement = await screen.findByLabelText('search');
-    fireEvent.change(input, { target: { value: 'Mickey mouse' } });
-    expect(input.value).toBe('Mickey mouse');
+    await waitFor(() => fireEvent.change(input, { target: { value: 'Mickey' } }), {
+      timeout: 3000,
+    });
+
+    expect(input.value).toBe('Mickey');
+    expect((await screen.findAllByText('Mickey', { exact: false })).length).toBeGreaterThan(1);
   });
 
   it('renders no table when character does not exist for query', async () => {
@@ -69,6 +74,23 @@ describe('CharactersDashboard', () => {
     const tableHeader = screen.queryByText('Date created');
 
     await waitFor(() => expect(tableHeader).not.toBeInTheDocument(), { timeout: 3000 });
+  });
+
+  it('renders pagination', async () => {
+    render(<CharactersDashboard />, {
+      store: store(),
+    });
+
+    const pageSizeSelect = await screen.findByRole('combobox');
+    const firstPageButton = await screen.findByRole('button', { name: '<<' });
+    const lastPageButton = await screen.findByRole('button', { name: '>>' });
+    expect(pageSizeSelect).toBeInTheDocument();
+    expect(firstPageButton).toBeDisabled();
+    expect(lastPageButton).not.toBeDisabled();
+
+    await waitFor(() => userEvent.click(lastPageButton), { timeout: 3000 });
+
+    expect(lastPageButton).toBeEnabled();
   });
 
   it('scrolls pagination to view during paginating', async () => {
