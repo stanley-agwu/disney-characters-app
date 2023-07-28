@@ -1447,9 +1447,6 @@ const store = (appState = {}): MockStore => mockStore({ ...defaultAppState, ...a
 export const loadingAppStore = (appState = {}): MockStore =>
   mockStore({ ...loadingAppState, ...appState });
 
-export const errorAppStore = (appState = {}): MockStore =>
-  mockStore({ ...errorAppState, ...appState });
-
 export const mockSelectedCharacterAppStore = (appState = {}): MockStore =>
   mockStore({ ...mockSelectedCharacterAppState, ...appState });
 

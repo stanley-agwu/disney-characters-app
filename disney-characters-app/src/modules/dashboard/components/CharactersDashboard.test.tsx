@@ -47,7 +47,7 @@ describe('CharactersDashboard', () => {
     const errorToastMessage = await screen.findByText(
       'An error occurred while fetching disney character'
     );
-    expect(errorToastMessage).toBeInTheDocument();
+    await waitFor(() => expect(errorToastMessage).toBeInTheDocument(), { timeout: 3000 });
   });
 
   it('input rendered and changes value', async () => {
