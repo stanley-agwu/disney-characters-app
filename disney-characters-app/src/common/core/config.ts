@@ -13,7 +13,7 @@ interface CoreConfig {
       page: string;
       name: string;
     };
-    characterDetails: {
+    character: {
       url: string;
     };
   };
@@ -34,8 +34,8 @@ export const coreConfig: CoreConfig = {
       page: '/character?page={0}&pageSize={1}',
       name: '/character?name={0}&page={1}&pageSize={2}',
     },
-    characterDetails: {
-      url: 'https://api.disneyapi.dev/character/{0}',
+    character: {
+      url: '/character/{0}',
     },
   },
 };
