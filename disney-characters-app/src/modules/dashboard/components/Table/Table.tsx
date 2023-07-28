@@ -24,10 +24,10 @@ const columns = [
     header: () => <span>ID</span>,
   }),
   columnHelper.accessor((row) => row.imageUrl, {
-    id: 'image',
+    id: 'imageUrl',
     cell: (info) => (
       <i>
-        <Avatar name={info.row.original.name} image={info.row.original.imageUrl} />
+        <Avatar name={info.row.original.name} image={info.getValue()} />
       </i>
     ),
     header: () => <span>Avatar</span>,
