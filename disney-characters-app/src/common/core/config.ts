@@ -8,6 +8,7 @@ interface CoreConfig {
     };
   };
   routes: {
+    root: string;
     characters: {
       url: string;
       page: string;
@@ -15,6 +16,7 @@ interface CoreConfig {
     };
     character: {
       url: string;
+      characterId: string;
     };
   };
 }
@@ -29,6 +31,7 @@ export const coreConfig: CoreConfig = {
     },
   },
   routes: {
+    root: '/',
     characters: {
       url: '/character',
       page: '/character?page={0}&pageSize={1}',
@@ -36,6 +39,7 @@ export const coreConfig: CoreConfig = {
     },
     character: {
       url: '/character/{0}',
+      characterId: 'character/:id',
     },
   },
 };

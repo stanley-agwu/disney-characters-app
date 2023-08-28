@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Header from 'common/components/Header/Header';
+import { coreConfig } from 'common/core/config';
 import CharactersDashboard from 'modules/dashboard/components/CharactersDashboard';
 import CharacterDetails from 'modules/details/components/CharacterDetails';
 
@@ -11,9 +12,12 @@ const App = () => (
     <Header />
     <div className={styles.content}>
       <Routes>
-        <Route path="/" element={<Navigate to="/character" replace />} />
-        <Route path="character/:id" element={<CharacterDetails />} />
-        <Route path="character" element={<CharactersDashboard />} />
+        <Route path={coreConfig.routes.character.characterId} element={<CharacterDetails />} />
+        <Route path={coreConfig.routes.characters.url} element={<CharactersDashboard />} />
+        <Route
+          path={coreConfig.routes.root}
+          element={<Navigate to={coreConfig.routes.characters.url} replace />}
+        />
       </Routes>
     </div>
   </div>

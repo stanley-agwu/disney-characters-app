@@ -54,11 +54,11 @@ const columns = [
   }),
 ];
 
-export type TableProps = {
+export interface TableProps {
   characters: Character[];
   filters: FilterOptions;
   paginationRef: RefObject<HTMLDivElement>;
-};
+}
 
 const Table: FunctionComponent<TableProps> = ({ characters, filters, paginationRef }) => {
   const table = useReactTable({

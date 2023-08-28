@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const format = (args: IArguments, match: String) => {
-  // return typeof args[number] !== 'undefined' ? args[number] : match;
   let result = match as string;
   // eslint-disable-next-line no-plusplus
   for (let idx = 0; idx < args.length; idx++) {

@@ -30,6 +30,6 @@ Upon clicking of an item on the table, it directs to detail information of the d
 
 ## More information
 
-See [disney-characters-app](https://disney-characters-bwkr3qdg4-stanley-agwu.vercel.app/character)
+See [disney-characters-app](https://disney-characters-app-weld.vercel.app/character)
 
 See [Github](https://github.com/stanley-agwu/disney-characters-app).
