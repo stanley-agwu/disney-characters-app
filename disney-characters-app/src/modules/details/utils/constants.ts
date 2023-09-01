@@ -1,4 +1,4 @@
-import { CharacterEnum } from './characterEnum';
+import { CharacterEnum } from './CharacterEnum';
 
 export const detailsMap = [
   { key: CharacterEnum.tvShows, title: 'TV shows' },

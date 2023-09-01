@@ -1,7 +1,7 @@
 import { ElementType, FC } from 'react';
 
 import { Character } from 'common/types';
-import { CharacterEnum } from 'modules/details/utils/characterEnum';
+import { CharacterEnum } from 'modules/details/utils/CharacterEnum';
 
 interface CharacterInfoMapProps {
   detailsMap: {
