@@ -8,6 +8,8 @@ import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import { coreConfig } from 'common/core/config';
+
 const Header = (): JSX.Element => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,7 +29,7 @@ const Header = (): JSX.Element => {
             variant="h6"
             noWrap
             component="a"
-            onClick={() => navigateToPage('/character')}
+            onClick={() => navigateToPage(coreConfig.routes.characters.url)}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -46,7 +48,7 @@ const Header = (): JSX.Element => {
             variant="h5"
             noWrap
             component="a"
-            onClick={() => navigateToPage('/character')}
+            onClick={() => navigateToPage(coreConfig.routes.characters.url)}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -69,7 +71,7 @@ const Header = (): JSX.Element => {
           >
             <Button
               key="home"
-              onClick={() => navigateToPage('/character')}
+              onClick={() => navigateToPage(coreConfig.routes.characters.url)}
               sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Montserrat' }}
             >
               Home

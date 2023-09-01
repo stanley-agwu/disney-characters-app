@@ -6,7 +6,8 @@ import { getCharacter } from 'common/api/store/slices/characterSlice';
 import PageLoader from 'common/components/Loader/PageLoader';
 import { showError } from 'common/components/Toast';
 import { coreConfig } from 'common/core/config';
-import { CharacterEnum } from 'modules/details/utils/CharacterEnum';
+
+import { detailsMap, pathRegexMatch } from '../utils/constants';
 
 import CharacterInfoMap from './CharacterInfoMap/CharacterInfoMap';
 import CharacterInfoItem from './CharacterInfoMap/components/CharacterInfoItem/CharacterInfoItem';
@@ -16,7 +17,6 @@ import styles from './CharacterDetails.module.scss';
 const CharacterDetails = (): JSX.Element => {
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const pathRegexMatch = /^\/character\/(\d+)$/;
   const { pathname, search } = location;
   const { selectedCharacter, isLoading, isError, errorMessage } = useAppSelector(
     (state) => state.character
@@ -33,18 +33,8 @@ const CharacterDetails = (): JSX.Element => {
   }, [isError, pathname, search]);
 
   if (isLoading) {
-    return <PageLoader width={200} height={200} />;
+    return <PageLoader width={120} height={120} />;
   }
-
-  const detailsMap = [
-    { key: CharacterEnum.tvShows, title: 'TV shows' },
-    { key: CharacterEnum.films, title: 'Films' },
-    { key: CharacterEnum.shortFilms, title: 'Short films' },
-    { key: CharacterEnum.enemies, title: 'Enemies' },
-    { key: CharacterEnum.allies, title: 'Allies' },
-    { key: CharacterEnum.videoGames, title: 'Video Games' },
-    { key: CharacterEnum.parkAttractions, title: 'Park attractions' },
-  ];
 
   return (
     <div className={styles.character}>

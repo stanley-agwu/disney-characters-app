@@ -20,7 +20,7 @@ const CharactersResultDisplay = ({
   paginationRef,
 }: CharactersResultDisplayProps) => {
   if (isLoading) {
-    return <PageLoader width={200} height={200} />;
+    return <PageLoader width={120} height={120} />;
   }
   if (isSuccess && Boolean(filters?.count)) {
     return <Table characters={characters} filters={filters} paginationRef={paginationRef} />;
