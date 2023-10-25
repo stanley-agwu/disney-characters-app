@@ -28,8 +28,14 @@ Launches the test coverage in an interactive mode.
 The app on load shows an input field for running search of Disney characters. Upon type of atleast a letter it queries the API for data relating to query. The data of disney characters are displayed o a table.
 Upon clicking of an item on the table, it directs to detail information of the disney character. The pages are bookmarkable.
 
+## Thank you
+
+A warm thanks to Disney API - that provided a free API for this app.
+
+[disney-api](https://disneyapi.dev/)
+
 ## More information
 
-See [disney-characters-app](https://disney-characters-app-weld.vercel.app/character)
+[disney-characters-app](https://disney-characters-app-weld.vercel.app/character)
 
-See [Github](https://github.com/stanley-agwu/disney-characters-app).
+[Github](https://github.com/stanley-agwu/disney-characters-app)
