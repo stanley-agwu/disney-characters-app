@@ -1,11 +1,15 @@
 import { coreConfig } from 'common/core/config';
 
-export const getCharacterUrlFromName = (name: string) => {
+export const getCharacterUrlFromName = (
+  name: string,
+  pageNumber: string | null,
+  size: string | null
+) => {
   const url = new URL(coreConfig.endpoints.root);
   const params = new URLSearchParams();
+  pageNumber ? params.append('page', pageNumber) : params.append('page', '1');
+  size ? params.append('pageSize', size) : params.append('pageSize', '50');
   name && params.append('name', name);
-  params.append('page', '1');
-  params.append('page', '50');
   url.search = params.toString();
   return url.search;
 };
@@ -15,7 +19,7 @@ export const getQueryParams = (query: string) => {
   const name = params.get('name');
   const page = params.get('page');
   const pageSize = params.get('pageSize');
-  return { name, page, pageSize: pageSize || '50' };
+  return { name, page, pageSize: pageSize ?? '50' };
 };
 
 export const getAllCharactersPath = (
