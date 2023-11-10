@@ -48,6 +48,17 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #e6e8eb;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #1873cd;
+    border-radius: 4px;
+  }
 }
 
 :root {

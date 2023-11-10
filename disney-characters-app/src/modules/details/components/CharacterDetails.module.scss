@@ -1,5 +1,8 @@
 @import 'styles/main';
 
+$mobileImageHeight: 40vh;
+$deskTopImageHeight: 85vh;
+
 .character {
   display: grid;
   font-weight: $baseFontWeight;
@@ -7,6 +10,7 @@
   min-width: 100%;
   min-height: 100%;
   padding: 0 $space-2 $space-2;
+  max-height: 100vh;
   @media screen and (min-width: 600px) {
     grid-gap: $space-2;
     grid-template-columns: repeat(12, 1fr);
@@ -30,7 +34,7 @@
         border-radius: 8px;
         height: 100%;
         width: 100%;
-        min-height: 85vh;
+        min-height: $deskTopImageHeight;
       }
     }
 
@@ -63,13 +67,14 @@
         border-radius: 8px;
         height: 100%;
         width: 100%;
+        min-height: $mobileImageHeight;
       }
     }
 
     .characterDetails {
       grid-column: 1fr;
       grid-row: 6/12;
-      height: 100%;
+      height: calc(100% - $mobileImageHeight);
       width: 100%;
     }
   }
