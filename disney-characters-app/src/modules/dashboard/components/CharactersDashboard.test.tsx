@@ -51,16 +51,16 @@ describe('CharactersDashboard', () => {
     await waitFor(() => expect(errorToastMessage).toBeInTheDocument(), { timeout: 3000 });
   });
 
-  it('input rendered and changes value', async () => {
+  it('clears table when clear button is clicked', async () => {
     render(<CharactersDashboard />);
+    const charactersrButton = await screen.findByLabelText('Characters');
+    const clearButton = await screen.findByLabelText('Clear table');
+    userEvent.click(charactersrButton);
 
-    const input: HTMLInputElement = await screen.findByLabelText('search');
-    await waitFor(() => fireEvent.change(input, { target: { value: 'Mickey' } }), {
-      timeout: 3000,
-    });
+    expect(await screen.findByText("'Olu Mel")).toBeInTheDocument();
+    userEvent.click(clearButton);
 
-    expect(input.value).toBe('Mickey');
-    expect((await screen.findAllByText('Mickey', { exact: false })).length).toBeGreaterThan(1);
+    expect(screen.queryByText("'Olu Mel")).not.toBeInTheDocument();
   });
 
   it('renders no table when character does not exist for query', async () => {
@@ -91,6 +91,22 @@ describe('CharactersDashboard', () => {
     await waitFor(() => userEvent.click(lastPageButton), { timeout: 3000 });
 
     expect(lastPageButton).toBeEnabled();
+  });
+
+  it('renders pagination and clicks pageSize select', async () => {
+    render(<CharactersDashboard />, {
+      store: store(),
+    });
+
+    const pageSizeSelect = await screen.findByRole('combobox');
+
+    userEvent.click(pageSizeSelect);
+
+    const show10 = await screen.findByText('Show 10');
+    expect(show10).toBeInTheDocument();
+
+    userEvent.click(show10);
+    expect(show10).toBeInTheDocument();
   });
 
   it('scrolls pagination to view during paginating', async () => {
