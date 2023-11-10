@@ -1,5 +1,5 @@
-import { ChangeEvent, FormEvent, Fragment, useCallback, useEffect, useRef } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { ChangeEvent, FormEvent, Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
 
 import { useAppDispatch, useAppSelector } from 'common/api/store/hooks';
@@ -14,18 +14,12 @@ import { getCharacterUrlFromName } from 'modules/dashboard/utils/disneyCharacter
 import styles from './CharactersDashboard.module.scss';
 
 const CharactersDashboard = () => {
-  const [searchParam, setSearchParam] = useSearchParams({ name: '', page: '1', pageSize: '50' });
+  const [searchQuery, setSearchQuery] = useState<string>();
   const dispatch = useAppDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
   const paginationRef = useRef<HTMLDivElement | null>(null);
   useCharactersDispatch(search);
-
-  const { name, page, pageSize } = {
-    name: searchParam.get('name'),
-    page: searchParam.get('page'),
-    pageSize: searchParam.get('pageSize'),
-  };
 
   const { characters, filters, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
     (state) => state.character
@@ -37,40 +31,25 @@ const CharactersDashboard = () => {
 
   const handleClearCharacters = (event: FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    setSearchParam(
-      (prev) => {
-        prev.set('name', '');
-        return prev;
-      },
-      { replace: true }
-    );
     dispatch(reset());
     navigate(coreConfig.routes.characters.url);
+    setSearchQuery('');
   };
 
-  const debouncedCharacterSearch = debounce(
-    (value: string, pageNumber: string | null, size: string | null) =>
-      navigate(getCharacterUrlFromName(value, pageNumber, size)),
-    500
-  );
+  const debouncedCharacterSearch = debounce((...args: (string | undefined)[]) => {
+    const [name, page, pageSize] = args;
+    navigate(getCharacterUrlFromName(name, page, pageSize));
+  }, 1000);
 
   const debounceCallback = useCallback(
-    (searchTerm: string) => debouncedCharacterSearch(searchTerm, page, pageSize),
+    (...args: (string | undefined)[]) => debouncedCharacterSearch(...args),
     []
   );
 
   const handleCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setSearchParam(
-      (prev) => {
-        prev.set('name', value);
-        filters.pageNumber && prev.set('page', filters.pageNumber);
-        filters.pageSize && prev.set('pageSize', filters.pageSize);
-        return prev;
-      },
-      { replace: true }
-    );
-    debounceCallback(value);
+    setSearchQuery(value);
+    debounceCallback(value, '1', filters?.pageSize);
   };
 
   const scrollPaginationIntoView = () => paginationRef.current?.scrollIntoView();
@@ -78,13 +57,6 @@ const CharactersDashboard = () => {
   useEffect(() => {
     if (isError) {
       showError('Error', errorMessage);
-      setSearchParam(
-        (prev) => {
-          prev.set('name', '');
-          return prev;
-        },
-        { replace: true }
-      );
     }
     if (!isSuccess) {
       dispatch(reset());
@@ -97,7 +69,7 @@ const CharactersDashboard = () => {
   return (
     <Fragment>
       <Form
-        searchQuery={name ?? ''}
+        searchQuery={searchQuery ?? ''}
         handleCharacterSearch={handleCharacterSearch}
         handleFetchCharacters={handleFetchCharacters}
         handleClearCharacters={handleClearCharacters}

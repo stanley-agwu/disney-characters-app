@@ -22,8 +22,9 @@ const useCharactersDispatch = (search: string) => {
   const dispatch = useAppDispatch();
   const { state } = useLocation();
   const queryParams: QueryParams = getQueryParams(search);
-  const hasPageParams = Boolean(queryParams?.page && queryParams.pageSize);
-  const hasNameParam = Boolean(queryParams?.name);
+  const { name, page, pageSize } = queryParams;
+  const hasPageParams = Boolean(page && pageSize);
+  const hasNameParam = Boolean(name);
 
   useEffect(() => {
     if (search && hasNameParam) {

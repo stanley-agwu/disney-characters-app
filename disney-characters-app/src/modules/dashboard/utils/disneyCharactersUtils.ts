@@ -1,9 +1,9 @@
 import { coreConfig } from 'common/core/config';
 
 export const getCharacterUrlFromName = (
-  name: string,
-  pageNumber: string | null,
-  size: string | null
+  name: string | undefined,
+  pageNumber: string | undefined,
+  size: string | undefined
 ) => {
   const url = new URL(coreConfig.endpoints.root);
   const params = new URLSearchParams();
