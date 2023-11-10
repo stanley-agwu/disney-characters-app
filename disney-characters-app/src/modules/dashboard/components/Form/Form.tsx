@@ -48,7 +48,7 @@ const Form = ({
           color="secondary"
           size="large"
           onClick={handleClearCharacters}
-          airia-aria-label="Clear table"
+          aria-label="Clear table"
         >
           Clear table
         </Button>

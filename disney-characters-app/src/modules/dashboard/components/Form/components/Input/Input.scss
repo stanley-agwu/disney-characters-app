@@ -25,16 +25,6 @@
     @include inputFont;
   }
 
-  .inputTextError {
-    border: 1px solid $colorRedLight;
-    color: $errorColorTintDark;
-  }
-
-  .inputTextSuccess {
-    border: 1px solid $colorRedLight;
-    color: $successColorDark;
-  }
-
   .disabled {
     pointer-events: none;
 
