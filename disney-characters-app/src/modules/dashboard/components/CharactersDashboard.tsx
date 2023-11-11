@@ -39,7 +39,7 @@ const CharactersDashboard = () => {
   const debouncedCharacterSearch = debounce((...args: (string | undefined)[]) => {
     const [name, page, pageSize] = args;
     navigate(getCharacterUrlFromName(name, page, pageSize));
-  }, 1000);
+  }, 500);
 
   const debounceCallback = useCallback(
     (...args: (string | undefined)[]) => debouncedCharacterSearch(...args),

@@ -1,5 +1,6 @@
 import { RefObject } from 'react';
 
+import GenericNotFound from 'common/components/GenericNotFound/GenericNotFound';
 import PageLoader from 'common/components/Loader/PageLoader';
 import { Character, FilterOptions } from 'common/types';
 import Table from 'modules/dashboard/components/Table/Table';
@@ -24,6 +25,9 @@ const CharactersResultDisplay = ({
   }
   if (isSuccess && Boolean(filters?.count)) {
     return <Table characters={characters} filters={filters} paginationRef={paginationRef} />;
+  }
+  if (isSuccess && !filters?.count) {
+    return <GenericNotFound />;
   }
   return null;
 };
