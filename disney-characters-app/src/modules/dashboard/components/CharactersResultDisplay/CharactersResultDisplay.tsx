@@ -26,7 +26,7 @@ const CharactersResultDisplay = ({
   if (isSuccess && Boolean(filters?.count)) {
     return <Table characters={characters} filters={filters} paginationRef={paginationRef} />;
   }
-  if (isSuccess && !filters?.count) {
+  if (isSuccess && filters?.pageNumber && !filters?.count) {
     return <GenericNotFound />;
   }
   return null;

@@ -12,7 +12,7 @@ import { detailsMap, pathRegexMatch } from '../utils/constants';
 
 import CharacterInfoMap from './CharacterInfoMap/CharacterInfoMap';
 import CharacterInfoItem from './CharacterInfoMap/components/CharacterInfoItem/CharacterInfoItem';
-import GenericImage from './generic-image.png';
+import { ReactComponent as GenericImage } from './generic-image.svg';
 
 import styles from './CharacterDetails.module.scss';
 
@@ -53,7 +53,11 @@ const CharacterDetails = (): JSX.Element => {
     <div className={styles.character}>
       <div className={styles.characterName}>{selectedCharacter?.name}</div>
       <div className={styles.characterImage}>
-        <img src={selectedCharacter?.imageUrl || GenericImage} alt={selectedCharacter?.name} />
+        {selectedCharacter?.imageUrl ? (
+          <img src={selectedCharacter?.imageUrl} alt={selectedCharacter?.name} />
+        ) : (
+          <GenericImage aria-label="Generic image" />
+        )}
       </div>
       <div className={styles.characterDetails}>
         <div className={styles.created}>
