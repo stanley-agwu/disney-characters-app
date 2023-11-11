@@ -1,0 +1,40 @@
+@import 'styles/main';
+
+.genericNotFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $whiteColor;
+  width: 100%;
+  height: 600px;
+
+  svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .icon {
+    width: 224px;
+    height: 224px;
+    border-radius: 50%;
+    background: $colorTintGrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text {
+    @include text-1;
+    margin: $space-3 0;
+    .title {
+      @include text-1;
+      @include flexCenter;
+      font-weight: $fontWeightSemiBold;
+      padding: $space-2 0;
+    }
+    .subtitle {
+      text-align: center;
+    }
+  }
+}
