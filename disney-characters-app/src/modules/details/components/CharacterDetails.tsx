@@ -20,12 +20,14 @@ const CharacterDetails = (): JSX.Element => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { pathname, search } = location;
-  const { selectedCharacter, isLoading, isError, isSuccess, errorMessage } = useAppSelector(
+  const { selectedCharacter, isLoading, isError, errorMessage } = useAppSelector(
     (state) => state.character
   );
 
+  const isCharacterDetailsPath = pathRegexMatch.test(pathname) && !search;
+
   useEffect(() => {
-    if (pathRegexMatch.test(pathname) && !search) {
+    if (isCharacterDetailsPath) {
       const id = pathname.split('/').reverse()[0];
       dispatch(getCharacter(coreConfig.endpoints.character.format(id)));
     }
@@ -38,7 +40,7 @@ const CharacterDetails = (): JSX.Element => {
     return <PageLoader width={120} height={120} />;
   }
 
-  if ((isSuccess && !selectedCharacter?._id) || (!isSuccess && !selectedCharacter)) {
+  if (!isCharacterDetailsPath || !selectedCharacter?._id) {
     return (
       <GenericNotFound
         title="No character Found"
@@ -51,7 +53,7 @@ const CharacterDetails = (): JSX.Element => {
     <div className={styles.character}>
       <div className={styles.characterName}>{selectedCharacter?.name}</div>
       <div className={styles.characterImage}>
-        <img src={selectedCharacter?.imageUrl ?? GenericImage} alt={selectedCharacter?.name} />
+        <img src={selectedCharacter?.imageUrl || GenericImage} alt={selectedCharacter?.name} />
       </div>
       <div className={styles.characterDetails}>
         <div className={styles.created}>

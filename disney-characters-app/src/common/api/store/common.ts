@@ -45,12 +45,15 @@ export const formatDateCharactersPayLoad = (characters: Character[] | Character)
   return [];
 };
 
-export const formatDateSelectedCharacterPayLoad = (payload: Character): Character => ({
-  ...payload,
-  createdAt: payload.createdAt
-    ? moment.utc(payload.createdAt).format('DD/MM/YYYY HH:mm:ss')
-    : payload.createdAt,
-  updatedAt: payload.updatedAt
-    ? moment.utc(payload.updatedAt).format('DD/MM/YYYY HH:mm:ss')
-    : payload.updatedAt,
-});
+export const formatDateSelectedCharacterPayLoad = (payload: Character): Character | null =>
+  payload
+    ? {
+        ...payload,
+        createdAt: payload.createdAt
+          ? moment.utc(payload.createdAt).format('DD/MM/YYYY HH:mm:ss')
+          : payload.createdAt,
+        updatedAt: payload.updatedAt
+          ? moment.utc(payload.updatedAt).format('DD/MM/YYYY HH:mm:ss')
+          : payload.updatedAt,
+      }
+    : null;
