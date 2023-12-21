@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 
 import { FilterOptions } from 'common/types';
+import { INITIAL_PAGE } from 'common/utils/common';
 import useScreenSize from 'modules/dashboard/hooks/useScreenSize';
 import {
   displayZeroIndex,
@@ -35,7 +36,7 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
   const isLastPage = Boolean(Number(pageNumber) === totalPages);
 
   const firstPageChangeHandler = () => {
-    navigate(getAllCharactersPath(name, '1', formatPageSize(pageSize)), {
+    navigate(getAllCharactersPath(name, INITIAL_PAGE, formatPageSize(pageSize)), {
       state: { isPaginationQuery: true },
     });
   };
@@ -53,7 +54,7 @@ const Pagination: FC<PaginationProps> = ({ options, paginationRef }): JSX.Elemen
     });
   };
   const selectPageSizeHandler = ({ value }: { value: string }) => {
-    navigate(getAllCharactersPath(name, '1', value), {
+    navigate(getAllCharactersPath(name, INITIAL_PAGE, value), {
       state: { isPaginationQuery: true },
     });
   };

@@ -6,11 +6,15 @@ import { useAppDispatch, useAppSelector } from 'common/api/store/hooks';
 import { reset } from 'common/api/store/slices/characterSlice';
 import { showError } from 'common/components/Toast';
 import { coreConfig } from 'common/core/config';
+import {
+  DEFAULT_PAGE_SIZE,
+  INITIAL_PAGE,
+  paramPathString,
+  transformObjectToStringArray,
+} from 'common/utils/common';
 import CharactersResultDisplay from 'modules/dashboard/components/CharactersResultDisplay/CharactersResultDisplay';
 import Form from 'modules/dashboard/components/Form/Form';
 import useCharactersDispatch from 'modules/dashboard/hooks/useCharactersDispatch';
-
-import { transformObjectToStringArray } from '../hooks/useQuery';
 
 import styles from './CharactersDashboard.module.scss';
 
@@ -26,13 +30,8 @@ const CharactersDashboard = () => {
     (state) => state.character
   );
 
-  const navigateWithQuery = (query: string[][]) => {
-    const paramStr = new URLSearchParams(query as string | string[][]).toString();
-    navigate(paramStr ? `?${paramStr}` : '', { replace: true });
-  };
-
   const handleFetchCharacters = () => {
-    navigate(coreConfig.routes.characters.page.format('1', '50'));
+    navigate(coreConfig.routes.characters.page.format(INITIAL_PAGE, DEFAULT_PAGE_SIZE));
   };
 
   const handleClearCharacters = (event: FormEvent<HTMLButtonElement>) => {
@@ -44,7 +43,7 @@ const CharactersDashboard = () => {
 
   const debouncedCharacterSearch = debounce((...args: (string | undefined)[]) => {
     const [name, page, pageSize] = args;
-    navigateWithQuery(transformObjectToStringArray({ name, page, pageSize }));
+    navigate(paramPathString(transformObjectToStringArray({ name, page, pageSize })));
   }, 500);
 
   const debounceCallback = useCallback(
@@ -55,7 +54,7 @@ const CharactersDashboard = () => {
   const handleCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchQuery(value);
-    debounceCallback(value, '1', filters?.pageSize);
+    debounceCallback(value, INITIAL_PAGE, filters?.pageSize);
   };
 
   const scrollPaginationIntoView = () => paginationRef.current?.scrollIntoView();

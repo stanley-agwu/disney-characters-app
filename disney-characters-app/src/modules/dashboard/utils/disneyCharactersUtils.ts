@@ -1,11 +1,12 @@
 import { coreConfig } from 'common/core/config';
+import { DEFAULT_PAGE_SIZE } from 'common/utils/common';
 
 export const getQueryParams = (query: string) => {
   const params = new URLSearchParams(query);
   const name = params.get('name');
   const page = params.get('page');
   const pageSize = params.get('pageSize');
-  return { name, page, pageSize: pageSize ?? '50' };
+  return { name, page, pageSize: pageSize ?? DEFAULT_PAGE_SIZE };
 };
 
 export const getAllCharactersPath = (
@@ -27,7 +28,8 @@ export const displayZeroIndex = (pageNumber: number | null, count: number | null
   return count === 0 ? 0 : pageNumber;
 };
 
-export const formatPageSize = (page: string | undefined) => (page ? String(page) : '50');
+export const formatPageSize = (page: string | undefined) =>
+  page ? String(page) : DEFAULT_PAGE_SIZE;
 
 export const avatarFallback = (name: string) => {
   const match = name.match(/\b[A-Za-z0-9]+\b/g);
