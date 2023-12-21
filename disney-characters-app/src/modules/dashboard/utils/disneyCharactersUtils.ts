@@ -1,19 +1,5 @@
 import { coreConfig } from 'common/core/config';
 
-export const getCharacterUrlFromName = (
-  name: string | undefined,
-  pageNumber: string | undefined,
-  size: string | undefined
-) => {
-  const url = new URL(coreConfig.endpoints.root);
-  const params = new URLSearchParams();
-  pageNumber ? params.append('page', pageNumber) : params.append('page', '1');
-  size ? params.append('pageSize', size) : params.append('pageSize', '50');
-  name && params.append('name', name);
-  url.search = params.toString();
-  return url.search;
-};
-
 export const getQueryParams = (query: string) => {
   const params = new URLSearchParams(query);
   const name = params.get('name');

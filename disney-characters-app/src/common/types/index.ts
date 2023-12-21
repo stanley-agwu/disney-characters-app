@@ -41,3 +41,9 @@ export interface RequestOptions {
   url: string;
   filters: FilterOptions;
 }
+
+export interface QueryParams {
+  name?: string;
+  page?: string;
+  pageSize?: string;
+}

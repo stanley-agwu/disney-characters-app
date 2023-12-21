@@ -9,7 +9,8 @@ import { coreConfig } from 'common/core/config';
 import CharactersResultDisplay from 'modules/dashboard/components/CharactersResultDisplay/CharactersResultDisplay';
 import Form from 'modules/dashboard/components/Form/Form';
 import useCharactersDispatch from 'modules/dashboard/hooks/useCharactersDispatch';
-import { getCharacterUrlFromName } from 'modules/dashboard/utils/disneyCharactersUtils';
+
+import { transformObjectToStringArray } from '../hooks/useQuery';
 
 import styles from './CharactersDashboard.module.scss';
 
@@ -25,6 +26,11 @@ const CharactersDashboard = () => {
     (state) => state.character
   );
 
+  const navigateWithQuery = (query: string[][]) => {
+    const paramStr = new URLSearchParams(query as string | string[][]).toString();
+    navigate(paramStr ? `?${paramStr}` : '', { replace: true });
+  };
+
   const handleFetchCharacters = () => {
     navigate(coreConfig.routes.characters.page.format('1', '50'));
   };
@@ -38,7 +44,7 @@ const CharactersDashboard = () => {
 
   const debouncedCharacterSearch = debounce((...args: (string | undefined)[]) => {
     const [name, page, pageSize] = args;
-    navigate(getCharacterUrlFromName(name, page, pageSize));
+    navigateWithQuery(transformObjectToStringArray({ name, page, pageSize }));
   }, 500);
 
   const debounceCallback = useCallback(
