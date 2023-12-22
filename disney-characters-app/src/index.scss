@@ -49,15 +49,15 @@ html {
   margin: 0;
   padding: 0;
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: $space;
+    height: $space;
   }
   &::-webkit-scrollbar-track {
-    background: #e6e8eb;
+    background: $c-neutral-20;
   }
   &::-webkit-scrollbar-thumb {
-    background: #1873cd;
-    border-radius: 4px;
+    background: $c-neutral-60;
+    border-radius: $space * 0.5;
   }
 }
 

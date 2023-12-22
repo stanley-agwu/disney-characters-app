@@ -1,14 +1,13 @@
-@import '~styles/variables';
+@import '~styles/main';
 
 .tableWrapper {
   background: $greyBG;
-  border-radius: 8px;
-  border: 1px solid $colorTintGrey;
+  border-radius: $space * 0.5;
+  border: 1px solid $c-neutral-40;
   width: 100%;
 }
 
 .table {
-  border: 1px solid $colorTintGrey;
   border-radius: 8px 8px 0 0;
   font-size: $baseFontSize;
   padding: $space;
@@ -23,12 +22,13 @@
   grid-column-gap: $space-2;
   justify-items: start;
   overflow-wrap: break-word;
+  padding: $space 0;
 }
 
 @media screen and (min-width: 769px) {
   .headerRow,
   .bodyRow {
-    grid-template-columns: 0.5fr 0.5fr 1fr 1fr 1fr 1.5fr;
+    grid-template-columns: 0.5fr 0.5fr 1.5fr 1fr 1fr 1.5fr;
   }
 }
 
@@ -40,6 +40,7 @@
 }
 
 .headerRow {
+  border-bottom: 1px solid $c-neutral-40;
   th {
     color: $selectBG;
     font-weight: $baseFontWeight;
@@ -55,8 +56,8 @@
   font-size: $baseFontSize;
 
   &:hover {
-    background: $colorDimGrey;
-    border-radius: 4px;
+    background: $c-neutral-30;
+    border-radius: 0;
     color: $fontColorDark;
   }
 
