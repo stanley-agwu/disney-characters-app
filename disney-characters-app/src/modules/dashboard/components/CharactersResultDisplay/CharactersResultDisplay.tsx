@@ -24,7 +24,9 @@ const CharactersResultDisplay = ({
   paginationRef,
 }: CharactersResultDisplayProps) => {
   const navigate = useNavigate();
-  const { marginPagesDisplayed, selectedPage, setSelectedPage } = useScreenSize();
+  const { marginPagesDisplayed, selectedPage, setSelectedPage } = useScreenSize(
+    filters?.pageNumber
+  );
 
   const { totalPages, previousPage, nextPage, name } = filters;
   const isFirstPage = !previousPage;

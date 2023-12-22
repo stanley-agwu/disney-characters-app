@@ -4,10 +4,10 @@ import { debounce } from 'lodash';
 const screenResolution = () => {
   const screenWidth = window.innerWidth;
   if (screenWidth >= 1524) {
-    return 4;
+    return 3;
   }
   if (screenWidth < 1524 && screenWidth >= 768) {
-    return 3;
+    return 2;
   }
   if (screenWidth < 768 && screenWidth >= 368) {
     return 1;
@@ -15,17 +15,17 @@ const screenResolution = () => {
   return 0;
 };
 
-const useScreenSize = () => {
+const useScreenSize = (pageNumber?: string) => {
   const [marginPagesDisplayed, setMarginPagesDisplayed] = useState(() => screenResolution());
   const [selectedPage, setSelectedPage] = useState(0);
 
   const handleScreenSize = () => {
     const screenWidth = window.innerWidth;
     if (screenWidth >= 1524) {
-      return setMarginPagesDisplayed(4);
+      return setMarginPagesDisplayed(3);
     }
     if (screenWidth < 1524 && screenWidth >= 768) {
-      return setMarginPagesDisplayed(3);
+      return setMarginPagesDisplayed(2);
     }
     if (screenWidth < 768 && screenWidth >= 368) {
       return setMarginPagesDisplayed(1);
@@ -39,10 +39,14 @@ const useScreenSize = () => {
     debouncedHandleScreenSize();
     window.addEventListener('resize', debouncedHandleScreenSize);
 
+    if (pageNumber) {
+      setSelectedPage(Number(pageNumber) - 1);
+    }
+
     return () => {
       window.removeEventListener('resize', debouncedHandleScreenSize);
     };
-  }, [window.innerWidth]);
+  }, [window.innerWidth, pageNumber]);
 
   return {
     marginPagesDisplayed,
