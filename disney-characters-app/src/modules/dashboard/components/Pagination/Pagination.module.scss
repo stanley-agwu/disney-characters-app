@@ -1,133 +1,109 @@
 @import 'styles/main';
 
 .paginationContainer {
-  display: grid;
-  align-items: center;
-  padding: $space-2 0;
   width: 100%;
-  justify-content: center;
-  line-height: 1;
-
-  select {
-    width: 100px;
-    border-radius: 4px;
-    border: 1px solid $selectBG;
-    background-color: $greyBG;
-    font-family: $fontFamily;
-    font-weight: $fontWeightSemiBold;
-  }
-}
-
-.button,
-.previous {
-  height: 48px;
-  max-width: 64px !important;
-  border-radius: 8px;
-  border: none !important;
-  font-weight: $fontWeightSemiBold !important;
-  font-family: $fontFamily !important;
-  font-size: $baseFontSize !important;
-}
-
-@media screen and (min-width: 960px) {
-  .paginationContainer {
-    grid-template-columns: 2fr 3fr;
-    grid-template-rows: auto;
-  }
-}
-
-@media screen and (max-width: 959px) {
-  .paginationContainer {
-    width: 100%;
-    grid-template-columns: 1/-1;
-    grid-template-rows: auto auto;
-    gap: $space-4;
-    justify-content: center;
-  }
+  @include flexCenter;
+  padding: $space-2 0;
+  box-sizing: border-box;
 }
 
 .paginationContent {
   @include flexCenter;
-  width: 100%;
-  padding: 0;
-  box-sizing: border-box;
-}
+  margin: 0 auto;
 
-.paginationWrapper {
-  display: flex;
-  align-self: center;
-  margin: 0;
-  font-weight: $fontWeightSemiBold;
-  line-height: 1;
-}
-
-.paginationRangeContainer {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.paginationRange {
-  display: flex;
-  align-items: center;
-  max-width: 100%;
-  margin-right: $space-2;
-  font-size: $baseFontSize;
-  color: $fontColor;
-}
-
-.paginationNumber {
-  min-width: 160px;
-  font-weight: $fontWeightSemiBold;
-}
-
-.paginationSpan {
-  margin: 0 $space;
-  font-weight: $fontWeightSemiBold;
-}
-
-.pagination {
-  @include flexCenter;
-  width: 100%;
-  list-style: none;
-  padding: 0 calc($space/2);
-  margin: 0 $space;
-}
-
-.paginationLinkClass {
-  @include flexCenter;
-  padding: $space * 1.75;
-  background-color: $colorGreyLight;
-  margin: 0 $space;
-  color: $fontColor;
-  border-radius: 6px;
-  cursor: pointer;
-  min-width: 54px;
-}
-
-.activeLinkClass {
-  background-color: $successColorDark;
-  color: $whiteBG !important;
-  font-weight: 600;
-  padding: $space * 1.75 $space-2;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.breakClass {
-  font-size: $baseFontSize;
-  font-weight: 800;
-  color: $fontColor;
-  a {
-    font-size: $baseFontSize;
-    font-weight: 800;
-    color: $fontColor;
+  .rotateChevron {
+    transform: rotate(180deg);
   }
 }
+
+ul.pagination {
+  @include flexCenter;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0 $space * 0.5;
+
+  li {
+    @include flexCenter;
+    min-width: 40px;
+    min-height: 40px;
+    width: auto;
+    cursor: pointer;
+    margin: 0 $space * 0.5;
+    font-size: $fontSizeSmall;
+
+    a {
+      min-width: 40px;
+      min-height: 40px;
+      width: auto;
+      @include flexCenter;
+      color: $c-neutral-70;
+      padding: 0 $space;
+      margin: 0;
+    }
+
+    a.activeLinkClass {
+      color: $c-neutral-0;
+      background-color: $c-neutral-70;
+      font-weight: $fontWeightSemiBold;
+      padding: 0 $space;
+      border-radius: $space * 0.5;
+    }
+  }
+
+  li.selected {
+    padding: 0 $space;
+  }
+}
+
+a.paginationLinkClass {
+  @include flexCenter;
+  margin: 0;
+  padding: 0 $space;
+  border-radius: $space * 0.5;
+  box-sizing: border-box;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $c-neutral-40;
+  }
+}
+
+button.buttonClass {
+  min-width: 40px;
+  min-height: 40px;
+  width: auto;
+  @include flexCenter;
+  padding: 0;
+  background-color: $c-neutral-20;
+  border-radius: $space * 0.5;
+  color: $c-navy-80;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $c-neutral-40;
+  }
+}
+
 .disabledClass {
-  color: $whiteBG !important;
-  font-weight: 600;
-  border-radius: $space;
+  background-color: $c-neutral-20;
+  color: $c-neutral-40;
+  opacity: 0.5;
+}
+
+li.breakClass {
+  font-size: $baseFontSize;
+  font-weight: $fontWeightSemiBold;
+  color: $c-navy-80;
+  padding-bottom: $space;
+  height: 32px;
+  max-height: 40px;
+  box-sizing: border-box;
   pointer-events: none;
+}
+
+li.breakClass a {
+  letter-spacing: 3;
+  height: 32px;
 }

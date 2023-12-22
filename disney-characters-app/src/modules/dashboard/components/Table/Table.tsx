@@ -1,4 +1,3 @@
-import { FunctionComponent, RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -8,8 +7,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { isNonEmptyObject } from 'common/api/store/common';
-import { Character, FilterOptions } from 'common/types';
+import { Character, PaginationProps } from 'common/types';
 import Avatar from 'modules/dashboard/components/Avatar/Avatar';
 import Pagination from 'modules/dashboard/components/Pagination/Pagination';
 
@@ -56,16 +54,25 @@ const columns = [
 
 export interface TableProps {
   characters: Character[];
-  filters: FilterOptions;
-  paginationRef: RefObject<HTMLDivElement>;
+  paginationProps: PaginationProps;
 }
 
-const Table: FunctionComponent<TableProps> = ({ characters, filters, paginationRef }) => {
+const Table = ({ characters, paginationProps }: TableProps) => {
   const table = useReactTable({
     data: characters,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const {
+    isFirstPage,
+    isLastPage,
+    totalPages,
+    selectedPage,
+    marginPagesDisplayed,
+    pageChangeHandler,
+    ref,
+  } = paginationProps;
   const navigate = useNavigate();
 
   const getCharacterDetails = (row: { original: Character }) => {
@@ -97,11 +104,17 @@ const Table: FunctionComponent<TableProps> = ({ characters, filters, paginationR
           ))}
         </tbody>
       </table>
-      {isNonEmptyObject(filters) && (
-        <div className={styles.paginationWrapper}>
-          <Pagination options={filters} paginationRef={paginationRef} />
-        </div>
-      )}
+      <div className={styles.paginationWrapper}>
+        <Pagination
+          isFirstPage={isFirstPage}
+          isLastPage={isLastPage}
+          totalPages={totalPages}
+          selectedPage={selectedPage}
+          pageChangeHandler={pageChangeHandler}
+          marginPagesDisplayed={marginPagesDisplayed}
+          ref={ref}
+        />
+      </div>
     </div>
   );
 };

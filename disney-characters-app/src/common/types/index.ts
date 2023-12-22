@@ -1,3 +1,7 @@
+import { MutableRefObject } from 'react';
+
+import { ButtonSize } from 'common/components/Button/enums';
+
 export interface Character {
   _id: string;
   films: string[];
@@ -46,4 +50,16 @@ export interface QueryParams {
   name?: string;
   page?: string;
   pageSize?: string;
+}
+
+export interface PaginationProps {
+  isFirstPage: boolean;
+  isLastPage: boolean;
+  totalPages: number;
+  selectedPage: number;
+  marginPagesDisplayed: number;
+  pageChangeHandler: ({ selected }: { selected: number }) => void;
+  ref: MutableRefObject<HTMLDivElement | any | null>;
+  buttonSize?: ButtonSize;
+  buttonClassName?: string;
 }

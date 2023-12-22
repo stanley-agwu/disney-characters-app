@@ -1,16 +1,16 @@
 @import '~styles/main';
 
 .tableWrapper {
-  background: $greyBG;
+  background: $c-neutral-20;
   border-radius: $space * 0.5;
   border: 1px solid $c-neutral-40;
+  padding: $space;
   width: 100%;
 }
 
 .table {
   border-radius: 8px 8px 0 0;
   font-size: $baseFontSize;
-  padding: $space;
   width: 100%;
 }
 
@@ -52,6 +52,7 @@
 }
 
 .bodyRow {
+  border-bottom: 1px solid $c-neutral-40;
   font-weight: $baseFontWeight;
   font-size: $baseFontSize;
 
