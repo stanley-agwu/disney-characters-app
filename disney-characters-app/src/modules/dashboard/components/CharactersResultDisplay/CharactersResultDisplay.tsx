@@ -29,7 +29,6 @@ const CharactersResultDisplay = ({
   const { totalPages, previousPage, nextPage, name } = filters;
   const isFirstPage = !previousPage;
   const isLastPage = !nextPage;
-  console.log({ filters });
 
   const pageChangeHandler = ({ selected }: { selected: number }) => {
     setSelectedPage(selected);

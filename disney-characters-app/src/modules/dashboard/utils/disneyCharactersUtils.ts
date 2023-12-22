@@ -12,24 +12,11 @@ export const getQueryParams = (query: string) => {
 export const getAllCharactersPath = (
   name: string | undefined,
   pageNumber: string,
-  pageSize: string
+  pageSize = DEFAULT_PAGE_SIZE
 ): string =>
   name
     ? coreConfig.routes.characters.name.format(name, pageNumber, pageSize)
     : coreConfig.routes.characters.page.format(pageNumber, pageSize);
-
-export const displayZeroIndex = (pageNumber: number | null, count: number | null): number => {
-  if (pageNumber === 0) {
-    return pageNumber;
-  }
-  if (!pageNumber) {
-    return 1;
-  }
-  return count === 0 ? 0 : pageNumber;
-};
-
-export const formatPageSize = (page: string | undefined) =>
-  page ? String(page) : DEFAULT_PAGE_SIZE;
 
 export const avatarFallback = (name: string) => {
   const match = name.match(/\b[A-Za-z0-9]+\b/g);
