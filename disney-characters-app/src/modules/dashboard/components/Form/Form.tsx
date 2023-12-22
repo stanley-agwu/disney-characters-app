@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent } from 'react';
 
-import { Button } from '@mui/material';
+import { Button } from 'common/components/Button/Button';
+import { ButtonSize, ButtonTheme } from 'common/components/Button/enums';
 
 import Input from './components/Input/Input';
 
@@ -32,9 +33,9 @@ const Form = ({
       </div>
       <div className={styles.buttonWrapperSearch}>
         <Button
-          variant="contained"
           type="button"
-          size="large"
+          theme={ButtonTheme.primary}
+          size={ButtonSize.default}
           onClick={handleFetchCharacters}
           aria-label="Characters"
         >
@@ -43,10 +44,10 @@ const Form = ({
       </div>
       <div className={styles.buttonWrapperClear}>
         <Button
-          variant="contained"
           type="reset"
           color="secondary"
-          size="large"
+          theme={ButtonTheme.secondary}
+          size={ButtonSize.default}
           onClick={handleClearCharacters}
           aria-label="Clear table"
         >
