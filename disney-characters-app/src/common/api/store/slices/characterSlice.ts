@@ -7,12 +7,15 @@ import {
   formatDateSelectedCharacterPayLoad,
 } from 'common/api/store/common';
 import { Character, CharacterState, RequestOptions } from 'common/types';
+import { DEFAULT_PAGE_SIZE, INITIAL_PAGE } from 'common/utils/common';
 
 const initialState: CharacterState = {
   characters: [],
   selectedCharacter: null,
   filters: {
     isPaginationQuery: false,
+    pageSize: DEFAULT_PAGE_SIZE,
+    pageNumber: INITIAL_PAGE,
   },
   isLoading: false,
   isSuccess: false,

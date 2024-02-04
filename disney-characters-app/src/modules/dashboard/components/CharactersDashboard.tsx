@@ -41,20 +41,20 @@ const CharactersDashboard = () => {
     setSearchQuery('');
   };
 
-  const debouncedCharacterSearch = debounce((...args: (string | undefined)[]) => {
+  const debouncedCharacterSearch = debounce((...args: string[]) => {
     const [name, page, pageSize] = args;
     navigate(paramPathString(transformObjectToStringArray({ name, page, pageSize })));
   }, 500);
 
   const debounceCallback = useCallback(
-    (...args: (string | undefined)[]) => debouncedCharacterSearch(...args),
+    (...args: string[]) => debouncedCharacterSearch(...args),
     []
   );
 
   const handleCharacterSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchQuery(value);
-    debounceCallback(value, INITIAL_PAGE, filters?.pageSize);
+    debounceCallback(value, INITIAL_PAGE, filters.pageSize);
   };
 
   const scrollPaginationIntoView = () => paginationRef.current?.scrollIntoView();

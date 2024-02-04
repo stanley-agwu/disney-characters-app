@@ -35,8 +35,8 @@ export interface FilterOptions {
   previousPage?: string | null;
   nextPage?: string | null;
   totalPages?: number;
-  pageNumber?: string;
-  pageSize?: string;
+  pageNumber: string;
+  pageSize: string;
   name?: string;
   isPaginationQuery?: boolean;
 }
