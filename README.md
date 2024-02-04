@@ -1,12 +1,12 @@
 # disney-characters-app
 
-This is a simple app that shows data fetching from an API, data display and presentation. It is responsive, mobile friendly and also shows url book mark functionality.
+This is a simple app that shows data fetching from an API, data display, and presentation. It is responsive, mobile friendly, and also shows URL bookmark functionality.
 
 ## Getting started
 
 ### `npm start`
 
-Start app like every react app, running the following command:
+Start the app, by running the following command:
 
 ```sh
 npm run start
@@ -25,17 +25,17 @@ Launches the test coverage in an interactive mode.
 
 ## Usage
 
-The app on load shows an input field for running search of Disney characters. Upon type of atleast a letter it queries the API for data relating to query. The data of disney characters are displayed o a table.
-Upon clicking of an item on the table, it directs to detail information of the disney character. The pages are bookmarkable.
+The app on load shows an input field for running a search of Disney characters. Upon the type of at least a letter, it queries the API for data relating to the query. The data of Disney characters are displayed on a table.
+Upon clicking on an item on the table, it directs to detailed information about the Disney character. The pages are bookmarkable.
 
 ## Thank you
 
-A warm thanks to Disney API - that provided a free API for this app.
+A warm thanks to Disney API - which provided a free API for this app.
 
 [disney-api](https://disneyapi.dev/)
 
 ## More information
 
-[disney-characters-app](https://disney-characters-lxet2cewf-stanley-agwu.vercel.app/character)
+[disney-characters-app](https://disney-characters-vdnnkd4hn-stanley-agwu.vercel.app/character)
 
 [Github](https://github.com/stanley-agwu/disney-characters-app)
