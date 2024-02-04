@@ -36,6 +36,6 @@ A warm thanks to Disney API - which provided a free API for this app.
 
 ## More information
 
-[disney-characters-app](https://disney-characters-vdnnkd4hn-stanley-agwu.vercel.app/character)
+[disney-characters-app](https://disney-characters-appl.vercel.app)
 
 [Github](https://github.com/stanley-agwu/disney-characters-app)
