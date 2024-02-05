@@ -17,7 +17,7 @@ $button-font-weight-bold: 600;
   border-radius: $button-border-radius;
   font-size: $button-default-font-size;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-  background-color: $c-violet-60;
+  background-color: $c-neutral-70;
   border: 0;
   height: $button-default-height;
   box-sizing: border-box;
@@ -26,11 +26,11 @@ $button-font-weight-bold: 600;
   user-select: none;
 
   &:hover {
-    background-color: $c-violet-40;
+    background-color: $c-neutral-80;
   }
 
   &:focus {
-    background-color: $c-violet-60;
+    background-color: $c-neutral-80;
   }
   color: $c-neutral-0;
   font-weight: $button-font-weight-bold;
