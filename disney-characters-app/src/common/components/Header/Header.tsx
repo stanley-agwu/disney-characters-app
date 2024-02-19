@@ -21,7 +21,7 @@ const Header = (): JSX.Element => {
   };
 
   return (
-    <AppBar position="fixed" style={{ backgroundColor: '#222222' }}>
+    <AppBar position="fixed" style={{ backgroundColor: '#424557' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <TagFacesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }} />
