@@ -20,11 +20,15 @@ const Header = (): JSX.Element => {
     navigate(path);
   };
 
+  const FONT_COLOR = '#041623';
+
   return (
-    <AppBar position="fixed" style={{ backgroundColor: '#424557' }}>
+    <AppBar position="fixed" style={{ backgroundColor: '#e3e9ef' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <TagFacesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }} />
+          <TagFacesIcon
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer', fill: FONT_COLOR }}
+          />
           <Typography
             variant="h6"
             noWrap
@@ -36,14 +40,16 @@ const Header = (): JSX.Element => {
               fontFamily: 'Montserrat',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: FONT_COLOR,
               textDecoration: 'none',
               cursor: 'pointer',
             }}
           >
             disney characters
           </Typography>
-          <TagFacesIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, cursor: 'pointer' }} />
+          <TagFacesIcon
+            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, cursor: 'pointer', fill: FONT_COLOR }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -56,7 +62,7 @@ const Header = (): JSX.Element => {
               fontFamily: 'Montserrat',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: FONT_COLOR,
               textDecoration: 'none',
               cursor: 'pointer',
             }}
@@ -72,7 +78,7 @@ const Header = (): JSX.Element => {
             <Button
               key="home"
               onClick={() => navigateToPage(coreConfig.routes.characters.url)}
-              sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Montserrat' }}
+              sx={{ my: 2, color: FONT_COLOR, display: 'block', fontFamily: 'Montserrat' }}
             >
               Home
             </Button>

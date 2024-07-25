@@ -17,6 +17,11 @@
         width: 100%;
       }
     }
+    .buttonGroup {
+      display: flex;
+      flex-direction: column;
+      gap: $space-2;
+    }
 
     .buttonWrapperSearch,
     .buttonWrapperClear {
