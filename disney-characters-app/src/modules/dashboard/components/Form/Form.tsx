@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent } from 'react';
+import classNames from 'classnames';
 
 import { Button } from 'common/components/Button/Button';
 import { ButtonSize, ButtonTheme } from 'common/components/Button/enums';
@@ -12,6 +13,7 @@ interface FormProps {
   handleCharacterSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   handleFetchCharacters: () => void;
   handleClearCharacters: (e: FormEvent<HTMLButtonElement>) => void;
+  hasCharacters: boolean;
 }
 
 const Form = ({
@@ -19,6 +21,7 @@ const Form = ({
   handleCharacterSearch,
   handleFetchCharacters,
   handleClearCharacters,
+  hasCharacters,
 }: FormProps) => {
   return (
     <div className={styles.form}>
@@ -31,28 +34,30 @@ const Form = ({
           onChange={handleCharacterSearch}
         />
       </div>
-      <div className={styles.buttonWrapperSearch}>
-        <Button
-          type="button"
-          theme={ButtonTheme.primary}
-          size={ButtonSize.default}
-          onClick={handleFetchCharacters}
-          aria-label="Characters"
-        >
-          Characters
-        </Button>
-      </div>
-      <div className={styles.buttonWrapperClear}>
-        <Button
-          type="reset"
-          color="secondary"
-          theme={ButtonTheme.secondary}
-          size={ButtonSize.default}
-          onClick={handleClearCharacters}
-          aria-label="Clear table"
-        >
-          Clear table
-        </Button>
+      <div className={styles.buttonGroup}>
+        <div className={styles.buttonWrapperSearch}>
+          <Button
+            type="button"
+            theme={ButtonTheme.primary}
+            size={ButtonSize.default}
+            onClick={handleFetchCharacters}
+            aria-label="Characters"
+          >
+            Characters
+          </Button>
+        </div>
+        <div className={classNames(styles.buttonWrapperClear, { [styles.clear]: !hasCharacters })}>
+          <Button
+            type="reset"
+            color="secondary"
+            theme={ButtonTheme.secondary}
+            size={ButtonSize.default}
+            onClick={handleClearCharacters}
+            aria-label="Clear table"
+          >
+            Clear table
+          </Button>
+        </div>
       </div>
     </div>
   );

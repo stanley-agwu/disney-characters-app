@@ -45,14 +45,18 @@
       }
     }
 
-    .buttonWrapperSearch,
-    .buttonWrapperClear {
+    .buttonGroup {
+      display: flex;
       align-self: flex-end;
-
-      button {
-        font-family: $fontFamily;
-        font-weight: $baseFontWeight;
-        padding: 10.875px 22px;
+      gap: $space-2;
+      width: 341px;
+      .buttonWrapperSearch,
+      .buttonWrapperClear {
+        button {
+          font-family: $fontFamily;
+          font-weight: $baseFontWeight;
+          padding: 10.875px 22px;
+        }
       }
     }
   }
@@ -62,5 +66,9 @@
     button {
       padding: 10.875px 22px;
     }
+  }
+
+  .clear {
+    display: none;
   }
 }

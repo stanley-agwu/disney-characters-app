@@ -78,6 +78,7 @@ const CharactersDashboard = () => {
         handleCharacterSearch={handleCharacterSearch}
         handleFetchCharacters={handleFetchCharacters}
         handleClearCharacters={handleClearCharacters}
+        hasCharacters={Boolean(characters?.length)}
       />
       <div className={styles.tableWrapper}>
         <CharactersResultDisplay
