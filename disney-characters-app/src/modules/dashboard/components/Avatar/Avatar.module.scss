@@ -1,33 +1,33 @@
 @import '~styles/variables';
 
 .avatarRoot {
-  display: inline-flex;
   align-items: center;
+  background-color: $infoColorDark;
+  border-radius: 100%;
+  display: inline-flex;
+  height: 56px;
   justify-content: center;
-  vertical-align: middle;
   overflow: hidden;
   user-select: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 100%;
-  background-color: $infoColorDark;
+  vertical-align: middle;
+  width: 56px;
 }
 
 .avatarImage {
-  width: 100%;
+  border-radius: inherit;
   height: 100%;
   object-fit: cover;
-  border-radius: inherit;
+  width: 100%;
 }
 
 .avatarFallback {
-  width: 100%;
-  height: 100%;
-  display: flex;
   align-items: center;
-  justify-content: center;
   background-color: $colorTintGrey;
   color: $fontColor;
+  display: flex;
   font-size: $fontSizeSmall;
   font-weight: $fontWeightSemiBold;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
