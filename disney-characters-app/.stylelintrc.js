@@ -11,7 +11,7 @@ module.exports = {
     'order/order': ['custom-properties', 'declarations'],
     'order/properties-alphabetical-order': true,
     'selector-class-pattern': [
-      '^[a-z][-a-zA-Z0-9]+$',
+      '^[a-z][a-zA-Z0-9]*(?:-[a-z][a-zA-Z0-9]*)*$',
       {
         message: 'Expected custom property name to be lowerCamelCase or kebab-case',
       },
@@ -22,5 +22,9 @@ module.exports = {
         except: ['inside-block', 'after-same-name'],
       },
     ],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "scss/dollar-variable-pattern": "^[a-zA-Z]",
+    "scss/selector-no-redundant-nesting-selector": true
   },
 };
