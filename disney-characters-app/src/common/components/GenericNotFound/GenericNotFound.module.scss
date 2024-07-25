@@ -1,38 +1,42 @@
 @import 'styles/main';
 
 .genericNotFound {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
   background-color: $whiteColor;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   height: 600px;
+  justify-content: center;
+  width: 100%;
 
   svg {
-    width: 64px;
     height: 64px;
+    width: 64px;
   }
 
   .icon {
-    width: 224px;
-    height: 224px;
-    border-radius: 50%;
-    background: $colorTintGrey;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    background: $colorTintGrey;
+    border-radius: 50%;
+    display: flex;
+    height: 224px;
+    justify-content: center;
+    width: 224px;
   }
 
   .text {
     @include text-1;
+
     margin: $space-3 0;
+
     .title {
       @include text-1;
       @include flexCenter;
+
       font-weight: $fontWeightSemiBold;
       padding: $space-2 0;
     }
+
     .subtitle {
       text-align: center;
     }

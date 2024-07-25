@@ -22,9 +22,9 @@ module.exports = {
         except: ['inside-block', 'after-same-name'],
       },
     ],
-    "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true,
-    "scss/dollar-variable-pattern": "^[a-zA-Z]",
-    "scss/selector-no-redundant-nesting-selector": true
+    'at-rule-no-unknown': null,
+    'scss/at-rule-no-unknown': true,
+    'scss/dollar-variable-pattern': '^[a-zA-Z]',
+    'scss/selector-no-redundant-nesting-selector': true,
   },
 };

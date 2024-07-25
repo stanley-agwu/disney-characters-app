@@ -1,14 +1,15 @@
 @import 'styles/main';
 
 .paginationContainer {
+  box-sizing: border-box;
+  padding: $space-2 0;
   width: 100%;
   @include flexCenter;
-  padding: $space-2 0;
-  box-sizing: border-box;
 }
 
 .paginationContent {
   @include flexCenter;
+
   margin: 0 auto;
 
   .rotateChevron {
@@ -16,37 +17,44 @@
   }
 }
 
+li.breakClass a {
+  height: 32px;
+  letter-spacing: 3;
+}
+
 ul.pagination {
   @include flexCenter;
+
   justify-content: space-between;
   list-style-type: none;
   padding: 0 $space * 0.5;
 
   li {
     @include flexCenter;
-    min-width: 40px;
-    min-height: 40px;
-    width: auto;
+
     cursor: pointer;
-    margin: 0 $space * 0.5;
     font-size: $fontSizeSmall;
+    margin: 0 $space * 0.5;
+    min-height: 40px;
+    min-width: 40px;
+    width: auto;
 
     a {
-      min-width: 40px;
+      color: $c-neutral-70;
+      margin: 0;
       min-height: 40px;
+      min-width: 40px;
+      padding: 0 $space;
       width: auto;
       @include flexCenter;
-      color: $c-neutral-70;
-      padding: 0 $space;
-      margin: 0;
     }
 
     a.activeLinkClass {
-      color: $c-neutral-0;
       background-color: $c-neutral-70;
+      border-radius: $space * 0.5;
+      color: $c-neutral-0;
       font-weight: $fontWeightSemiBold;
       padding: 0 $space;
-      border-radius: $space * 0.5;
     }
   }
 
@@ -57,10 +65,11 @@ ul.pagination {
 
 a.paginationLinkClass {
   @include flexCenter;
-  margin: 0;
-  padding: 0 $space;
+
   border-radius: $space * 0.5;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0 $space;
 
   &:hover,
   &:focus,
@@ -70,14 +79,14 @@ a.paginationLinkClass {
 }
 
 button.buttonClass {
-  min-width: 40px;
-  min-height: 40px;
-  width: auto;
-  @include flexCenter;
-  padding: 0;
   background-color: $c-neutral-20;
   border-radius: $space * 0.5;
   color: $c-navy-80;
+  min-height: 40px;
+  min-width: 40px;
+  padding: 0;
+  width: auto;
+  @include flexCenter;
 
   &:hover,
   &:focus,
@@ -93,17 +102,12 @@ button.buttonClass {
 }
 
 li.breakClass {
+  box-sizing: border-box;
+  color: $c-navy-80;
   font-size: $baseFontSize;
   font-weight: $fontWeightSemiBold;
-  color: $c-navy-80;
-  padding-bottom: $space;
   height: 32px;
   max-height: 40px;
-  box-sizing: border-box;
+  padding-bottom: $space;
   pointer-events: none;
-}
-
-li.breakClass a {
-  letter-spacing: 3;
-  height: 32px;
 }

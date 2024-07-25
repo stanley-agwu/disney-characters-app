@@ -18,8 +18,8 @@
   .input {
     background: $c-neutral-20;
     border: 1px solid $borderColor;
-    color: $fontColor;
     border-radius: 8px;
+    color: $fontColor;
     height: 48px;
     padding: $space-2;
     @include inputFont;

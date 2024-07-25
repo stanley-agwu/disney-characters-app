@@ -2,8 +2,8 @@
 
 .tableWrapper {
   background: $c-neutral-20;
-  border-radius: $space * 0.5;
   border: 1px solid $c-neutral-40;
+  border-radius: $space * 0.5;
   padding: $space;
   width: 100%;
 }
@@ -31,7 +31,6 @@
     grid-template-columns: 0.5fr 0.5fr 1.5fr 1fr 1fr 1.5fr;
   }
 }
-
 @media screen and (max-width: 768px) {
   .headerRow,
   .bodyRow {
@@ -41,11 +40,12 @@
 
 .headerRow {
   border-bottom: 1px solid $c-neutral-40;
+
   th {
     color: $selectBG;
-    font-weight: $baseFontWeight;
     font-size: $fontSizeLarge;
-    height: 48px;
+    font-weight: $baseFontWeight;
+    height: auto;
     padding: $space;
     text-align: center;
   }
@@ -53,8 +53,8 @@
 
 .bodyRow {
   border-bottom: 1px solid $c-neutral-40;
-  font-weight: $baseFontWeight;
   font-size: $baseFontSize;
+  font-weight: $baseFontWeight;
 
   &:hover {
     background: $c-neutral-30;
@@ -65,7 +65,7 @@
   td {
     align-items: center;
     display: flex;
-    height: 48px;
+    height: auto;
     justify-content: center;
     padding: $space;
   }

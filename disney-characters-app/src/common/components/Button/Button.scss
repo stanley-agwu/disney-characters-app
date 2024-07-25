@@ -10,20 +10,22 @@ $button-small-font-size: 14px;
 $button-font-weight-bold: 600;
 
 @mixin button-component {
-  display: inline-flex;
-  justify-content: center;
   align-items: center;
-  padding: $space-3 * 0.5 $space-3;
-  border-radius: $button-border-radius;
-  font-size: $button-default-font-size;
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   background-color: $c-neutral-70;
   border: 0;
-  height: $button-default-height;
+  border-radius: $button-border-radius;
   box-sizing: border-box;
-  width: 100%;
+  color: $c-neutral-0;
   cursor: pointer;
+  display: inline-flex;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  font-size: $button-default-font-size;
+  font-weight: $button-font-weight-bold;
+  height: $button-default-height;
+  justify-content: center;
+  padding: $space-3 * 0.5 $space-3;
   user-select: none;
+  width: 100%;
 
   &:hover {
     background-color: $c-neutral-80;
@@ -32,17 +34,15 @@ $button-font-weight-bold: 600;
   &:focus {
     background-color: $c-neutral-80;
   }
-  color: $c-neutral-0;
-  font-weight: $button-font-weight-bold;
 
   &--fixed {
     width: auto;
   }
 
   &--disabled {
-    pointer-events: none;
-    color: $c-neutral-60;
     background-color: $c-neutral-30;
+    color: $c-neutral-60;
+    pointer-events: none;
   }
 
   & > * {
@@ -50,29 +50,29 @@ $button-font-weight-bold: 600;
   }
 
   & > &--icon {
-    margin-right: $space * 1.5;
     display: inline-flex;
+    margin-right: $space * 1.5;
   }
 
   // button sizes
   &--small {
-    padding: $space $space-3;
-    height: $button-small-height;
     font-size: $button-small-font-size;
+    height: $button-small-height;
+    padding: $space $space-3;
   }
 
   &--micro {
-    padding: $space $space-2;
-    height: $button-micro-height;
-    font-size: $button-small-font-size;
     border-radius: $space-2;
+    font-size: $button-small-font-size;
+    height: $button-micro-height;
     line-height: 1;
+    padding: $space $space-2;
   }
 
   &--secondary {
-    color: $c-negative-70;
     background-color: $c-negative-20;
     border: 2px solid $c-negative-20;
+    color: $c-negative-70;
 
     &:hover {
       background-color: $c-negative-30;
@@ -97,12 +97,12 @@ $button-font-weight-bold: 600;
   }
 
   &--tertiary {
-    color: $c-orange-80;
     background-color: transparent;
-    padding: $space * 5 $space-3;
+    color: $c-orange-80;
     font-size: $button-default-font-size;
     font-weight: $button-font-weight-bold;
     height: $button-default-height;
+    padding: $space * 5 $space-3;
 
     &:hover {
       background-color: transparent;
@@ -134,21 +134,21 @@ $button-font-weight-bold: 600;
   }
 
   &--destructive {
-    color: $c-negative-80;
     background-color: $c-negative-30;
     border: 2px solid $c-negative-30;
+    color: $c-negative-80;
 
     &:hover,
     &:focus {
       background-color: $c-negative-60;
-      color: $c-neutral-0;
       border: 2px solid $c-negative-60;
+      color: $c-neutral-0;
     }
 
     &:active {
       background-color: $c-negative-80;
-      color: $c-neutral-0;
       border: 2px solid $c-negative-80;
+      color: $c-neutral-0;
     }
 
     &.t-button--disabled {
@@ -159,5 +159,5 @@ $button-font-weight-bold: 600;
 }
 
 .t-button {
-  @include button-component();
+  @include button-component;
 }

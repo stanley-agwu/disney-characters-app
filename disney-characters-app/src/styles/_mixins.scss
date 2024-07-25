@@ -1,18 +1,16 @@
 @mixin flexCenter {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
-
 @mixin text-format($font-size, $font-weight, $line-height, $letter-spacing, $color) {
-  font-size: $font-size;
-  font-weight: $font-weight;
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
   color: $color;
   font-family: $fontFamily;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  letter-spacing: $letter-spacing;
+  line-height: $line-height;
 }
-
 @mixin text-1 {
   @include text-format(
     $baseFontSize,
